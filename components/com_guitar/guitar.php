@@ -1,1 +1,1 @@
-<?phpdefined('_JEXEC') or die;?><p>Hello Guitar!</p>
+<?phpdefined('_JEXEC') or die;$controller	= JControllerLegacy::getInstance('Guitar');$controller->execute(JFactory::getApplication()->input->get('task'));$controller->redirect();
