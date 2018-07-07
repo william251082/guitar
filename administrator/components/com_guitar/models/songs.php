@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class GuitarModelSong extends JModelList
+class GuitarModelSongs extends JModelList
 {
 	public function getListQuery()
 	{

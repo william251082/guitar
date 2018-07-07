@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `#__guitar_styles`;
+DROP TABLE IF EXISTS `#__guitar_songs`;

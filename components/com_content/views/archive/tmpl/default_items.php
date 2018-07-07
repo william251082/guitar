@@ -57,10 +57,10 @@ $params = $this->params;
 						<div class="parent-category-name">
 							<?php $title = $this->escape($item->parent_title); ?>
 							<?php if ($params->get('link_parent_category') && !empty($item->parent_slug)) : ?>
-								<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)) . '" itemprop="genre">' . $title . '</a>'; ?>
+								<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)) . '" itemprop="song">' . $title . '</a>'; ?>
 								<?php echo JText::sprintf('COM_CONTENT_PARENT', $url); ?>
 							<?php else : ?>
-								<?php echo JText::sprintf('COM_CONTENT_PARENT', '<span itemprop="genre">' . $title . '</span>'); ?>
+								<?php echo JText::sprintf('COM_CONTENT_PARENT', '<span itemprop="song">' . $title . '</span>'); ?>
 							<?php endif; ?>
 						</div>
 					</dd>
@@ -70,10 +70,10 @@ $params = $this->params;
 						<div class="category-name">
 							<?php $title = $this->escape($item->category_title); ?>
 							<?php if ($params->get('link_category') && $item->catslug) : ?>
-								<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '" itemprop="genre">' . $title . '</a>'; ?>
+								<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '" itemprop="song">' . $title . '</a>'; ?>
 								<?php echo JText::sprintf('COM_CONTENT_CATEGORY', $url); ?>
 							<?php else : ?>
-								<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<span itemprop="genre">' . $title . '</span>'); ?>
+								<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<span itemprop="song">' . $title . '</span>'); ?>
 							<?php endif; ?>
 						</div>
 					</dd>
@@ -143,10 +143,10 @@ $params = $this->params;
 							<div class="parent-category-name">
 								<?php $title = $this->escape($item->parent_title); ?>
 								<?php if ($params->get('link_parent_category') && $item->parent_slug) : ?>
-									<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)) . '" itemprop="genre">' . $title . '</a>'; ?>
+									<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)) . '" itemprop="song">' . $title . '</a>'; ?>
 									<?php echo JText::sprintf('COM_CONTENT_PARENT', $url); ?>
 								<?php else : ?>
-									<?php echo JText::sprintf('COM_CONTENT_PARENT', '<span itemprop="genre">' . $title . '</span>'); ?>
+									<?php echo JText::sprintf('COM_CONTENT_PARENT', '<span itemprop="song">' . $title . '</span>'); ?>
 								<?php endif; ?>
 							</div>
 						</dd>
@@ -156,10 +156,10 @@ $params = $this->params;
 							<div class="category-name">
 								<?php $title = $this->escape($item->category_title); ?>
 								<?php if ($params->get('link_category') && $item->catslug) : ?>
-									<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '" itemprop="genre">' . $title . '</a>'; ?>
+									<?php $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '" itemprop="song">' . $title . '</a>'; ?>
 									<?php echo JText::sprintf('COM_CONTENT_CATEGORY', $url); ?>
 								<?php else : ?>
-									<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<span itemprop="genre">' . $title . '</span>'); ?>
+									<?php echo JText::sprintf('COM_CONTENT_CATEGORY', '<span itemprop="song">' . $title . '</span>'); ?>
 								<?php endif; ?>
 							</div>
 						</dd>
