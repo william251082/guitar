@@ -6,9 +6,15 @@ defined('_JEXEC') or die;
 		<p> <?php echo JText::_('COM_GUITAR_NO_GENRES'); ?></p>
 	<?php   }
 	else {
-		foreach ($this->items as $i => $item) { ?>
-			<p><?php echo $item->title; ?></p>
-		<?php   	}
+		foreach ( $this->items as $i => $item ) { ?>
+            <p>
+                <a href="<?php echo JRoute::_(
+					'index.php?option=com_guitar&view=genre&id=' . $item->id
+				); ?>">
+					<?php echo $item->title; ?>
+                </a>
+            </p>
+		<?php }
 	}
 	?>
 </div>
