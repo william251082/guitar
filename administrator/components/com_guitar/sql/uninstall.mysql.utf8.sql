@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS `ymfgb__guitar_styles`;
