@@ -27,6 +27,10 @@
         <folder>models</folder>
     </files>
 
+    <languages folder="site/language">
+        <language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
+    </languages>
+
     <administration>
         <menu>com_guitar</menu>
         <submenu>
@@ -44,6 +48,11 @@
             <folder>views</folder>
             <folder>models</folder>
         </files>
+
+        <languages folder="admin/language">
+            <language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
+            <language tag="en-GB">en-GB/en-GB.com_guitar.sys.ini</language>
+        </languages>
     </administration>
 
 </extension>
