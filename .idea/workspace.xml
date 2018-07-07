@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dc39fc9-b689-427b-9630-aeb79d79f633" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/models/genres.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/models/genres.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/genres/tmpl/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/genres/tmpl/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/genres/view.html.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/genres/view.html.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/com_guitar/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/com_guitar/models/genre.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/models/genre.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/com_guitar/models/genres.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/models/genres.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/com_guitar/views/genre/tmpl/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/views/genre/tmpl/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/com_guitar/views/genre/view.html.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/views/genre/view.html.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/com_guitar/views/genres/tmpl/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/views/genres/tmpl/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/com_guitar/views/genres/view.html.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/views/genres/view.html.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,29 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="default.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/views/genres/tmpl/default.php">
+      <file leaf-file-name="en-GB.com_goodcook.ini" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_goodcook.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/views/genre/tmpl/default.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controller.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/controller.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+            <state relative-caret-position="651">
+              <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -88,6 +78,9 @@
     <findStrings>
       <find>Goo</find>
       <find>Goodcook</find>
+      <find>recipe</find>
+      <find>author</find>
+      <find>genre</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/administrator/components/com_guitar</dir>
@@ -119,6 +112,8 @@
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/genres.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/controller.php" />
+        <option value="$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_goodcook.ini" />
+        <option value="$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_goodcook.sys.ini" />
       </list>
     </option>
   </component>
@@ -172,6 +167,19 @@
               <item name="administrator" type="cbb8eebc:String" user="administrator" />
               <item name="components" type="cbb8eebc:String" user="components" />
               <item name="com_guitar" type="cbb8eebc:String" user="com_guitar" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="guitar" type="cbb8eebc:String" user="guitar" />
+              <item name="administrator" type="cbb8eebc:String" user="administrator" />
+              <item name="language" type="cbb8eebc:String" user="language" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="guitar" type="cbb8eebc:String" user="guitar" />
+              <item name="administrator" type="cbb8eebc:String" user="administrator" />
+              <item name="language" type="cbb8eebc:String" user="language" />
+              <item name="en-GB" type="cbb8eebc:String" user="en-GB" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -292,11 +300,11 @@
       <recent name="$PROJECT_DIR$/administrator/components/com_guitar/views/genres" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/administrator/language/en-GB" />
       <recent name="$PROJECT_DIR$/components/com_guitar/models" />
       <recent name="$PROJECT_DIR$/components/com_guitar/views/genre" />
       <recent name="$PROJECT_DIR$/components/com_guitar/views/genres/tmpl" />
       <recent name="$PROJECT_DIR$/components/com_guitar/views/genres" />
-      <recent name="$PROJECT_DIR$/administrator/components/com_guitar/views/genres/tmpl" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -336,11 +344,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8480000" />
+    <option name="totallyTimeSpent" value="10985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
@@ -408,9 +415,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/guitar.php" />
-    <entry file="file://$PROJECT_DIR$/components/com_guitar/guitar.php" />
-    <entry file="file://$PROJECT_DIR$/components/com_guitar/controller.php" />
     <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" />
     <entry file="file://$PROJECT_DIR$/components/com_guitar/views/styles/view.html.php" />
     <entry file="file://$PROJECT_DIR$/components/com_guitar/views/genres/tmpl/default.php" />
@@ -618,8 +622,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/com_guitar/views/genre/tmpl/default.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="378">
+          <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_goodcook.sys.ini">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_installer.ini">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_goodcook.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
         </state>
       </provider>
     </entry>

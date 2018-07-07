@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class GuitarViewGenre extends JViewLegacy
+class GuitarViewSong extends JViewLegacy
 {
 	public function display($tpl = null)
 	{

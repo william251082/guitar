@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class GuitarModelGenre extends JModelItem
+class GuitarModelSong extends JModelItem
 {
 	public function &getItem($pk = null)
 	{
@@ -10,8 +10,8 @@ class GuitarModelGenre extends JModelItem
 
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select('id, title, genre');
-		$query->from('#__guitar_genres');
+		$query->select('id, title, song');
+		$query->from('#__guitar_songs');
 		$query->where('id = '.$id);
 
 		$db->setQuery($query);

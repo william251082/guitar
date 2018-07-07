@@ -12,7 +12,7 @@ class GuitarController extends JControllerLegacy
 
 		// Set the view based on the Request parameters,
 		// if no view is set default to the "recipes" view
-		$vName = $this->input->get('view', 'genres');
+		$vName = $this->input->get('view', 'songs');
 		$this->input->set('view', $vName);
 
 		parent::display($cachable, $safeurlparams);
