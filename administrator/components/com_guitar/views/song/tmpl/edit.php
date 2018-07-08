@@ -10,7 +10,11 @@ defined('_JEXEC') or die;
             <fieldset>
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#details" data-toggle="tab"><?php echo empty($this->item->id) ? JText::_('COM_GUITAR_NEW_SONG') : JText::sprintf('COM_GUITAR_EDIT_SONG', $this->item->id); ?></a>
+                        <a href="#details" data-toggle="tab"><?php echo empty(
+                                $this->item->id
+                            ) ? JText::_('COM_GUITAR_NEW_SONG') : JText::sprintf(
+                                    'COM_GUITAR_EDIT_SONG', $this->item->id
+                            ); ?></a>
                     </li>
                 </ul>
                 <div class="tab-content">

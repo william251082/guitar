@@ -8,6 +8,8 @@ class GuitarController extends JControllerLegacy
 		// Get the document object.
 		$document = JFactory::getDocument();
 
+		$id = $this->input->getInt('id');
+
 		// Set the view based on the Request parameters,
 		// if no view is set default to the "songs" view
 		$vName = $this->input->get('view', 'songs');
