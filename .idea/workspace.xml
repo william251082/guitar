@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0dc39fc9-b689-427b-9630-aeb79d79f633" name="Default" comment="" />
+    <list default="true" id="0dc39fc9-b689-427b-9630-aeb79d79f633" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,47 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="default.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/views/categories/tmpl/default.xml">
+      <file leaf-file-name="install.mysql.utf8.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view.html.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/views/categories/view.html.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/views/categories/tmpl/default.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="24" column="65" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="songs.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/models/songs.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="categories.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_guitar/models/categories.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+            <state relative-caret-position="273">
+              <caret line="13" column="65" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -180,7 +146,6 @@
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/songs.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" />
         <option value="$PROJECT_DIR$/components/com_guitar/models/songs.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/views/category/tmpl/default.xml" />
         <option value="$PROJECT_DIR$/components/com_guitar/views/category/view.html.php" />
@@ -189,6 +154,7 @@
         <option value="$PROJECT_DIR$/components/com_guitar/views/categories/tmpl/default.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/models/categories.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/views/categories/tmpl/default.xml" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" />
       </list>
     </option>
   </component>
@@ -518,7 +484,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48706000" />
+    <option name="totallyTimeSpent" value="49170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
@@ -846,13 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_guitar/views/category/tmpl/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -934,6 +893,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" column="65" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
         </state>
       </provider>
     </entry>

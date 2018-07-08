@@ -7,9 +7,10 @@ CREATE TABLE IF NOT EXISTS `#__guitar_songs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `album` varchar(250) NOT NULL DEFAULT '',
   `song` text NOT NULL,
+  `catid` int(10) unsigned NOT NULL DEFAULT '0'
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
 
-INSERT IGNORE INTO `#__guitar_songs` (`id`,`album`,`song`) VALUES
-	(1, 'Skunk Funk', 'Near You'),
-	(2, 'Dolphin Dance', 'Joy Spring');
+INSERT IGNORE INTO `#__guitar_songs` (`id`,`album`,`song`, `catid`) VALUES
+	(1, 'Skunk Funk', 'Near You', (SELECT id FROM #__categories WHERE extension = 'com_guitar' and title = 'Jazz' LIMIT 1),
+	(2, 'Dolphin Dance', 'Joy Spring', (SELECT id FROM #__categories WHERE extension = 'com_guitar' and title = 'Classical' LIMIT 1));
