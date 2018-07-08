@@ -18,6 +18,11 @@ defined('_JEXEC') or die;
                 </th>
             </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <td colspan="9"><?php echo $this->pagination->getListFooter(); ?></td>
+            </tr>
+            </tfoot>
             <tbody>
             <?php foreach ($this->items as $i => $item) { ?>
                 <tr class="row<?php echo $i % 2; ?>" >

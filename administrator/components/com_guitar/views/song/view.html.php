@@ -7,21 +7,22 @@ class GuitarViewSong extends JViewLegacy
     {
         $this->item		= $this->get('Item');
         $this->form		= $this->get('Form');
-
+//        var_dump($this->item); die;
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
             JError::raiseError(500, implode("\n", $errors));
             return false;
         }
-
+        // Set the Toolbar
         $this->addToolbar();
 
         parent::display($tpl);
     }
-
     protected function addToolbar()
     {
         JFactory::getApplication()->input->set('hidemainmenu', true);
+
+//        var_dump($this->item); die;
 
         $isNew		= ($this->item->id == 0);
 
@@ -34,7 +35,5 @@ class GuitarViewSong extends JViewLegacy
         JToolbarHelper::divider();
         JToolbarHelper::help('JHELP_COMPONENTS_GUITAR_SONGS_EDIT');
     }
-
-
 
 }

@@ -8,6 +8,10 @@ class GuitarModelSong extends JModelAdmin
         $app = JFactory::getApplication('site');
         $id = $app->input->getInt('id');
 
+        if (empty($id)) {
+            return $data;
+        }
+
         $db = JFactory::getDBO();
         $query = $db->getQuery(true);
         $query->select('id, album, song');
@@ -42,7 +46,7 @@ class GuitarModelSong extends JModelAdmin
         if (empty($data)) {
             $data = $this->getItem();
         }
-
+//            var_dump($data);die;
         return $data;
     }
 

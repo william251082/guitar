@@ -20,6 +20,11 @@ defined('_JEXEC') or die;
                 </th>
             </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <td colspan="9"><?php echo $this->pagination->getListFooter(); ?></td>
+            </tr>
+            </tfoot>
             <tbody>
             <?php foreach ($this->items as $i => $item) { ?>
                 <tr class="row<?php echo $i % 2; ?>">
@@ -42,6 +47,7 @@ defined('_JEXEC') or die;
         </table>
         <input type="hidden" name="task" value=""/>
         <input type="hidden" name="boxchecked" value="0"/>
+        <input type="hidden" name="view" value="songs" />
         <?php echo JHtml::_('form.token'); ?>
     </div>
 </form>
