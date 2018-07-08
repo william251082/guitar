@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dc39fc9-b689-427b-9630-aeb79d79f633" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_admin/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_admin/script.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/models/song.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/models/song.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/view.html.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/view.html.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/com_guitar/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,11 +48,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="view.html.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="view.html.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/view.html.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            <state relative-caret-position="117">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-97">
+              <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="song.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="song.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/models/song.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="song.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/controllers/song.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -68,11 +115,9 @@
       <find>row-fluid</find>
       <find>author</find>
       <find>getListFo</find>
-      <find>goodcook</find>
       <find>DROP TABLE IF EXISTS \`\#__guitar_songs\`\;\n\nCREATE TABLE IF NOT EXISTS \`\#__guitar_songs\` \(\n  \`id\` int\(10\) unsigned NOT NULL AUTO_INCREMENT\,\n  \`title\` varchar\(250\) NOT NULL DEFAULT \'\'\,\n  \`song\` text NOT NULL\,\n  \`catid\` int\(10\) unsigned NOT NULL DEFAULT \'0\'\,\n  \`alias\` varchar\(255\) DEFAULT NULL\,\n  \`metadesc\` varchar\(1024\) DEFAULT NULL\,\n  \`metakey\` varchar\(1024\) DEFAULT NULL\,\n  \`created\` datetime NOT NULL DEFAULT \'0000\-00\-00 00\:00\:00\'\,\n  \`created_by\` int\(10\) unsigned NOT NULL DEFAULT \'0\'\,\n  \`created_by_alias\` varchar\(255\) NOT NULL\,\n  \`publish_up\` datetime NOT NULL DEFAULT \'0000\-00\-00 00\:00\:00\'\,\n  \`publish_down\` datetime NOT NULL DEFAULT \'0000\-00\-00 00\:00\:00\'\,\n  PRIMARY KEY \(\`id\`\)\,\n  KEY \`catid\` \(\`catid\`\)\n\) ENGINE\=MyISAM  DEFAULT CHARSET\=utf8 \;\n\nINSERT INTO \`\#__guitar_songs\` \(\`id\`\, \`title\`\, \`alias\`\, \`song\`\, \`catid\`\, \`created\`\, \`created_by\`\, \`metadesc\`\, \`metakey\`\) VALUES\n\(NULL\, \'Near You\'\, \'near\-you\'\, \'\&lt;p\&gt;Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat\. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur\. Excepteur sint occaecat cupidatat non proident\, sunt in culpa qui officia deserunt mollit anim id est laborum\.\&lt;\/p\&gt;\'\, \(SELECT id FROM \#__categories WHERE extension \= \'com_guitar\' and title \= \'Miles\' LIMIT 1\)\, \'2013\-01\-01 00\:00\:00\'\, \(SELECT id FROM \#__users LIMIT 1\)\, \'Lorem ipsum dolor sit amet\'\)\,\n\(NULL\, \'Dolphin Dance\'\, \'dolphin\-dance\'\, \'\&lt;p\&gt;Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat\. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur\. Excepteur sint occaecat cupidatat non proident\, sunt in culpa qui officia deserunt mollit anim id est laborum\.\&lt;\/p\&gt;\'\, \(SELECT id FROM \#__categories WHERE extension \= \'com_guitar\' and title \= \'Trane\' LIMIT 1\)\, \'2013\-01\-01 00\:00\:00\'\, \(SELECT id FROM \#__users LIMIT 1\)\, \'Lorem ipsum dolor\'\)\;</find>
       <find>COM_GOODCOOK</find>
       <find>COM_GUITAR_SONGSLIST_VIEW_DEFAULT</find>
-      <find>recipe</find>
       <find>getLabel</find>
       <find>label</find>
       <find>JGLOBAL_TITLE</find>
@@ -80,6 +125,8 @@
       <find>COM_GUITAR_SONGSLIST_VIEW_DEFAULT_</find>
       <find>COM_GUITAR_FIELD_TITLE_DESC</find>
       <find>title</find>
+      <find>goodcook</find>
+      <find>recipe</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/language</dir>
@@ -125,13 +172,16 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6b93c951-1323-4dd5-bf78-66a208a58a19/console.sql" />
         <option value="$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/views/song/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/song.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/forms/song.xml" />
         <option value="$PROJECT_DIR$/components/com_guitar/controller.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" />
-        <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/view.html.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/controllers/GuitarControllerSong.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/song.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/controllers/song.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" />
       </list>
     </option>
   </component>
@@ -199,6 +249,14 @@
               <item name="administrator" type="cbb8eebc:String" user="administrator" />
               <item name="components" type="cbb8eebc:String" user="components" />
               <item name="com_guitar" type="cbb8eebc:String" user="com_guitar" />
+              <item name="controllers" type="cbb8eebc:String" user="controllers" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="guitar" type="cbb8eebc:String" user="guitar" />
+              <item name="administrator" type="cbb8eebc:String" user="administrator" />
+              <item name="components" type="cbb8eebc:String" user="components" />
+              <item name="com_guitar" type="cbb8eebc:String" user="com_guitar" />
               <item name="models" type="cbb8eebc:String" user="models" />
             </path>
             <path>
@@ -217,6 +275,14 @@
               <item name="components" type="cbb8eebc:String" user="components" />
               <item name="com_guitar" type="cbb8eebc:String" user="com_guitar" />
               <item name="sql" type="cbb8eebc:String" user="sql" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="guitar" type="cbb8eebc:String" user="guitar" />
+              <item name="administrator" type="cbb8eebc:String" user="administrator" />
+              <item name="components" type="cbb8eebc:String" user="components" />
+              <item name="com_guitar" type="cbb8eebc:String" user="com_guitar" />
+              <item name="tables" type="cbb8eebc:String" user="tables" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -363,15 +429,6 @@
             <path>
               <item name="guitar" type="b2602c69:ProjectViewProjectNode" />
               <item name="guitar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="administrator" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="com_guitar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="song.php" type="88303cf5:PhpFileNode" />
-            </path>
-            <path>
-              <item name="guitar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="guitar" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -446,7 +503,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32475000" />
+    <option name="totallyTimeSpent" value="34701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
@@ -527,23 +584,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/songs/view.html.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/sql/uninstall.mysql.utf8.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6b93c951-1323-4dd5-bf78-66a208a58a19/schema/guitar/table/ymfgb_guitar_genres">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://6b93c951-1323-4dd5-bf78-66a208a58a19/schema/guitar/table/ymfgb_guitar_songs">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -822,31 +862,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="40" column="51" lean-forward="true" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/models/forms/song.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" column="46" lean-forward="true" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/models/song.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-457">
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -857,10 +876,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/controllers/song.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/view.html.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        <state relative-caret-position="117">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/models/song.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-97">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
         </state>
       </provider>
     </entry>

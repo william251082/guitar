@@ -1537,7 +1537,7 @@ class JoomlaInstallerScript
 			'/administrator/templates/isis/js/jquery.js',
 			'/libraries/joomla/application/web/client.php',
 			'/libraries/simplepie/LICENSE.txt',
-			'/libraries/simplepie/README.txt',
+			'/libraries/simplepie/README.md',
 			'/libraries/simplepie/idn/LICENCE',
 			'/libraries/simplepie/idn/ReadMe.txt',
 			'/libraries/simplepie/idn/idna_convert.class.php',

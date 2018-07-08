@@ -2,6 +2,19 @@
 defined('_JEXEC') or die;
 ?>
 
+<script type="text/javascript">
+    Joomla.submitbutton = function(task)
+    {
+        if (task === 'song.cancel' || document.formvalidator.isValid(document.id('guitar-song-form'))) {
+            <?php echo $this->form->getField('song')->save(); ?>
+            Joomla.submitform(task, document.getElementById('guitar-song-form'));
+        }
+        else {
+            alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
+        }
+    }
+</script>
+
 <form action="<?php echo JRoute::_('index.php?option=com_guitar&layout=edit&id=' . (int)$this->item->id); ?>"
       method="post" name="adminForm" id="guitar-song-form" class="form-validate">
     <div class="row-fluid">
