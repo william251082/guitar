@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dc39fc9-b689-427b-9630-aeb79d79f633" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/models/forms/song.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/models/forms/song.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/models/songs.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/models/songs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/view.html.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/view.html.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/com_guitar/models/songs.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/models/songs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,8 +55,26 @@
       <file leaf-file-name="songs.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/com_guitar/models/songs.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+            <state relative-caret-position="210">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view.html.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_guitar/views/songs/view.html.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -123,12 +138,10 @@
         <option value="$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_goodcook.ini" />
         <option value="$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_goodcook.sys.ini" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/sql/uninstall.mysql.utf8.sql" />
-        <option value="$PROJECT_DIR$/components/com_guitar/models/songs.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/guitar.xml" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.xml" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/default.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/forms/recipe.xml" />
-        <option value="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" />
         <option value="$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_guitar.ini" />
         <option value="$PROJECT_DIR$/administrator/language/en-GB/en-GB.com_guitar.sys.ini" />
         <option value="$PROJECT_DIR$/language/en-GB/en-GB.com_guitar.ini" />
@@ -142,7 +155,6 @@
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/view.html.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/controllers/songs.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/views/songs/view.html.php" />
-        <option value="$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/helpers/guitar.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/controller.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/view.html.php" />
@@ -151,6 +163,9 @@
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/songs.php" />
+        <option value="$PROJECT_DIR$/components/com_guitar/models/songs.php" />
+        <option value="$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" />
       </list>
     </option>
   </component>
@@ -244,6 +259,14 @@
               <item name="com_guitar" type="cbb8eebc:String" user="com_guitar" />
               <item name="models" type="cbb8eebc:String" user="models" />
               <item name="forms" type="cbb8eebc:String" user="forms" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="guitar" type="cbb8eebc:String" user="guitar" />
+              <item name="administrator" type="cbb8eebc:String" user="administrator" />
+              <item name="components" type="cbb8eebc:String" user="components" />
+              <item name="com_guitar" type="cbb8eebc:String" user="com_guitar" />
+              <item name="sql" type="cbb8eebc:String" user="sql" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -472,7 +495,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44783000" />
+    <option name="totallyTimeSpent" value="46024000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
@@ -660,13 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_guitar/views/song/tmpl/default.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/models/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -760,13 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://6b93c951-1323-4dd5-bf78-66a208a58a19/schema/guitar/table/ymfgb_guitar_songs">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -792,20 +801,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_guitar/views/songs/view.html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -851,20 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="776">
-          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://6b93c951-1323-4dd5-bf78-66a208a58a19/schema/guitar/table/ymfgb_categories">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -886,10 +867,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_guitar/views/song/tmpl/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/songs/tmpl/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_guitar/views/songs/view.html.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_guitar/views/songs/tmpl/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_guitar/models/songs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+        <state relative-caret-position="210">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
         </state>
       </provider>
     </entry>

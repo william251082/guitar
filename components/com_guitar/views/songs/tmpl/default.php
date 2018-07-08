@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
                     <?php echo JText::_('JGLOBAL_TITLE'); ?>
                 </th>
                 <th width="1%" class="nowrap center">
-                    <?php echo JText::_('JGRID_HEADING_ID'); ?>
+                    <?php echo JText::_('COM_GUITAR_CATEGORY'); ?>
                 </th>
             </tr>
             </thead>
@@ -34,8 +34,8 @@ defined('_JEXEC') or die;
                             <?php echo $this->escape($item->album); ?>
                         </a>
                     </td>
-                    <td class="center">
-                        <?php echo (int) $item->id; ?>
+                    <td class="left">
+                        <?php echo $item->category_title; ?>
                     </td>
                 </tr>
             <?php }; ?>
