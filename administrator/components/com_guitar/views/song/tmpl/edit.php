@@ -41,6 +41,10 @@ defined('_JEXEC') or die;
                             <div class="controls"><?php echo $this->form->getInput('song'); ?></div>
                         </div>
                         <div class="control-group">
+                            <div class="control-label"><?php echo $this->form->getLabel('catid'); ?></div>
+                            <div class="controls"><?php echo $this->form->getInput('catid'); ?></div>
+                        </div>
+                        <div class="control-group">
                             <div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
                             <div class="controls"><?php echo $this->form->getInput('id'); ?></div>
                         </div>

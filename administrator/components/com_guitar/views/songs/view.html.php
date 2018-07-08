@@ -12,6 +12,9 @@ class GuitarViewSongs extends JViewLegacy
         $pagination = $this->get('Pagination');
         $this->pagination = $pagination;
 
+        GuitarHelper::addSubmenu('songs');
+        $this->sidebar = JHtmlSidebar::render();
+
         //Set the toolbar
         $this->addToolBar();
 

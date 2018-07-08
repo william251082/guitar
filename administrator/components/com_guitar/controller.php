@@ -3,20 +3,22 @@ defined('_JEXEC') or die;
 
 class GuitarController extends JControllerLegacy
 {
-	public function display($cachable = false, $urlparams = false)
-	{
-		// Get the document object.
-		$document = JFactory::getDocument();
+    public function display($cachable = false, $urlparams = false)
+    {
+        require_once JPATH_COMPONENT.'/helpers/guitar.php';
+
+        // Get the document object.
+        $document = JFactory::getDocument();
 
         $id = $this->input->getInt('id');
 
-		// Set the view based on the Request parameters,
-		// if no view is set default to the "songs" view
-		$vName = $this->input->get('view', 'songs');
-		$this->input->set('view', $vName);
+        // Set the view based on the Request parameters,
+        // if no view is set default to the "songs" view
+        $vName = $this->input->get('view', 'songs');
+        $this->input->set('view', $vName);
 
-		parent::display($cachable, $urlparams);
+        parent::display($cachable, $urlparams);
 
-		return $this;
-	}
+        return $this;
+    }
 }
