@@ -10,7 +10,7 @@ class GuitarModelSong extends JModelItem
 
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select('id, title, song');
+		$query->select('id, album, song');
 		$query->from('#__guitar_songs');
 		$query->where('id = '.$id);
 
