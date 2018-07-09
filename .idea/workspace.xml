@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0dc39fc9-b689-427b-9630-aeb79d79f633" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/models/forms/song.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/models/forms/song.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/sql/install.mysql.utf8.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,11 +68,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edit.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+            <state relative-caret-position="605">
+              <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="song.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1344">
+              <caret line="64" column="5" lean-forward="true" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -154,7 +160,6 @@
         <option value="$PROJECT_DIR$/components/com_guitar/views/song/tmpl/default.php" />
         <option value="$PROJECT_DIR$/components/com_guitar/controller.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/controllers/GuitarControllerSong.php" />
-        <option value="$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/controllers/song.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/song.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/view.html.php" />
@@ -179,6 +184,7 @@
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/models/forms/song.xml" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit_metadata.php" />
         <option value="$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php" />
+        <option value="$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php" />
       </list>
     </option>
   </component>
@@ -531,12 +537,12 @@
       <option name="presentableId" value="Default" />
       <updated>1530941398942</updated>
       <workItem from="1530941406294" duration="4116000" />
-      <workItem from="1531121308363" duration="6269000" />
+      <workItem from="1531121308363" duration="7908000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56195000" />
+    <option name="totallyTimeSpent" value="57834000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1282" y="0" width="1917" height="1080" extended-state="6" />
@@ -843,13 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/models/song.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
@@ -985,8 +984,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/views/song/tmpl/edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        <state relative-caret-position="605">
+          <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administrator/components/com_guitar/tables/song.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1344">
+          <caret line="64" column="5" lean-forward="true" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
         </state>
       </provider>
     </entry>
