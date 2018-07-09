@@ -27,7 +27,13 @@ defined('_JEXEC') or die;
                                 $this->item->id
                             ) ? JText::_('COM_GUITAR_NEW_SONG') : JText::sprintf(
                                     'COM_GUITAR_EDIT_SONG', $this->item->id
-                            ); ?></a>
+                            ); ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#metadata" data-toggle="tab"><?php echo JText::_(
+                                'JGLOBAL_FIELDSET_METADATA_OPTIONS'); ?>
+                        </a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -35,6 +41,10 @@ defined('_JEXEC') or die;
                         <div class="control-group">
                             <div class="control-label"><?php echo $this->form->getLabel('album'); ?></div>
                             <div class="controls"><?php echo $this->form->getInput('album'); ?></div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label"><?php echo $this->form->getLabel('alias'); ?></div>
+                            <div class="controls"><?php echo $this->form->getInput('alias'); ?></div>
                         </div>
                         <div class="control-group">
                             <div class="control-label"><?php echo $this->form->getLabel('song'); ?></div>
@@ -48,6 +58,11 @@ defined('_JEXEC') or die;
                             <div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
                             <div class="controls"><?php echo $this->form->getInput('id'); ?></div>
                         </div>
+                    </div>
+                    <div class="tab-pane" id="metadata">
+                        <fieldset>
+                            <?php echo $this->loadTemplate('metadata'); ?>
+                        </fieldset>
                     </div>
 
                     <input type="hidden" name="task" value=""/>
