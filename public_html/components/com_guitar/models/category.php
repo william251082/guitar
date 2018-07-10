@@ -45,6 +45,8 @@ class GuitarModelCategory extends JModelList
         $case_when1 .= $genres_id.' END as catslug';
         $query->select($case_when1);
 
+        $query->where('songs.published = 1');
+
         return $query;
     }
 }
