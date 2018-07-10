@@ -24,11 +24,32 @@ class GuitarViewSong extends JViewLegacy
         }
 
         //get component's parameters
-        $params        = JComponentHelper::getParams('com_guitar');
-        $this->params  = $params->toArray();
+        $componentParams        = JComponentHelper::getParams('com_guitar');
+//        $this->params  = $params->toArray();
+
+        // Copy the application parameters for merging
+        $menuParams = new JRegistry;
+
+        // Find the active menu
+        $active = $app->getMenu()->getActive();
+        $currentLink = $active->link;
+        $menuParams->loadString($active->params);
+
+        // Check which parameters take priority
+        if ($active && (strpos($currentLink, 'view=recipe') && (strpos($currentLink, '&id='.(string) $item->id)))) {
+            // If the current view is the active item AND the song view for this song, then the menu item params take priority
+            // $item->params are the song params, $mergeParams are the menu item params
+            // Merge so that the menu item params take priority
+            $componentParams->merge($menuParams);
+            $this->params  = $componentParams->toArray();
+        }
+        else {
+            // Merge so that recipe params take priority
+            $menuParams->merge($componentParams);
+            $this->params  = $menuParams->toArray();
+        }
 
         $title = $this->document->getTitle() . " - " . $this->item->album;
-
         $this->document->setTitle($title);
 
         parent::display($tpl);
