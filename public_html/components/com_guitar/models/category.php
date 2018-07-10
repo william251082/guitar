@@ -26,6 +26,25 @@ class GuitarModelCategory extends JModelList
         $query->where('(songs.publish_up = ' . $nullDate . ' OR songs.publish_up <= ' . $nowDate . ')');
         $query->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')');
 
+        $case_when = ' CASE WHEN ';
+        $case_when .= $query->charLength('songs.alias', '!=', '0');
+        $case_when .= ' THEN ';
+        $songs_id = $query->castAsChar('songs.id');
+        $case_when .= $query->concatenate(array($songs_id, 'songs.alias'), ':');
+        $case_when .= ' ELSE ';
+        $case_when .= $songs_id.' END as slug';
+        $query->select($case_when);
+
+        // get the category slug
+        $case_when1 = ' CASE WHEN ';
+        $case_when1 .= $query->charLength('genres.alias', '!=', '0');
+        $case_when1 .= ' THEN ';
+        $genres_id = $query->castAsChar('genres.id');
+        $case_when1 .= $query->concatenate(array($genres_id, 'genres.alias'), ':');
+        $case_when1 .= ' ELSE ';
+        $case_when1 .= $genres_id.' END as catslug';
+        $query->select($case_when1);
+
         return $query;
     }
 }

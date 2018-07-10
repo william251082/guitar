@@ -30,7 +30,7 @@ defined('_JEXEC') or die;
                         <?php echo JHtml::_('grid.id', $i, $item->id); ?>
                     </td>
                     <td class="nowrap">
-                        <a href="<?php echo JRoute::_('index.php?option=com_guitar&view=song&layout=edit&id='.(int) $item->id); ?>">
+                        <a href="<?php echo JRoute::_('index.php?option=com_guitar&view=song&catid='.$item->catslug.'&id='.$item->slug); ?>">
                             <?php echo $this->escape($item->album); ?>
                         </a>
                     </td>
