@@ -5,6 +5,22 @@ class GuitarViewSong extends JViewLegacy
 {
 	public function display($tpl = null)
 	{
+//         //Get the currently logged on user
+//        $user = JFactory::getUser();
+//
+//        // Make sure our user is allowed to view this item.  Note: this method always returns true for the super user!
+//        if (!$user->authorise('song.view', 'com_guitar'))
+//        {
+//            $app = JFactory::getApplication();
+//            $app->redirect(
+//                JRoute::_(
+//                    'index.php?option=com_guitar&view=songs', false
+//                ),
+//                JText::_('COM_GUITAR_VIEW_NOT_AUTHORIZED'),
+//                'error'
+//            );
+//            return false;
+//        }
 		// Get some data from the models
 		$item		= $this->get('Item');
 		$this->item      = &$item;

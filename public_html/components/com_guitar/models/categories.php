@@ -24,25 +24,25 @@ class GuitarModelCategories extends JModelList
         $case_when .= $songs_id.' END as slug';
         $query->select($case_when);
 
-        //Ordering for the list of categories
-        $params        = JComponentHelper::getParams('com_guitar');
-        $categoryOrderby    = $params->def('orderby_pri', '');
-        switch($categoryOrderby){
-            case 'alpha':
-                $categoryOrderby = 'title ASC';
-                break;
-            case 'ralpha':
-                $categoryOrderby = 'title DESC';
-                break;
-            case 'order':
-                $categoryOrderby = 'order';
-                break;
-            default:
-                $categoryOrderby = '';
-        }
-        if (!empty($categoryOrderby)){
-            $query->order($categoryOrderby);
-        }
+//        //Ordering for the list of categories
+//        $params        = JComponentHelper::getParams('com_guitar');
+//        $categoryOrderby    = $params->def('orderby_pri', '');
+//        switch($categoryOrderby){
+//            case 'alpha':
+//                $categoryOrderby = 'title ASC';
+//                break;
+//            case 'ralpha':
+//                $categoryOrderby = 'title DESC';
+//                break;
+//            case 'order':
+//                $categoryOrderby = 'order';
+//                break;
+//            default:
+//                $categoryOrderby = '';
+//        }
+//        if (!empty($categoryOrderby)){
+//            $query->order($categoryOrderby);
+//        }
 
         return $query;
     }

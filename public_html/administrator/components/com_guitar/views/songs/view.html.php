@@ -24,13 +24,21 @@ class GuitarViewSongs extends JViewLegacy
 
     protected function addToolBar()
     {
+        $user = JFactory::getUser();
         JToolBarHelper::title(JText::_('COM_GUITAR_MANAGER_SONGS'));
-        JToolBarHelper::addNew('song.add');
-        JToolBarHelper::editList('song.edit');
-        JToolBarHelper::deleteList('', 'songs.delete');
-        JToolbarHelper::publish('songs.publish', 'JTOOLBAR_PUBLISH', true);
-        JToolbarHelper::unpublish('songs.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-        JToolBarHelper::preferences('com_guitar');
+        if ($user->authorise('core.create', 'com_guitar')) {
+            JToolBarHelper::addNew('song.add');
+        }
+        if ($user->authorise('core.edit', 'com_guitar')
+            || $user->authorise('core.edit.own', 'com_guitar')) {
+            JToolBarHelper::editList('song.edit');
+        }
+        if ($user->authorise('core.delete', 'com_guitar')
+            || $user->authorise('core.delete.own', 'com_guitar')) {
+            JToolBarHelper::deleteList('', 'songs.delete');
+        }
+        if ($user->authorise('core.admin', 'com_guitar')) {
+            JToolBarHelper::preferences('com_guitar');
+        }
     }
-
 }
