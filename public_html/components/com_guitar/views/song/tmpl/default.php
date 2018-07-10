@@ -1,6 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+global $params;
 ?>
 
 <div class="item-page guitar-song">
