@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Templates component helper.
+ * Templates component helpers.
  *
  * @since  1.6
  */

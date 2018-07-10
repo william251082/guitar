@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 define('FINDER_PATH_INDEXER', JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer');
-JLoader::register('FinderIndexerHelper', FINDER_PATH_INDEXER . '/helper.php');
+JLoader::register('FinderIndexerHelper', FINDER_PATH_INDEXER . '/helpers.php');
 
 /**
  * Suggestions model class for the Finder package.

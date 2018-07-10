@@ -23,7 +23,7 @@ use Joomla\Registry\Registry;
 
 /**
  * Helper for standard content style extensions.
- * This class mainly simplifies static helper methods often repeated in individual components
+ * This class mainly simplifies static helpers methods often repeated in individual components
  *
  * @since  3.1
  */

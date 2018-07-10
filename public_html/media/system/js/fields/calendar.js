@@ -35,7 +35,7 @@
 		}
 
 		if (typeof Date.parseFieldDate !== 'function') {
-			throw new Error("Calendar setup failed:\n  No valid date helper, Please check your code");
+			throw new Error("Calendar setup failed:\n  No valid date helpers, Please check your code");
 		}
 
 		if (element._joomlaCalendar) {

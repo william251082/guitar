@@ -10,7 +10,7 @@
 defined('FOF_INCLUDED') or die;
 
 /**
- * A helper class to read and parse "collection" update XML files over the web
+ * A helpers class to read and parse "collection" update XML files over the web
  */
 class FOFUtilsUpdateCollection
 {

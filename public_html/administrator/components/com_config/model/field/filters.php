@@ -134,7 +134,7 @@ class JFormFieldFilters extends JFormField
 	}
 
 	/**
-	 * A helper to get the list of user groups.
+	 * A helpers to get the list of user groups.
 	 *
 	 * @return	array
 	 *

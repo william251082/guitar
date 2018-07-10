@@ -73,7 +73,7 @@ abstract class FOFView extends FOFUtilsObject
 	 *
 	 * @var array
 	 */
-	protected $_path = array('template' => array(), 'helper' => array());
+	protected $_path = array('template' => array(), 'helpers' => array());
 
 	/**
 	 * The name of the default template source file.
@@ -297,16 +297,16 @@ abstract class FOFView extends FOFUtilsObject
 			$this->_addPath('template', $this->_basePath . '/views/' . $this->getName() . '/tmpl');
 		}
 
-		// Set the default helper search path
+		// Set the default helpers search path
 
 		if (array_key_exists('helper_path', $config))
 		{
 			// User-defined dirs
-			$this->_setPath('helper', $config['helper_path']);
+			$this->_setPath('helpers', $config['helper_path']);
 		}
 		else
 		{
-			$this->_setPath('helper', $this->_basePath . '/helpers');
+			$this->_setPath('helpers', $this->_basePath . '/helpers');
 		}
 
 		// Set the layout
@@ -807,7 +807,7 @@ abstract class FOFView extends FOFUtilsObject
 	}
 
 	/**
-	 * Adds to the stack of helper script paths in LIFO order.
+	 * Adds to the stack of helpers script paths in LIFO order.
 	 *
 	 * @param   mixed  $path  A directory path or an array of paths.
 	 *
@@ -815,7 +815,7 @@ abstract class FOFView extends FOFUtilsObject
 	 */
 	public function addHelperPath($path)
 	{
-		$this->_addPath('helper', $path);
+		$this->_addPath('helpers', $path);
 	}
 
 	/**
@@ -1034,9 +1034,9 @@ abstract class FOFView extends FOFUtilsObject
 	}
 
 	/**
-	 * Load a helper file
+	 * Load a helpers file
 	 *
-	 * @param   string  $hlp  The name of the helper source file automatically searches the helper paths and compiles as needed.
+	 * @param   string  $hlp  The name of the helpers source file automatically searches the helpers paths and compiles as needed.
 	 *
 	 * @return  void
 	 */
@@ -1048,18 +1048,18 @@ abstract class FOFView extends FOFUtilsObject
 		// Load the template script using the default Joomla! features
         $filesystem = FOFPlatform::getInstance()->getIntegrationObject('filesystem');
 
-		$helper = $filesystem->pathFind($this->_path['helper'], $this->_createFileName('helper', array('name' => $file)));
+		$helper = $filesystem->pathFind($this->_path['helpers'], $this->_createFileName('helpers', array('name' => $file)));
 
 		if ($helper == false)
 		{
 			$componentPaths = FOFPlatform::getInstance()->getComponentBaseDirs($this->config['option']);
 			$path = $componentPaths['main'] . '/helpers';
-			$helper = $filesystem->pathFind($path, $this->_createFileName('helper', array('name' => $file)));
+			$helper = $filesystem->pathFind($path, $this->_createFileName('helpers', array('name' => $file)));
 
 			if ($helper == false)
 			{
 				$path = $path = $componentPaths['alt'] . '/helpers';
-				$helper = $filesystem->pathFind($path, $this->_createFileName('helper', array('name' => $file)));
+				$helper = $filesystem->pathFind($path, $this->_createFileName('helpers', array('name' => $file)));
 			}
 		}
 

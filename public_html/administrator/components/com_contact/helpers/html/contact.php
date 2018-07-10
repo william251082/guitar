@@ -14,7 +14,7 @@ use Joomla\Utilities\ArrayHelper;
 JLoader::register('ContactHelper', JPATH_ADMINISTRATOR . '/components/com_contact/helpers/contact.php');
 
 /**
- * Contact HTML helper class.
+ * Contact HTML helpers class.
  *
  * @since  1.6
  */

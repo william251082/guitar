@@ -634,7 +634,7 @@ class FOFAutoloaderComponent
 		}
 
 		// We need the second part to be "model"
-		if ($parts[1] != 'helper')
+		if ($parts[1] != 'helpers')
 		{
 			return;
 		}

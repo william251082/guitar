@@ -46,7 +46,7 @@ class ContentHistory extends AbstractObserver
 
 	/**
 	 * Creates the associated observer instance and attaches it to the $observableObject
-	 * Creates the associated content history helper class instance
+	 * Creates the associated content history helpers class instance
 	 * $typeAlias can be of the form "{variableName}.type", automatically replacing {variableName} with table-instance variables variableName
 	 *
 	 * @param   \JObservableInterface  $observableObject  The subject object to be observed

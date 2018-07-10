@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Finder module helper.
+ * Finder module helpers.
  *
  * @since  2.5
  */

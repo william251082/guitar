@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Cache component helper.
+ * Cache component helpers.
  *
  * @since  1.6
  */

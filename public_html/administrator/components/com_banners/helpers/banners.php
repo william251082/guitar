@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Banners component helper.
+ * Banners component helpers.
  *
  * @since  1.6
  */

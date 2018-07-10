@@ -397,7 +397,7 @@ class CategoriesModelCategory extends JModelAdmin
 			}
 		}
 
-		// Try to find the component helper.
+		// Try to find the component helpers.
 		$eName = str_replace('com_', '', $component);
 		$path = JPath::clean(JPATH_ADMINISTRATOR . "/components/$component/helpers/category.php");
 

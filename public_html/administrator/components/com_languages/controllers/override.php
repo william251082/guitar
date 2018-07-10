@@ -96,7 +96,7 @@ class LanguagesControllerOverride extends JControllerForm
 			return;
 		}
 
-		// Require helper for filter functions called by JForm.
+		// Require helpers for filter functions called by JForm.
 		JLoader::register('LanguagesHelper', JPATH_ADMINISTRATOR . '/components/com_languages/helpers/languages.php');
 
 		// Test whether the data is valid.

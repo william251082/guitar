@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\String\StringHelper;
 
 /**
- * Search component helper.
+ * Search component helpers.
  *
  * @since  1.5
  */

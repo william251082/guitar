@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Languages component helper.
+ * Languages component helpers.
  *
  * @since  1.6
  */

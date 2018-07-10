@@ -19,7 +19,7 @@ use Joomla\CMS\Version;
 \JLoader::import('joomla.filesystem.path');
 
 /**
- * Installer helper class
+ * Installer helpers class
  *
  * @since  3.1
  */

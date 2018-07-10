@@ -11,7 +11,7 @@ namespace Joomla\CMS\Client;
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Client helper class
+ * Client helpers class
  *
  * @since  11.1
  */

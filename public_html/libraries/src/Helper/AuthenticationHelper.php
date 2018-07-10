@@ -11,7 +11,7 @@ namespace Joomla\CMS\Helper;
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Authentication helper class
+ * Authentication helpers class
  *
  * @since  3.6.3
  */

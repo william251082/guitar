@@ -10,7 +10,7 @@
 defined('JPATH_PLATFORM') or die;
 
 /**
- * File system helper
+ * File system helpers
  *
  * Holds support functions for the filesystem, particularly the stream
  *

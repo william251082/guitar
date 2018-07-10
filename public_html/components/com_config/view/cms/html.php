@@ -38,7 +38,7 @@ abstract class ConfigViewCmsHtml extends JViewHtml
 	 * @var    array
 	 * @since  3.2
 	 */
-	protected $_path = array('template' => array(), 'helper' => array());
+	protected $_path = array('template' => array(), 'helpers' => array());
 
 	/**
 	 * Layout extension

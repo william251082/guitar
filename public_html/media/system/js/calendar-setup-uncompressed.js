@@ -9,7 +9,7 @@
  * This script is distributed under the GNU Lesser General Public License.
  * Read the entire license text here: http://www.gnu.org/licenses/lgpl.html
  *
- * This file defines helper functions for setting up the calendar.  They are
+ * This file defines helpers functions for setting up the calendar.  They are
  * intended to help non-programmers get a working calendar on their site
  * quickly.  This script should not be seen as part of the calendar.  It just
  * shows you what one can do with the calendar, while in the same time

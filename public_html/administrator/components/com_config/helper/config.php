@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Components helper for com_config
+ * Components helpers for com_config
  *
  * @since  3.0
  */

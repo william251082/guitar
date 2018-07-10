@@ -1911,7 +1911,7 @@ class FOFLess
 	}
 
 	/**
-	 * To RGB helper
+	 * To RGB helpers
 	 *
 	 * @param   type  $comp   X
 	 * @param   type  $temp1  X

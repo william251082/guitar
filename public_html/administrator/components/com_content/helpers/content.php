@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Content component helper.
+ * Content component helpers.
  *
  * @since  1.6
  */

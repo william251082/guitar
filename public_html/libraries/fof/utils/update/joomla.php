@@ -10,7 +10,7 @@
 defined('FOF_INCLUDED') or die;
 
 /**
- * A helper class which provides update information for the Joomla! CMS itself. This is slightly different than the
+ * A helpers class which provides update information for the Joomla! CMS itself. This is slightly different than the
  * regular "extension" files as we need to know if a Joomla! version is STS, LTS, testing, current and so on.
  */
 class FOFUtilsUpdateJoomla extends FOFUtilsUpdateExtension

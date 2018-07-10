@@ -10,7 +10,7 @@
 defined('JPATH_PLATFORM') or die;
 
 /**
- * HTML helper class for rendering telephone numbers.
+ * HTML helpers class for rendering telephone numbers.
  *
  * @since  1.6
  */

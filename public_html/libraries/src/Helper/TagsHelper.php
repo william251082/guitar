@@ -16,7 +16,7 @@ use Joomla\CMS\Table\TableInterface;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Tags helper class, provides methods to perform various tasks relevant
+ * Tags helpers class, provides methods to perform various tasks relevant
  * tagging of content.
  *
  * @since  3.1

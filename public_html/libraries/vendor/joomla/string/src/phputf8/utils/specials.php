@@ -107,7 +107,7 @@ function utf8_is_word_chars($str) {
 /**
 * Removes special characters (nonalphanumeric) from a UTF-8 string
 *
-* This can be useful as a helper for sanitizing a string for use as
+* This can be useful as a helpers for sanitizing a string for use as
 * something like a file name or a unique identifier. Be warned though
 * it does not handle all possible non-alphanumeric characters and is
 * not intended is some kind of security / injection filter.

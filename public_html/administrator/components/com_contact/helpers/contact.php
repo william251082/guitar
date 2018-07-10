@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Contact component helper.
+ * Contact component helpers.
  *
  * @since  1.6
  */

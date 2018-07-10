@@ -52,7 +52,7 @@ elseif ($input->get('module'))
 
 	if ($moduleId && $table->load($moduleId) && $table->enabled)
 	{
-		$helperFile = JPATH_BASE . '/modules/mod_' . $module . '/helper.php';
+		$helperFile = JPATH_BASE . '/modules/mod_' . $module . '/helpers.php';
 
 		if (strpos($module, '_'))
 		{
@@ -108,10 +108,10 @@ elseif ($input->get('module'))
 				$results = new LogicException(JText::sprintf('COM_AJAX_METHOD_NOT_EXISTS', $method . 'Ajax'), 404);
 			}
 		}
-		// The helper file does not exist
+		// The helpers file does not exist
 		else
 		{
-			$results = new RuntimeException(JText::sprintf('COM_AJAX_FILE_NOT_EXISTS', 'mod_' . $module . '/helper.php'), 404);
+			$results = new RuntimeException(JText::sprintf('COM_AJAX_FILE_NOT_EXISTS', 'mod_' . $module . '/helpers.php'), 404);
 		}
 	}
 	// Module is not published, you do not have access to it, or it is not assigned to the current menu item
@@ -162,7 +162,7 @@ elseif ($input->get('template'))
 	if ($templateId && $table->load($templateId) && $table->enabled)
 	{
 		$basePath   = ($table->client_id) ? JPATH_ADMINISTRATOR : JPATH_SITE;
-		$helperFile = $basePath . '/templates/' . $template . '/helper.php';
+		$helperFile = $basePath . '/templates/' . $template . '/helpers.php';
 
 		if (strpos($template, '_'))
 		{
@@ -217,10 +217,10 @@ elseif ($input->get('template'))
 				$results = new LogicException(JText::sprintf('COM_AJAX_METHOD_NOT_EXISTS', $method . 'Ajax'), 404);
 			}
 		}
-		// The helper file does not exist
+		// The helpers file does not exist
 		else
 		{
-			$results = new RuntimeException(JText::sprintf('COM_AJAX_FILE_NOT_EXISTS', 'tpl_' . $template . '/helper.php'), 404);
+			$results = new RuntimeException(JText::sprintf('COM_AJAX_FILE_NOT_EXISTS', 'tpl_' . $template . '/helpers.php'), 404);
 		}
 	}
 	// Template is not assigned to the current menu item

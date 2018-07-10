@@ -13,7 +13,7 @@ defined('JPATH_PLATFORM') or die;
 use Joomla\CMS\Component\ComponentHelper;
 
 /**
- * Media helper class
+ * Media helpers class
  *
  * @since  3.2
  */
@@ -383,7 +383,7 @@ class MediaHelper
 	}
 
 	/**
-	 * Small helper function that properly converts any
+	 * Small helpers function that properly converts any
 	 * configuration options to their byte representation.
 	 *
 	 * @param   string|integer  $val  The value to be converted to bytes.

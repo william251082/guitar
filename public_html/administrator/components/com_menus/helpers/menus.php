@@ -14,7 +14,7 @@ use Joomla\Utilities\ArrayHelper;
 defined('_JEXEC') or die;
 
 /**
- * Menus component helper.
+ * Menus component helpers.
  *
  * @since  1.6
  */

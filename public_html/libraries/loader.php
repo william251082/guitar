@@ -190,8 +190,8 @@ abstract class JLoader
 			$base    = (!empty($base)) ? $base : __DIR__;
 			$path    = str_replace('.', DIRECTORY_SEPARATOR, $key);
 
-			// Handle special case for helper classes.
-			if ($class === 'helper')
+			// Handle special case for helpers classes.
+			if ($class === 'helpers')
 			{
 				$class = ucfirst(array_pop($parts)) . ucfirst($class);
 			}

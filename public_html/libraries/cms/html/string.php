@@ -12,7 +12,7 @@ defined('JPATH_PLATFORM') or die;
 use Joomla\String\StringHelper;
 
 /**
- * HTML helper class for rendering manipulated strings.
+ * HTML helpers class for rendering manipulated strings.
  *
  * @since  1.6
  */

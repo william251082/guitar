@@ -13,7 +13,7 @@ defined('JPATH_PLATFORM') or die;
 use Joomla\CMS\Component\ComponentHelper;
 
 /**
- * Application helper functions
+ * Application helpers functions
  *
  * @since  1.5
  */

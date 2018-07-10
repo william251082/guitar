@@ -11,7 +11,7 @@ namespace Joomla\CMS\Mail;
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Email helper class, provides static methods to perform various tasks relevant
+ * Email helpers class, provides static methods to perform various tasks relevant
  * to the Joomla email routines.
  *
  * TODO: Test these methods as the regex work is first run and not tested thoroughly

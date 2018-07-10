@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 use Joomla\Registry\Registry;
 
 /**
- * Multilang status helper.
+ * Multilang status helpers.
  *
  * @since  1.7.1
  */

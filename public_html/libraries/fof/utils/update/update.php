@@ -15,7 +15,7 @@ if (version_compare(JVERSION, '2.5.0', 'lt'))
 }
 
 /**
- * A helper Model to interact with Joomla!'s extensions update feature
+ * A helpers Model to interact with Joomla!'s extensions update feature
  */
 class FOFUtilsUpdate extends FOFModel
 {
@@ -1038,8 +1038,8 @@ ENDBLOCK;
 		}
 
 		// Unpack the downloaded package file
-		jimport('joomla.installer.helper');
-		jimport('cms.installer.helper');
+		jimport('joomla.installer.helpers');
+		jimport('cms.installer.helpers');
 		$package = JInstallerHelper::unpack($updatePackagePath);
 
 		if (!$package)

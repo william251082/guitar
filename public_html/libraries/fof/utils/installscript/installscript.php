@@ -14,7 +14,7 @@ JLoader::import('joomla.installer.installer');
 JLoader::import('joomla.utilities.date');
 
 /**
- * A helper class which you can use to create component installation scripts
+ * A helpers class which you can use to create component installation scripts
  */
 abstract class FOFUtilsInstallscript
 {

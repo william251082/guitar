@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Categories helper.
+ * Categories helpers.
  *
  * @since  1.6
  */
@@ -41,7 +41,7 @@ class CategoriesHelper
 			$section = $parts[1];
 		}
 
-		// Try to find the component helper.
+		// Try to find the component helpers.
 		$eName = str_replace('com_', '', $component);
 		$file = JPath::clean(JPATH_ADMINISTRATOR . '/components/' . $component . '/helpers/' . $eName . '.php');
 

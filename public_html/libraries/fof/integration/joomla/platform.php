@@ -518,7 +518,7 @@ class FOFIntegrationJoomlaPlatform extends FOFPlatform implements FOFPlatformInt
 	{
 		if (!$this->isCli())
 		{
-            JLoader::import('joomla.plugin.helper');
+            JLoader::import('joomla.plugin.helpers');
 			JPluginHelper::importPlugin($type);
 		}
 	}
@@ -837,7 +837,7 @@ class FOFIntegrationJoomlaPlatform extends FOFPlatform implements FOFPlatformInt
 			$this->importPlugin('user');
 			$results = $this->runPlugins('onLoginUser', array((array) $response, $options));
 
-			JLoader::import('joomla.user.helper');
+			JLoader::import('joomla.user.helpers');
 			$userid = JUserHelper::getUserId($response->username);
 			$user = $this->getUser($userid);
 

@@ -77,7 +77,7 @@ class FieldsHelper
 	 * The values of the fields can be overridden by an associative array where the keys
 	 * have to be a name and its corresponding value.
 	 *
-	 * @param   string    $context           The context of the content passed to the helper
+	 * @param   string    $context           The context of the content passed to the helpers
 	 * @param   stdClass  $item              item
 	 * @param   int|bool  $prepareValue      (if int is display event): 1 - AfterTitle, 2 - BeforeDisplay, 3 - AfterDisplay, 0 - OFF
 	 * @param   array     $valuesToOverride  The values to override
@@ -225,7 +225,7 @@ class FieldsHelper
 	 * Renders the layout file and data on the context and does a fall back to
 	 * Fields afterwards.
 	 *
-	 * @param   string  $context      The context of the content passed to the helper
+	 * @param   string  $context      The context of the content passed to the helpers
 	 * @param   string  $layoutFile   layoutFile
 	 * @param   array   $displayData  displayData
 	 *
@@ -262,7 +262,7 @@ class FieldsHelper
 	/**
 	 * PrepareForm
 	 *
-	 * @param   string  $context  The context of the content passed to the helper
+	 * @param   string  $context  The context of the content passed to the helpers
 	 * @param   JForm   $form     form
 	 * @param   object  $data     data.
 	 *
@@ -722,7 +722,7 @@ class FieldsHelper
 			return;
 		}
 
-		// Try to find the component helper.
+		// Try to find the component helpers.
 		$eName = str_replace('com_', '', $component);
 		$file  = JPath::clean(JPATH_ADMINISTRATOR . '/components/' . $component . '/helpers/' . $eName . '.php');
 

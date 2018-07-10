@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Joomla! update selection list helper.
+ * Joomla! update selection list helpers.
  *
  * @since  2.5.4
  */

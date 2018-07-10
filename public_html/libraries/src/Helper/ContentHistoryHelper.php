@@ -14,7 +14,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Table\Table;
 
 /**
- * Versions helper class, provides methods to perform various tasks relevant
+ * Versions helpers class, provides methods to perform various tasks relevant
  * versioning of content.
  *
  * @since  3.2

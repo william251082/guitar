@@ -8,10 +8,10 @@
 // Protect from unauthorized access
 defined('FOF_INCLUDED') or die;
 
-JLoader::import('joomla.form.helper');
+JLoader::import('joomla.form.helpers');
 
 /**
- * FOFForm's helper class.
+ * FOFForm's helpers class.
  * Provides a storage for filesystem's paths where FOFForm's entities reside and
  * methods for creating those entities. Also stores objects with entities'
  * prototypes for further reusing.

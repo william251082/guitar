@@ -9,6 +9,10 @@ class GuitarViewSong extends JViewLegacy
 		$item		= $this->get('Item');
 		$this->item      = &$item;
 
+		//determine if this is a print screen
+        $app = JFactory::getApplication();
+        $this->print = $app->input->getBool('print');
+
         //set meta description
         if ($this->item->metadesc) {
             $this->document->setDescription($this->item->metadesc);
