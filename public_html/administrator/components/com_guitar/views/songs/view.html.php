@@ -27,9 +27,10 @@ class GuitarViewSongs extends JViewLegacy
         JToolBarHelper::title(JText::_('COM_GUITAR_MANAGER_SONGS'));
         JToolBarHelper::addNew('song.add');
         JToolBarHelper::editList('song.edit');
-        JToolBarHelper::publish('song.publish');
+        JToolBarHelper::deleteList('', 'songs.delete');
         JToolbarHelper::publish('songs.publish', 'JTOOLBAR_PUBLISH', true);
         JToolbarHelper::unpublish('songs.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+        JToolBarHelper::preferences('com_guitar');
     }
 
 }

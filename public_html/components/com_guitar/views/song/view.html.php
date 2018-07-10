@@ -23,9 +23,14 @@ class GuitarViewSong extends JViewLegacy
             $this->document->setMetadata('keywords', $this->item->metakey);
         }
 
+        //get component's parameters
+        $params        = JComponentHelper::getParams('com_guitar');
+        $this->params  = $params->toArray();
+
         $title = $this->document->getTitle() . " - " . $this->item->album;
+
         $this->document->setTitle($title);
 
-		parent::display($tpl);
+        parent::display($tpl);
 	}
 }

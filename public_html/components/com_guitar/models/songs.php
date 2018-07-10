@@ -18,7 +18,8 @@ class GuitarModelSongs extends JModelList
         $nowDate = $db->Quote(JFactory::getDate()->toSql());
         $query
             ->where('(songs.publish_up = ' . $nullDate . ' OR songs.publish_up <= ' . $nowDate . ')')
-            ->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')');
+            ->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')')
+            ->where('songs.published = 1');
 
         // Get author's name
         $query
@@ -49,6 +50,35 @@ class GuitarModelSongs extends JModelList
         $case_when1 .= $genres_id.' END as catslug';
         $query->select($case_when1);
 
+           // Ordering Options for Songs and Category Views
+//        // get the component's parameters
+//        $params        = JComponentHelper::getParams('com_guitar');
+//
+//        //retrieve individual parameter settings
+//        $songOrderby        = $params->get('orderby_sec', 'rdate');
+//        $songOrderDate    = $params->get('order_date', 'publish_up');
+//
+//        //set order by in the query
+//        switch($songOrderby){
+//            case 'rdate':
+//                $query->order('songs.' . $songOrderDate . ' DESC');
+//                break;
+//            case 'date':
+//                $query->order('songs.' . $songOrderDate . ' ASC');
+//                break;
+//            case 'alpha':
+//                $query->order('songs.title ASC');
+//                break;
+//            case 'ralpha':
+//                $query->order('songs.title DESC');
+//                break;
+//            case 'author':
+//                $query->order('songs.author ASC');
+//                break;
+//            case 'rauthor':
+//                $query->order('songs.author DESC');
+//                break;
+//        }
         return $query;
     }
 }

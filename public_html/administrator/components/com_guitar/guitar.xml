@@ -41,12 +41,17 @@
         </submenu>
 
         <files folder="admin">
-            <filename>guitar.php</filename>
-            <filename>index.html</filename>
-            <folder>sql</folder>
+            <filename>access.xml</filename>
             <filename>controller.php</filename>
-            <folder>views</folder>
+            <filename>guitar.php</filename>
+            <filename>config.xml</filename>
+            <filename>index.html</filename>
+            <folder>controllers</folder>
+            <folder>helpers</folder>
             <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
         </files>
 
         <languages folder="admin/language">

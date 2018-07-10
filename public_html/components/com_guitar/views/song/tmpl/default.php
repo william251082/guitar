@@ -36,7 +36,7 @@ global $params;
             <?php if (!empty($this->params['show_author'])) { ?>
                 <div class="song-author">
                 	<span class="gc-label">
-                    	<?php echo JText::_('COM_GUITAR_SONG_AUTHOR'); ?>
+                    	<?php echo JText::_('COM_GUITAR_SONG_ARTIST'); ?>
                     </span>
                     <span class="gc-data">
                     	<?php echo $this->item->author; ?>
@@ -55,6 +55,5 @@ global $params;
             <?php } ?>
             <div style="clear:both;"></div>
         </div>
-    <?php }
-    ?>
+    <?php } ?>
 </div>
