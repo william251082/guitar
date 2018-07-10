@@ -11,10 +11,16 @@ class GuitarModelSong extends JModelItem
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
         $query
-            ->select('songs.id,songs.album,songs.song,genres.title AS genres')
+            ->select('songs.*')
             ->from($db->quoteName('#__guitar_songs').' AS songs')
             ->join('LEFT', '#__categories AS genres ON genres.id = songs.catid')
 		    ->where('songs.id = '. $id);
+
+        // By start and finish publish dates.
+        $nullDate = $db->Quote($db->getNullDate());
+        $nowDate = $db->Quote(JFactory::getDate()->toSql());
+        $query->where('(songs.publish_up = ' . $nullDate . ' OR songs.publish_up <= ' . $nowDate . ')');
+        $query->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')');
 
 		$db->setQuery($query);
 		$data = $db->loadObject();
