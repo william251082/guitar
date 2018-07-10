@@ -9,6 +9,19 @@ class GuitarViewSong extends JViewLegacy
 		$item		= $this->get('Item');
 		$this->item      = &$item;
 
+        //set meta description
+        if ($this->item->metadesc) {
+            $this->document->setDescription($this->item->metadesc);
+        }
+
+        //set metakeywords
+        if ($this->item->metakey) {
+            $this->document->setMetadata('keywords', $this->item->metakey);
+        }
+
+        $title = $this->document->getTitle() . " - " . $this->item->album;
+        $this->document->setTitle($title);
+
 		parent::display($tpl);
 	}
 }

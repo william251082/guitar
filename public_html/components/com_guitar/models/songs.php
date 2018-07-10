@@ -16,8 +16,19 @@ class GuitarModelSongs extends JModelList
         // By start and finish publish dates.
         $nullDate = $db->Quote($db->getNullDate());
         $nowDate = $db->Quote(JFactory::getDate()->toSql());
-        $query->where('(songs.publish_up = ' . $nullDate . ' OR songs.publish_up <= ' . $nowDate . ')');
-        $query->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')');
+        $query
+            ->where('(songs.publish_up = ' . $nullDate . ' OR songs.publish_up <= ' . $nowDate . ')')
+            ->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')');
+
+        // Get author's name
+        $query
+            ->select(
+            "CASE WHEN songs.created_by_alias > ' ' 
+                          THEN songs.created_by_alias 
+                          ELSE users.name 
+                          END AS author")
+            ->join('LEFT', '#__users AS users ON users.id = songs.created_by');
+
         return $query;
     }
 }
