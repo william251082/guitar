@@ -11,9 +11,9 @@ class GuitarModelSong extends JModelItem
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
         $query
-            ->select('songs.id,songs.album,songs.song,genre.title AS genre')
+            ->select('songs.id,songs.album,songs.song,genres.title AS genres')
             ->from($db->quoteName('#__guitar_songs').' AS songs')
-            ->join('LEFT', '#__categories AS genre ON genre.id = songs.catid')
+            ->join('LEFT', '#__categories AS genres ON genres.id = songs.catid')
 		    ->where('songs.id = '. $id);
 
 		$db->setQuery($query);

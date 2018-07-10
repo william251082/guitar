@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
         </h3>
         <p>
             <?php echo $this->item->song; ?>
-            <?php echo $this->item->genre; ?>
+            <?php echo $this->item->genres; ?>
         </p>
     <?php }
     ?>
