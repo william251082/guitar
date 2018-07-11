@@ -8,6 +8,7 @@ class GuitarViewForm extends JViewLegacy
 		$this->form		= $this->get('Form');
         $user = JFactory::getUser();
 
+        // form's edit logic
 		if (empty($this->item->id)) {
 			$authorised = ($user->authorise('core.create', 'com_guitar') ||
 				(count($user->getAuthorisedCategories('com_guitar', 'core.create'))));
@@ -40,7 +41,7 @@ class GuitarViewForm extends JViewLegacy
 		$currentLink = $active->link;
 		$menuParams->loadString($active->params);
 		if ($active && (strpos($currentLink, 'view=song') &&
-				(strpos($currentLink, '&id='.(string) $item->id)))) {
+				(strpos($currentLink, '&id='.(string) $this->item->id)))) {
             $componentParams->merge($menuParams);
             $this->params  = $componentParams->toArray();
 		}
@@ -51,6 +52,7 @@ class GuitarViewForm extends JViewLegacy
 
 		$this->user		= $user;
 
+		// gather data and check permissions
 		//set metakeywords
 		if ($this->item->metakey) {
 			$this->document->setMetadata('keywords', $this->item->metakey);

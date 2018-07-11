@@ -95,7 +95,7 @@
                 class="inputbox"
                 validate="rules"
                 filter="rules"
-                component="com_goodcook"
+                component="com_guitar"
                 section="component" />
     </fieldset>
 

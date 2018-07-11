@@ -15,6 +15,7 @@ class GuitarModelCategories extends JModelList
             ->where('published = 1')
             ->where('access = 1');
 
+        //format the slug
         $case_when = ' CASE WHEN ';
         $case_when .= $query->charLength('songs.alias', '!=', '0');
         $case_when .= ' THEN ';

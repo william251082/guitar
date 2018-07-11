@@ -6,6 +6,7 @@ class GuitarViewSongs extends JViewLegacy
     public function display($tpl = null)
     {
         require_once JPATH_COMPONENT.'/helpers/guitar.php';
+
         // Get some data from the models
         $items		= $this->get('Items');
         $this->items      = &$items;

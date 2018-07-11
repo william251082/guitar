@@ -13,8 +13,11 @@ class GuitarModelSong extends JModelItem
         $query
             ->select('songs.*')
             ->from($db->quoteName('#__guitar_songs').' AS songs')
-            ->join('LEFT', '#__categories AS genres ON genres.id = songs.catid')
 		    ->where('songs.id = '. $id);
+
+        // Join over the categories.
+        $query->select('genres.title AS category_title');
+        $query->join('LEFT', '#__categories AS genres ON genres.id = songs.catid');
 
         // By start and finish publish dates.
         $nullDate = $db->Quote($db->getNullDate());

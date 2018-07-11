@@ -37,6 +37,7 @@ global $params;
         <?php endif; ?>
 
         <p><?php echo $this->item->song; ?></p>
+
         <div class="song-submission-info">
             <?php if (!empty($this->params['show_author'])) { ?>
                 <div class="song-author">

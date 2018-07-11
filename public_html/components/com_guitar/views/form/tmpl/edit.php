@@ -1,15 +1,10 @@
 <?php
 defined('_JEXEC') or die;
- // load tooltip behavior
+// load tooltip behavior
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
-// javascript ajax keepalive function to avoid timeout logoff
-JHtml::_('behavior.keepalive');
-// Datepicker for dates
-JHtml::_('behavior.calendar');
-
-
 ?>
+
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{

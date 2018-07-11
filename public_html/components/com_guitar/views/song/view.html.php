@@ -39,20 +39,6 @@ class GuitarViewSong extends JViewLegacy
             $this->document->setMetadata('keywords', $this->item->metakey);
         }
 
-        $title = $this->document->getTitle() . " - " . $this->item->album;
-        $this->document->setTitle($title);
-
-        $this->item->canEdit = $this->allowEdit();
-
-        if ($this->item->canEdit) {
-            $uri  = JURI::getInstance();
-            $url = 'index.php?option=com_guitar&task=song.edit&id=' . $this->item->id . '&return=' . base64_encode($uri);
-
-            $icon = $this->item->published ? 'edit.png' : 'edit_unpublished.png';
-            $text = JHtml::_('image', 'system/' . $icon, JText::_('JGLOBAL_EDIT'), null, true);
-            $this->item->editLink = JHtml::_('link', JRoute::_($url), $text, array());
-        }
-
         //get component's parameters
         $componentParams        = JComponentHelper::getParams('com_guitar');
 //        $this->params  = $params->toArray();
@@ -82,19 +68,29 @@ class GuitarViewSong extends JViewLegacy
         $title = $this->document->getTitle() . " - " . $this->item->album;
         $this->document->setTitle($title);
 
+        $this->item->canEdit = $this->allowEdit();
 
+        if ($this->item->canEdit) {
+            $uri  = JURI::getInstance();
+            $url = 'index.php?option=com_guitar&task=song.edit&id=' . $this->item->id . '&return=' . base64_encode($uri);
+
+            $icon = $this->item->published ? 'edit.png' : 'edit_unpublished.png';
+            $text = JHtml::_('image', 'system/' . $icon, JText::_('JGLOBAL_EDIT'), null, true);
+            $this->item->editLink = JHtml::_('link', JRoute::_($url), $text, array());
+        }
 
         parent::display($tpl);
 	}
 
+	// Perform ACL checks to see if the user is able to edit the document
     // Private function to embed edit logic check in view
     private function allowEdit() {
 
         // may this user edit any songs?
         $user		= JFactory::getUser();
-        
-        $option = (isset($this->option) ? $this->option : false);
-        var_dump($this->option);die;
+
+//        $option = (isset($this->option) ? $this->option : false);
+//        var_dump($this->option);die;
 
         if ($user->authorise('core.edit.own',  $this->option)) {
             return true;

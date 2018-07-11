@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension
+	type="module"
+	version="3.0"
+	client="site"
+	method="upgrade">
+	<name>Guitar Module</name>
+	<description>Guitar Module</description>
+
+	<files>
+		<filename module="mod_guitar">mod_guitar.php</filename>
+	</files>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_guitar.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_guitar.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field
+						type="text"
+						name="guitar_text"
+						label="COM_GUITAR_GUITAR_TEXT_FIELD_LABEL"
+						description="COM_GUITAR_GUITAR_TEXT_FIELD_DESC"
+						maxlength="35"
+						size="10"
+						default="Hello, Guitar!"
+						filter="safehtml"
+						class="guitar_text_field"
+						readonly="false"
+						diabled="false"
+				/>
+
+				<field
+						type="textarea"
+						name="foo_textarea"
+						label="COM_GUITAR_GUITAR_TEXTAREA_FIELD_LABEL"
+						description="COM_GUITAR_GUITAR_TEXTAREA_FIELD_DESC"
+						default="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+						rows="5"
+						cols="25"
+						class="guitar_textarea_field"
+						filter="safehtml"
+				/>
+
+				<field
+						type="editor"
+						name="foo_editor"
+						label="COM_GUITAR_GUITAR_EDITOR_FIELD_LABEL"
+						default="Fusce id neque justo, a suscipit dui."
+						width="5"
+						height="25"
+						rows="5"
+						cols="25"
+						filter="raw"
+						editor="tinymce|codemirror"
+						buttons="image"
+						hide="pagebreak"
+				/>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>

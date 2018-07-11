@@ -26,13 +26,13 @@ class GuitarControllerSong extends JControllerForm
             return true;
         }
 
-        // If the user is not allowed to edit all recipes, they may be allowed
+        // If the user is not allowed to edit all songs, they may be allowed
         // to edit their own - so check if they are allowed to edit their own
         // and if this is their document
         $user		= JFactory::getUser();
 
 		if ($user->authorise('core.edit.own',  $this->option)) {
-			// If the user can edit his own recipes, is this one of his recipes?
+			// If the user can edit his own songs, is this one of his songs?
 			$ownerId	= (int) isset($data['created_by']) ? $data['created_by'] : 0;
             $recordId	= (int) isset($data[$key]) ? $data[$key] : 0;
             if (empty($ownerId) && $recordId) {

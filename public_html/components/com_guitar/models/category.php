@@ -14,6 +14,7 @@ class GuitarModelCategory extends JModelList
         $query
             ->select('songs.id,songs.album,songs.publish_up,songs.created,songs.metadesc')
             ->from($db->quoteName('#__guitar_songs') . ' AS songs');
+
         // Join over the categories.
         $query
             ->select('genres.title AS category_title')
@@ -27,6 +28,16 @@ class GuitarModelCategory extends JModelList
         $query->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')');
         $query->where('songs.published = 1');
 
+        // Get author's name
+        $query
+            ->select(
+                "CASE WHEN songs.created_by_alias > ' ' 
+                          THEN songs.created_by_alias 
+                          ELSE users.name 
+                          END AS author")
+            ->join('LEFT', '#__users AS users ON users.id = songs.created_by');
+
+        // format the slug
         $case_when = ' CASE WHEN ';
         $case_when .= $query->charLength('songs.alias', '!=', '0');
         $case_when .= ' THEN ';
