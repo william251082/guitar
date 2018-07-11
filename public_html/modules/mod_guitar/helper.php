@@ -20,7 +20,7 @@ abstract class modGuitarHelper
 			$item->linkitem = '<a href="'. 
 				JRoute::_('index.php?option=com_guitar&view=song&catid='.
 							$item->catslug.'&id='.$item->slug).
-							'">'.$item->title.'</a>';
+							'">'.$item->album.'</a>';
 		}
 
 		return $items;

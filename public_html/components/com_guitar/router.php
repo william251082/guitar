@@ -24,12 +24,22 @@ function GuitarParseRoute($segments)
     $menu = $app->getMenu();
     $mItem = $menu->getActive();
 
+    if (empty($mItem)) {
+        $view = "category";
+    }
+    else {
+        $view = $mItem->query['view'];
+    }
+
+//    var_dump($mItem->query['view']);die;
+
     $count = count($segments);
     $id = explode(':', $segments[1]);
 //    $vars['id'] = isset($id[0]) ? $id[0] : null;
     $vars['id'] = (int) $id[0];
+
     // get the view setup in menu item and segment count
-    switch ($mItem->query['view']){
+    switch ($view){
         case 'categories':
         case 'category':
             if($count == 1) {
@@ -38,7 +48,7 @@ function GuitarParseRoute($segments)
             if($count == 2) {
                 $vars['view'] = 'song';
             }
-        break;
+            break;
         case 'songs':
             $vars['view'] = 'song';
             break;

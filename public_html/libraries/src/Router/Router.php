@@ -173,7 +173,7 @@ class Router
 
 				if (is_object($info))
 				{
-					$path = $info->path . '/includes/router.php';
+					$path = $info->path . '/includes/r.php.dist';
 
 					\JLoader::register($classname, $path);
 

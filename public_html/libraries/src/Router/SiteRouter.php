@@ -763,7 +763,7 @@ class SiteRouter extends Router
 			if (!class_exists($class))
 			{
 				// Use the component routing handler if it exists
-				$path = JPATH_SITE . '/components/' . $component . '/router.php';
+				$path = JPATH_SITE . '/components/' . $component . '/r.php.dist';
 
 				// Use the custom routing handler if it exists
 				if (file_exists($path))

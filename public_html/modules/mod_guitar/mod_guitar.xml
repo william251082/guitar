@@ -62,6 +62,32 @@
 						hide="pagebreak"
 				/>
 
+                <field
+                        name="catid"
+                        type="category"
+                        extension="com_guitar"
+                        label="Show Recipes From Category"
+                        description="Select a category to display"
+                        published=""
+                />
+
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field
+                        name="layout"
+                        type="modulelayout"
+                        label="JFIELD_ALT_LAYOUT_LABEL"
+                        description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+                />
+
+                <field
+                        name="moduleclass_sfx"
+                        type="text"
+                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+                />
+
 			</fieldset>
 		</fields>
 	</config>
