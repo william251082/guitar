@@ -16,7 +16,7 @@ class GuitarViewCategory extends JViewLegacy
         {
             $link = JRoute::_('index.php?option=com_guitar&view=song&catid='.$item->catslug.'&id='.$item->slug);
 
-            $title = $this->escape($item->title);
+            $title = $this->escape($item->album);
             $title = html_entity_decode($title, ENT_COMPAT, 'UTF-8');
 
             $date = ($item->publish_up != "0000-00-00 00:00:00" ? date('r', strtotime($item->publish_up)) : date('r', strtotime($item->created)));

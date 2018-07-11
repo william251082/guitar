@@ -31,6 +31,11 @@ global $params;
             <?php
         } ?>
         <h3><?php echo $this->item->album; ?></h3>
+
+        <?php if ($this->item->canEdit) : ?>
+            <?php echo 'Edit song: '.$this->item->editLink; ?>
+        <?php endif; ?>
+
         <p><?php echo $this->item->song; ?></p>
         <div class="song-submission-info">
             <?php if (!empty($this->params['show_author'])) { ?>

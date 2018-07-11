@@ -5,22 +5,22 @@ class GuitarViewSong extends JViewLegacy
 {
 	public function display($tpl = null)
 	{
-//         //Get the currently logged on user
-//        $user = JFactory::getUser();
-//
-//        // Make sure our user is allowed to view this item.  Note: this method always returns true for the super user!
-//        if (!$user->authorise('song.view', 'com_guitar'))
-//        {
-//            $app = JFactory::getApplication();
-//            $app->redirect(
-//                JRoute::_(
-//                    'index.php?option=com_guitar&view=songs', false
-//                ),
-//                JText::_('COM_GUITAR_VIEW_NOT_AUTHORIZED'),
-//                'error'
-//            );
-//            return false;
-//        }
+         //Get the currently logged on user
+        $user = JFactory::getUser();
+
+        // Make sure our user is allowed to view this item.  Note: this method always returns true for the super user!
+        if (!$user->authorise('song.view', 'com_guitar'))
+        {
+            $app = JFactory::getApplication();
+            $app->redirect(
+                JRoute::_(
+                    'index.php?option=com_guitar&view=songs', false
+                ),
+                JText::_('COM_GUITAR_VIEW_NOT_AUTHORIZED'),
+                'error'
+            );
+            return false;
+        }
 		// Get some data from the models
 		$item		= $this->get('Item');
 		$this->item      = &$item;
@@ -39,6 +39,20 @@ class GuitarViewSong extends JViewLegacy
             $this->document->setMetadata('keywords', $this->item->metakey);
         }
 
+        $title = $this->document->getTitle() . " - " . $this->item->album;
+        $this->document->setTitle($title);
+
+        $this->item->canEdit = $this->allowEdit();
+
+        if ($this->item->canEdit) {
+            $uri  = JURI::getInstance();
+            $url = 'index.php?option=com_guitar&task=song.edit&id=' . $this->item->id . '&return=' . base64_encode($uri);
+
+            $icon = $this->item->published ? 'edit.png' : 'edit_unpublished.png';
+            $text = JHtml::_('image', 'system/' . $icon, JText::_('JGLOBAL_EDIT'), null, true);
+            $this->item->editLink = JHtml::_('link', JRoute::_($url), $text, array());
+        }
+
         //get component's parameters
         $componentParams        = JComponentHelper::getParams('com_guitar');
 //        $this->params  = $params->toArray();
@@ -52,7 +66,7 @@ class GuitarViewSong extends JViewLegacy
         $menuParams->loadString($active->params);
 
         // Check which parameters take priority
-        if ($active && (strpos($currentLink, 'view=recipe') && (strpos($currentLink, '&id='.(string) $item->id)))) {
+        if ($active && (strpos($currentLink, 'view=song') && (strpos($currentLink, '&id='.(string) $item->id)))) {
             // If the current view is the active item AND the song view for this song, then the menu item params take priority
             // $item->params are the song params, $mergeParams are the menu item params
             // Merge so that the menu item params take priority
@@ -60,7 +74,7 @@ class GuitarViewSong extends JViewLegacy
             $this->params  = $componentParams->toArray();
         }
         else {
-            // Merge so that recipe params take priority
+            // Merge so that song params take priority
             $menuParams->merge($componentParams);
             $this->params  = $menuParams->toArray();
         }
@@ -68,6 +82,38 @@ class GuitarViewSong extends JViewLegacy
         $title = $this->document->getTitle() . " - " . $this->item->album;
         $this->document->setTitle($title);
 
+
+
         parent::display($tpl);
 	}
+
+    // Private function to embed edit logic check in view
+    private function allowEdit() {
+
+        // may this user edit any songs?
+        $user		= JFactory::getUser();
+        
+        $option = (isset($this->option) ? $this->option : false);
+        var_dump($this->option);die;
+
+        if ($user->authorise('core.edit.own',  $this->option)) {
+            return true;
+        }
+
+        // If the user is not allowed to edit all songs, they may be allowed
+        // to edit their own - so check if they are allowed to edit their own
+        // and if this is their document
+        $user		= JFactory::getUser();
+
+        if ($user->authorise('core.edit.own',  $this->option)) {
+            $ownerId = $this->item->created_by;
+            // If the owner is this user, then they may edit
+            $userId		= $user->get('id');
+            if ($ownerId == $userId) {
+                return true;
+            }
+        }
+        // Tests have failed, no edit allowed
+        return false;
+    }
 }

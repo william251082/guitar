@@ -26,6 +26,7 @@ function GuitarParseRoute($segments)
 
     $count = count($segments);
     $id = explode(':', $segments[1]);
+//    $vars['id'] = isset($id[0]) ? $id[0] : null;
     $vars['id'] = (int) $id[0];
     // get the view setup in menu item and segment count
     switch ($mItem->query['view']){
