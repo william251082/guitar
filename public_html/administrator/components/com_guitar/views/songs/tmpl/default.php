@@ -67,6 +67,10 @@ defined('_JEXEC') or die;
             <input type="hidden" name="task" value=""/>
             <input type="hidden" name="boxchecked" value="0"/>
             <input type="hidden" name="view" value="songs"/>
-            <?php echo JHtml::_('form.token'); ?>
+            <?php echo JHtml::_('form.token');
+            //load the hidden batch processing form.
+            echo $this->loadTemplate('batch');
+            ?>
+
         </div>
 </form>
