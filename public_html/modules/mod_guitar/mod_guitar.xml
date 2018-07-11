@@ -19,7 +19,8 @@
 
 	<config>
 		<fields name="params">
-			<fieldset name="basic">
+			<fieldset name="basic"
+                      addfieldpath="/administrator/components/com_guitar/models/fields">
 
 				<field
 						type="text"
@@ -66,9 +67,25 @@
                         name="catid"
                         type="category"
                         extension="com_guitar"
-                        label="Show Recipes From Category"
+                        label="Show Songs From Category"
                         description="Select a category to display"
                         published=""
+                />
+
+                <field
+                        name="song"
+                        type="sql"
+                        label="Select a song"
+                        query="SELECT id, album FROM #__guitar_songs"
+                        key_field="id"
+                        value_field="album"
+                />
+
+                <field
+                        name="keyword"
+                        type="guitarkeywords"
+                        label="Keyword"
+                        description="Select a Keyword"
                 />
 
             </fieldset>

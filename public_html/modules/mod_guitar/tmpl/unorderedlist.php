@@ -7,10 +7,11 @@ defined('_JEXEC') or die;
     <?php
     foreach ($data as $class => $item) {
         if ($class == "items") {
+            echo "<ul>";
             foreach ($item as $itm) {
-//                var_dump($item);die;
-                echo "<div>".$itm->linkitem."</div>";
+                echo "<li>".$itm->linkitem."</li>";
             }
+            echo "</ul>";
             continue;
         }
         ?>
@@ -18,8 +19,9 @@ defined('_JEXEC') or die;
         <?php
     }
     ?>
+</div>
 
-<!--    <!--output the song-->-->
+<!--<!--output the song-->-->
 <!--<div class="guitar--><?php //echo $moduleclass_sfx; ?><!--">-->
 <!--    --><?php
 //    foreach ($data as $class => $item) {
@@ -36,4 +38,3 @@ defined('_JEXEC') or die;
 //    }
 //    ?>
 <!--</div>-->
-

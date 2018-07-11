@@ -25,4 +25,16 @@ abstract class modGuitarHelper
 
 		return $items;
 	}
+
+    public static function getItem($id)
+    {
+        $app = JFactory::getApplication();
+        $app->input->set('id', $id);
+        $id = $app->input->get('id', $id);
+
+        $model = JModelLegacy::getInstance('Song', 'GuitarModel', array('ignore_request' => true));
+        $item = $model->getItem();
+
+        return $item;
+    }
 }
