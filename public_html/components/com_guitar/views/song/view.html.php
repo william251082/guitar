@@ -89,10 +89,10 @@ class GuitarViewSong extends JViewLegacy
         // may this user edit any songs?
         $user		= JFactory::getUser();
 
-//        $option = (isset($this->option) ? $this->option : false);
+  //      $option = (isset($this->option) ? $this->option : false);
 //        var_dump($this->option);die;
 
-        if ($user->authorise('core.edit.own',  $this->option)) {
+        if ($user->authorise('core.edit.own',  'com_guitar')) {
             return true;
         }
 
@@ -101,7 +101,7 @@ class GuitarViewSong extends JViewLegacy
         // and if this is their document
         $user		= JFactory::getUser();
 
-        if ($user->authorise('core.edit.own',  $this->option)) {
+        if ($user->authorise('core.edit.own',  'com_guitar')) {
             $ownerId = $this->item->created_by;
             // If the owner is this user, then they may edit
             $userId		= $user->get('id');

@@ -6,7 +6,7 @@ require_once JPATH_ADMINISTRATOR.'/components/com_guitar/models/song.php';
 
 class GuitarModelForm extends GuitarModelSong
 {
-    public function &getItem($itemId = null)
+    public function getItem($itemId = null)
     {
         $app = JFactory::getApplication('site');
         $id = $app->input->getInt('id');
@@ -29,9 +29,9 @@ class GuitarModelForm extends GuitarModelSong
 
         // Convert attrib field to Registry.
         $value->params = new JRegistry;
-        $value->params->loadString($value->attribs);
+        $value->params->loadString($value->album);
 
         return $value;
-
     }
+
 }
