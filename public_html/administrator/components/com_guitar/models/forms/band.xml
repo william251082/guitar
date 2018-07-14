@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+
+  <fieldset name="accesscontrol">
+    <field name="asset_id" type="hidden" filter="unset"/>
+    <field name="rules" type="rules" label="JFIELD_RULES_LABEL" translate_label="false" filter="rules" validate="rules" class="inputbox" component="com_guitar" section="band"/>
+  </fieldset>
+
+  <fieldset addfieldpath="/administrator/components/com_categories/models/fields">
+    <field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL"
+           readonly="true" class="readonly"
+           description="JGLOBAL_FIELD_ID_DESC"/>
+
+    <field name="band_title" type="text" class="inputbox"
+           size="40" label="JGLOBAL_TITLE"
+           description="COM_GUITAR_FIELD_TITLE_DESC" required="true" />
+
+    <field name="band_info" type="editor" buttons="true" hide="pagebreak,readmore"
+           class="inputbox"
+           filter="JComponentHelper::filterText"
+           label="COM_GUITAR_SONG" description="COM_GUITAR_FIELD_SONG_DESC" />
+  </fieldset>
+</form>
