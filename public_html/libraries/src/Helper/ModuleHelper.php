@@ -15,7 +15,7 @@ use Joomla\CMS\Language\LanguageHelper;
 use Joomla\Registry\Registry;
 
 /**
- * Module helper class
+ * Module helpers class
  *
  * @since  1.5
  */
@@ -496,7 +496,7 @@ abstract class ModuleHelper
 	}
 
 	/**
-	 * Module cache helper
+	 * Module cache helpers
 	 *
 	 * Caching modes:
 	 * To be set in XML:

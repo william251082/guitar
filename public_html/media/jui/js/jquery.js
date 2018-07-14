@@ -3476,7 +3476,7 @@ jQuery.extend( {
 		return deferred;
 	},
 
-	// Deferred helper
+	// Deferred helpers
 	when: function( subordinate /* , ..., subordinateN */ ) {
 		var i = 0,
 			resolveValues = slice.call( arguments ),

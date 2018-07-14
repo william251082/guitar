@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * JHtml module helper class.
+ * JHtml module helpers class.
  *
  * @since  1.6
  */

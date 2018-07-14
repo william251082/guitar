@@ -14,7 +14,7 @@ use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Language helper class
+ * Language helpers class
  *
  * @since  11.1
  */

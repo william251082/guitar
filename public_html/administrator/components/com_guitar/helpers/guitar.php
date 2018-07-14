@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Guitar helper
+ * Guitar helpers
  */
 abstract class GuitarHelper
 {

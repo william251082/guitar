@@ -89,7 +89,7 @@ class HtmlView extends \JObject
 	 * @var    array
 	 * @since  3.0
 	 */
-	protected $_path = array('template' => array(), 'helper' => array());
+	protected $_path = array('template' => array(), 'helpers' => array());
 
 	/**
 	 * The name of the default template source file.
@@ -133,7 +133,7 @@ class HtmlView extends \JObject
 	 *                          escape: the name (optional) of the function to use for escaping strings
 	 *                          base_path: the parent path (optional) of the views directory (defaults to the component folder)
 	 *                          template_plath: the path (optional) of the layout directory (defaults to base_path + /views/ + view name
-	 *                          helper_path: the path (optional) of the helper files (defaults to base_path + /helpers/)
+	 *                          helper_path: the path (optional) of the helpers files (defaults to base_path + /helpers/)
 	 *                          layout: the layout (optional) to use to display the view
 	 *
 	 * @since   3.0
@@ -191,15 +191,15 @@ class HtmlView extends \JObject
 			$this->_setPath('template', $this->_basePath . '/views/' . $this->getName() . '/tmpl');
 		}
 
-		// Set the default helper search path
+		// Set the default helpers search path
 		if (array_key_exists('helper_path', $config))
 		{
 			// User-defined dirs
-			$this->_setPath('helper', $config['helper_path']);
+			$this->_setPath('helpers', $config['helper_path']);
 		}
 		else
 		{
-			$this->_setPath('helper', $this->_basePath . '/helpers');
+			$this->_setPath('helpers', $this->_basePath . '/helpers');
 		}
 
 		// Set the layout
@@ -614,7 +614,7 @@ class HtmlView extends \JObject
 	}
 
 	/**
-	 * Adds to the stack of helper script paths in LIFO order.
+	 * Adds to the stack of helpers script paths in LIFO order.
 	 *
 	 * @param   mixed  $path  A directory path or an array of paths.
 	 *
@@ -624,7 +624,7 @@ class HtmlView extends \JObject
 	 */
 	public function addHelperPath($path)
 	{
-		$this->_addPath('helper', $path);
+		$this->_addPath('helpers', $path);
 	}
 
 	/**
@@ -708,9 +708,9 @@ class HtmlView extends \JObject
 	}
 
 	/**
-	 * Load a helper file
+	 * Load a helpers file
 	 *
-	 * @param   string  $hlp  The name of the helper source file automatically searches the helper paths and compiles as needed.
+	 * @param   string  $hlp  The name of the helpers source file automatically searches the helpers paths and compiles as needed.
 	 *
 	 * @return  void
 	 *
@@ -723,7 +723,7 @@ class HtmlView extends \JObject
 
 		// Load the template script
 		jimport('joomla.filesystem.path');
-		$helper = \JPath::find($this->_path['helper'], $this->_createFileName('helper', array('name' => $file)));
+		$helper = \JPath::find($this->_path['helpers'], $this->_createFileName('helpers', array('name' => $file)));
 
 		if ($helper != false)
 		{

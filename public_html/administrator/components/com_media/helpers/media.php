@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Media helper class.
+ * Media helpers class.
  *
  * @since       1.6
  * @deprecated  4.0  Use JHelperMedia instead

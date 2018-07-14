@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * JHtml helper class.
+ * JHtml helpers class.
  *
  * @since  1.6
  */

@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-jimport('joomla.form.helper');
+jimport('joomla.form.helpers');
 
 JFormHelper::loadFieldClass('folderlist');
 

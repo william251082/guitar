@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-// Include the helper functions only once
+// Include the helpers functions only once
 JLoader::register('ModArticlesCategoryHelper', __DIR__ . '/helper.php');
 
 $input = JFactory::getApplication()->input;

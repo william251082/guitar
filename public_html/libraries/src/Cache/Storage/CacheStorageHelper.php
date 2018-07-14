@@ -11,7 +11,7 @@ namespace Joomla\CMS\Cache\Storage;
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Cache storage helper functions.
+ * Cache storage helpers functions.
  *
  * @since  11.1
  */

@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-// Add specific helper files for html generation
+// Add specific helpers files for html generation
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 ?>
 

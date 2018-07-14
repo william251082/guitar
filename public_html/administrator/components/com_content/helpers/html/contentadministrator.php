@@ -14,7 +14,7 @@ use Joomla\Utilities\ArrayHelper;
 JLoader::register('ContentHelper', JPATH_ADMINISTRATOR . '/components/com_content/helpers/content.php');
 
 /**
- * Content HTML helper
+ * Content HTML helpers
  *
  * @since  3.0
  */

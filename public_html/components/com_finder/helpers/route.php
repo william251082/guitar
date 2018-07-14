@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Finder route helper class.
+ * Finder route helpers class.
  *
  * @since  2.5
  */

@@ -48,7 +48,7 @@ $document = JFactory::getDocument();
  *
  * Calendar Specific
  * @var   string   $localesPath     The relative path for the locale file
- * @var   string   $helperPath      The relative path for the helper file
+ * @var   string   $helperPath      The relative path for the helpers file
  * @var   string   $minYear         The minimum year, that will be subtracted/added to current year
  * @var   string   $maxYear         The maximum year, that will be subtracted/added to current year
  * @var   integer  $todaybutton     The today button

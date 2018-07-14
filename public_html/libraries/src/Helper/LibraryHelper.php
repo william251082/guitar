@@ -13,7 +13,7 @@ defined('JPATH_PLATFORM') or die;
 use Joomla\Registry\Registry;
 
 /**
- * Library helper class
+ * Library helpers class
  *
  * @since  3.2
  */

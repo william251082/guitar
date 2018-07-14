@@ -15,7 +15,7 @@ use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Authorisation helper class, provides static methods to perform various tasks relevant
+ * Authorisation helpers class, provides static methods to perform various tasks relevant
  * to the Joomla user and authorisation classes
  *
  * This class has influences and some method logic from the Horde Auth package

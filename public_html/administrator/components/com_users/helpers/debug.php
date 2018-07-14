@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Users component debugging helper.
+ * Users component debugging helpers.
  *
  * @since  1.6
  */

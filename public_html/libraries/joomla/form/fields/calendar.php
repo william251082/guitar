@@ -269,12 +269,12 @@ class JFormFieldCalendar extends JFormField
 		$calendar  = JFactory::getLanguage()->getCalendar();
 		$direction = strtolower(JFactory::getDocument()->getDirection());
 
-		// Get the appropriate file for the current language date helper
-		$helperPath = 'system/fields/calendar-locales/date/gregorian/date-helper.min.js';
+		// Get the appropriate file for the current language date helpers
+		$helperPath = 'system/fields/calendar-locales/date/gregorian/date-helpers.min.js';
 
 		if (!empty($calendar) && is_dir(JPATH_ROOT . '/media/system/js/fields/calendar-locales/date/' . strtolower($calendar)))
 		{
-			$helperPath = 'system/fields/calendar-locales/date/' . strtolower($calendar) . '/date-helper.min.js';
+			$helperPath = 'system/fields/calendar-locales/date/' . strtolower($calendar) . '/date-helpers.min.js';
 		}
 
 		// Get the appropriate locale file for the current language

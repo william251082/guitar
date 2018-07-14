@@ -16,7 +16,7 @@ use Joomla\String\StringHelper;
 \JLoader::import('joomla.filesystem.path');
 
 /**
- * Form's helper class.
+ * Form's helpers class.
  * Provides a storage for filesystem's paths where Form's entities reside and methods for creating those entities.
  * Also stores objects with entities' prototypes for further reusing.
  *

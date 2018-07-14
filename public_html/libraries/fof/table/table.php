@@ -1674,7 +1674,7 @@ class FOFTable extends FOFUtilsObject implements JTableInterface
 	 */
 	public function copy($cid = null)
 	{
-		//We have to cast the id as array, or the helper function will return an empty set
+		//We have to cast the id as array, or the helpers function will return an empty set
 		if($cid)
 		{
 			$cid = (array) $cid;
@@ -1769,7 +1769,7 @@ class FOFTable extends FOFUtilsObject implements JTableInterface
 			return false;
 		}
 
-		//We have to cast the id as array, or the helper function will return an empty set
+		//We have to cast the id as array, or the helpers function will return an empty set
 		if($cid)
 		{
 			$cid = (array) $cid;

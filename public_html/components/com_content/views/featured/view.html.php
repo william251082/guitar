@@ -136,7 +136,7 @@ class ContentViewFeatured extends JViewLegacy
 
 		if ($order == 0 && $this->columns > 1)
 		{
-			// Call order down helper
+			// Call order down helpers
 			$this->intro_items = ContentHelperQuery::orderDownColumns($this->intro_items, $this->columns);
 		}
 

@@ -83,7 +83,7 @@ class MediaControllerFile extends JControllerLegacy
 		// Total length of post back data in bytes.
 		$contentLength = (int) $_SERVER['CONTENT_LENGTH'];
 
-		// Instantiate the media helper
+		// Instantiate the media helpers
 		$mediaHelper = new JHelperMedia;
 
 		// Maximum allowed size of post back data in MB.

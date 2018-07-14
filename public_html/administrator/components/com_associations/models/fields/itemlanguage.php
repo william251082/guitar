@@ -43,7 +43,7 @@ class JFormFieldItemLanguage extends JFormFieldList
 
 		list($extensionName, $typeName) = explode('.', $input->get('itemtype', '', 'string'));
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = AssociationsHelper::getExtensionHelper($extensionName);
 
 		$languageField = $helper->getTypeFieldName($typeName, 'language');

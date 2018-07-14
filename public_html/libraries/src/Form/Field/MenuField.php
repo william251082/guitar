@@ -13,7 +13,7 @@ defined('JPATH_PLATFORM') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormHelper;
 
-// Import the com_menus helper.
+// Import the com_menus helpers.
 require_once realpath(JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
 
 FormHelper::loadFieldClass('GroupedList');

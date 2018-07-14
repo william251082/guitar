@@ -1403,7 +1403,7 @@ function startState(mode, a1, a2) {
 
 // STRING STREAM
 
-// Fed to the mode parsers, provides helper functions to make
+// Fed to the mode parsers, provides helpers functions to make
 // parsers more succinct.
 
 var StringStream = function(string, tabSize, lineOracle) {

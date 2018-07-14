@@ -92,7 +92,7 @@ final class UserGroupsHelper
 	}
 
 	/**
-	 * Get the helper instance.
+	 * Get the helpers instance.
 	 *
 	 * @return  self
 	 *

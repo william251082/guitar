@@ -190,7 +190,7 @@ class FOFToolbar
 		// If not in the administrative area, load the JToolbarHelper
 		if (!FOFPlatform::getInstance()->isBackend())
 		{
-            // Needed for tests, so we can inject our "special" helper class
+            // Needed for tests, so we can inject our "special" helpers class
             if(!class_exists('JToolbarHelper'))
             {
                 $platformDirs = FOFPlatform::getInstance()->getPlatformBaseDirs();

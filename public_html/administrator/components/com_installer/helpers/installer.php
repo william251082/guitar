@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Installer helper.
+ * Installer helpers.
  *
  * @since  1.6
  */

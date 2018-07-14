@@ -14,7 +14,7 @@ use Joomla\CMS\Association\AssociationExtensionHelper;
 JTable::addIncludePath(__DIR__ . '/../tables');
 
 /**
- * Content associations helper.
+ * Content associations helpers.
  *
  * @since  3.7.0
  */

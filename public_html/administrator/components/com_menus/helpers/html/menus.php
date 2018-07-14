@@ -14,7 +14,7 @@ use Joomla\Registry\Registry;
 JLoader::register('MenusHelper', JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
 
 /**
- * Menus HTML helper class.
+ * Menus HTML helpers class.
  *
  * @package     Joomla.Administrator
  * @subpackage  com_menus

@@ -21,6 +21,9 @@ defined('_JEXEC') or die;
                         <input type="checkbox" name="checkall-toggle" value=""
                                title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)"/>
                     </th>
+                    <th width="1%" style="min-width:55px" class="nowrap center">
+                        <?php echo JText::_('JSTATUS'); ?>
+                    </th>
                     <th class="title">
                         <?php echo JText::_('JGLOBAL_TITLE'); ?>
                     </th>
@@ -39,6 +42,10 @@ defined('_JEXEC') or die;
                     <tr class="row<?php echo $i % 2; ?>">
                         <td class="center">
                             <?php echo JHtml::_('grid.id', $i, $item->id); ?>
+                        </td>
+                        <!--determine which icon to display-->
+                        <td class="center">
+                            <?php echo JHtml::_('jgrid.published', $item->published, $i, 'songs.', true, 'cb', $item->publish_up, $item->publish_down); ?>
                         </td>
                         <td class="nowrap">
                             <a href="<?php echo JRoute::_(
@@ -60,6 +67,10 @@ defined('_JEXEC') or die;
             <input type="hidden" name="task" value=""/>
             <input type="hidden" name="boxchecked" value="0"/>
             <input type="hidden" name="view" value="songs"/>
-            <?php echo JHtml::_('form.token'); ?>
+            <?php echo JHtml::_('form.token');
+            //load the hidden batch processing form.
+            echo $this->loadTemplate('batch');
+            ?>
+
         </div>
 </form>

@@ -60,7 +60,7 @@ function tln_tagprint($tagname, $attary, $tagtype)
 }
 
 /**
- * A small helper function to use with array_walk. Modifies a by-ref
+ * A small helpers function to use with array_walk. Modifies a by-ref
  * value and makes it lowercase.
  *
  * @param string $val a value passed by-ref.

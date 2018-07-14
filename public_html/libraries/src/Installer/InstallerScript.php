@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 \JLoader::import('joomla.filesystem.folder');
 
 /**
- * Base install script for use by extensions providing helper methods for common behaviours.
+ * Base install script for use by extensions providing helpers methods for common behaviours.
  *
  * @since  3.6
  */

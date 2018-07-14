@@ -43,7 +43,7 @@ class UsersModelProfile extends JModelForm
 
 		parent::__construct($config);
 
-		// Load the helper and model used for two factor authentication
+		// Load the helpers and model used for two factor authentication
 		JLoader::register('UsersModelUser', JPATH_ADMINISTRATOR . '/components/com_users/models/user.php');
 		JLoader::register('UsersHelper', JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php');
 	}

@@ -25,7 +25,7 @@ if (!$user->authorise('core.manage', 'com_media') && (!$asset || (!$user->author
 
 $params = JComponentHelper::getParams('com_media');
 
-// Load the helper class
+// Load the helpers class
 JLoader::register('MediaHelper', JPATH_ADMINISTRATOR . '/components/com_media/helpers/media.php');
 
 // Set the path definitions

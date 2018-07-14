@@ -1403,7 +1403,7 @@ abstract class AdminModel extends FormModel
 	}
 
 	/**
-	 * Method to create a tags helper to ensure proper management of tags
+	 * Method to create a tags helpers to ensure proper management of tags
 	 *
 	 * @param   \JTableObserverTags  $tagsObserver  The tags observer for this table
 	 * @param   \JUcmType            $type          The type for the table being processed

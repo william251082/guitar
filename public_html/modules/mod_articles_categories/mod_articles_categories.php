@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-// Include the helper functions only once
+// Include the helpers functions only once
 JLoader::register('ModArticlesCategoriesHelper', __DIR__ . '/helper.php');
 
 JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');

@@ -7,12 +7,12 @@ class GuitarModelSongs extends JModelList
         $db = JFactory::getDBO();
         $query = $db->getQuery(true);
         $query
-            ->select('a.id,a.album')
-            ->from($db->quoteName('#__guitar_songs').' AS a');
+            ->select('songs.id,songs.album,songs.published,songs.publish_up,songs.publish_down')
+            ->from($db->quoteName('#__guitar_songs').' AS songs');
         // Join over the categories.
         $query
-            ->select('c.title AS category_title')
-            ->join('LEFT', '#__categories AS c ON c.id = a.catid');
+            ->select('genres.title AS category_title')
+            ->join('LEFT', '#__categories AS genres ON genres.id = songs.catid');
 
         return $query;
     }

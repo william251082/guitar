@@ -272,7 +272,7 @@ class FOFTableNested extends FOFTable
 	 */
 	public function copy($cid = null)
 	{
-		//We have to cast the id as array, or the helper function will return an empty set
+		//We have to cast the id as array, or the helpers function will return an empty set
 		if($cid)
 		{
 			$cid = (array) $cid;

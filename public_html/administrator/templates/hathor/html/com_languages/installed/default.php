@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 JHtmlBehavior::core();
-// Add specific helper files for html generation
+// Add specific helpers files for html generation
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 $user     = JFactory::getUser();
 $userId   = $user->get('id');

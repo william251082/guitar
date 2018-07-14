@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Association\AssociationExtensionHelper;
 
 /**
- * Menu associations helper.
+ * Menu associations helpers.
  *
  * @since  3.7.0
  */

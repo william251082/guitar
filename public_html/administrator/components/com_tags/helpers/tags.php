@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Tags helper.
+ * Tags helpers.
  *
  * @since       3.1
  * @deprecated  4.0
@@ -38,7 +38,7 @@ class TagsHelper extends JHelperContent
 			return;
 		}
 
-		// Try to find the component helper.
+		// Try to find the component helpers.
 		$file = JPath::clean(JPATH_ADMINISTRATOR . '/components/com_tags/helpers/tags.php');
 
 		if (file_exists($file))

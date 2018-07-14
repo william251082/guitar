@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Categories helper.
+ * Categories helpers.
  *
  * @since  3.2
  */

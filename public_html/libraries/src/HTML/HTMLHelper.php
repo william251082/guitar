@@ -60,7 +60,7 @@ abstract class HTMLHelper
 	/**
 	 * Method to extract a key
 	 *
-	 * @param   string  $key  The name of helper method to load, (prefix).(class).function
+	 * @param   string  $key  The name of helpers method to load, (prefix).(class).function
 	 *                        prefix and class are optional and can be used to load custom html helpers.
 	 *
 	 * @return  array  Contains lowercase key, prefix, file, function.
@@ -71,7 +71,7 @@ abstract class HTMLHelper
 	{
 		$key = preg_replace('#[^A-Z0-9_\.]#i', '', $key);
 
-		// Check to see whether we need to load a helper file
+		// Check to see whether we need to load a helpers file
 		$parts = explode('.', $key);
 
 		$prefix = count($parts) === 3 ? array_shift($parts) : 'JHtml';
@@ -87,7 +87,7 @@ abstract class HTMLHelper
 	 * Additional arguments may be supplied and are passed to the sub-class.
 	 * Additional include paths are also able to be specified for third-party use
 	 *
-	 * @param   string  $key  The name of helper method to load, (prefix).(class).function
+	 * @param   string  $key  The name of helpers method to load, (prefix).(class).function
 	 *                        prefix and class are optional and can be used to load custom
 	 *                        html helpers.
 	 *
@@ -998,12 +998,12 @@ abstract class HTMLHelper
 		$calendar  = Factory::getLanguage()->getCalendar();
 		$direction = strtolower(Factory::getDocument()->getDirection());
 
-		// Get the appropriate file for the current language date helper
-		$helperPath = 'system/fields/calendar-locales/date/gregorian/date-helper.min.js';
+		// Get the appropriate file for the current language date helpers
+		$helperPath = 'system/fields/calendar-locales/date/gregorian/date-helpers.min.js';
 
 		if (!empty($calendar) && is_dir(JPATH_ROOT . '/media/system/js/fields/calendar-locales/date/' . strtolower($calendar)))
 		{
-			$helperPath = 'system/fields/calendar-locales/date/' . strtolower($calendar) . '/date-helper.min.js';
+			$helperPath = 'system/fields/calendar-locales/date/' . strtolower($calendar) . '/date-helpers.min.js';
 		}
 
 		// Get the appropriate locale file for the current language

@@ -14,6 +14,35 @@ class GuitarViewSong extends JViewLegacy
             return false;
         }
         $this->addToolbar();
+
+        // Set a message for reviewers or authors trying to edit a document they do not own
+        $user  = JFactory::getUser();
+        if ($this->item->id == 0)
+        {
+            if ($user->authorise('core.create', 'com_guitar'))
+            {
+                JFactory::getApplication()->enqueueMessage("You may not create a song, save is disabled", 'error');
+            }
+        } else {
+            $canEdit= false;
+            if ($user->authorise('core.edit', 'com_guitar'))
+            {
+                $canEdit = true;
+            } elseif ($user->authorise('core.edit.own', 'com_guitar')
+                && ($this->item->created_by == $user->id))
+            {
+                $canEdit = true;
+            }
+            if (!$canEdit)
+            {
+                if ($user->authorise('core.edit.own', 'com_guitar')) {
+                    JFactory::getApplication()->enqueueMessage("Review mode, you may only edit your OWN songs, not other artists.", 'info');
+                } else{
+                    JFactory::getApplication()->enqueueMessage("Review mode, you may not edit this song.", 'info');
+                }
+            }
+
+        }
         parent::display($tpl);
     }
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="content" method="upgrade">
+    <name>Show Song</name>
+    <version>1.0.1</version>
+    <description>Show Song in content</description>
+    <files>
+        <filename plugin="showsong">showsong.php</filename>
+        <filename plugin="showsong">index.html</filename>
+    </files>
+</extension>

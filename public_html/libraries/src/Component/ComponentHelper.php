@@ -15,7 +15,7 @@ use Joomla\CMS\Component\Exception\MissingComponentException;
 use Joomla\Registry\Registry;
 
 /**
- * Component helper class
+ * Component helpers class
  *
  * @since  1.5
  */

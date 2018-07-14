@@ -503,7 +503,7 @@
     }
   }
 
-  // Generic request-building helper
+  // Generic request-building helpers
 
   function buildRequest(ts, doc, query, pos) {
     var files = [], offsetLines = 0, allowFragments = !query.fullDocs;

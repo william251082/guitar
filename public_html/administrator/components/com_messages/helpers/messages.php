@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Messages helper class.
+ * Messages helpers class.
  *
  * @since  1.6
  */

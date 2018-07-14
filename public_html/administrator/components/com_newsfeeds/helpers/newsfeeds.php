@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Newsfeeds component helper.
+ * Newsfeeds component helpers.
  *
  * @since  1.6
  */

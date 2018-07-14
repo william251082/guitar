@@ -84,5 +84,28 @@ JHtml::_('behavior.formvalidation');
             </fieldset>
 
         </div>
+
+        <!-- Begin Sidebar -->
+        <div class="span2">
+            <h4><?php echo JText::_('JDETAILS');?></h4>
+            <hr />
+            <fieldset class="form-vertical">
+                <div class="control-group">
+                    <div class="control-group">
+                        <div class="controls">
+                            <?php echo $this->form->getValue('name'); ?>
+                        </div>
+                    </div>
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('published'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('published'); ?>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <!-- End Sidebar -->
+
     </div>
 </form>

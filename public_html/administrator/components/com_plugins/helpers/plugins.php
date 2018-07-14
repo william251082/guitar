@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Plugins component helper.
+ * Plugins component helpers.
  *
  * @since  1.6
  */

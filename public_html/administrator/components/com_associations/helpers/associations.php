@@ -13,7 +13,7 @@ use Joomla\Registry\Registry;
 use Joomla\CMS\Language\LanguageHelper;
 
 /**
- * Associations component helper.
+ * Associations component helpers.
  *
  * @since  3.7.0
  */
@@ -55,7 +55,7 @@ class AssociationsHelper extends JHelperContent
 			return array();
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		return $helper->getAssociationList($typeName, $itemId);
@@ -63,7 +63,7 @@ class AssociationsHelper extends JHelperContent
 	}
 
 	/**
-	 * Get the the instance of the extension helper class
+	 * Get the the instance of the extension helpers class
 	 *
 	 * @param   string  $extensionName  The extension name with com_
 	 *
@@ -80,7 +80,7 @@ class AssociationsHelper extends JHelperContent
 
 		$support = self::$extensionsSupport[$extensionName];
 
-		return $support->get('helper');
+		return $support->get('helpers');
 	}
 
 	/**
@@ -101,7 +101,7 @@ class AssociationsHelper extends JHelperContent
 			return array();
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		return $helper->getItem($typeName, $itemId);
@@ -127,7 +127,7 @@ class AssociationsHelper extends JHelperContent
 	}
 
 	/**
-	 * Get the extension specific helper class name
+	 * Get the extension specific helpers class name
 	 *
 	 * @param   string  $extensionName  The extension name with com_
 	 *
@@ -337,9 +337,9 @@ class AssociationsHelper extends JHelperContent
 
 		$result->def('component', $extensionName);
 		$result->def('associationssupport', false);
-		$result->def('helper', null);
+		$result->def('helpers', null);
 
-		// Check if associations helper exists
+		// Check if associations helpers exists
 		if (!file_exists(JPATH_ADMINISTRATOR . '/components/' . $extensionName . '/helpers/associations.php'))
 		{
 			return $result;
@@ -354,9 +354,9 @@ class AssociationsHelper extends JHelperContent
 			return $result;
 		}
 
-		// Create an instance of the helper class
+		// Create an instance of the helpers class
 		$helper = new $componentAssociationsHelperClassName;
-		$result->set('helper', $helper);
+		$result->set('helpers', $helper);
 
 		if ($helper->hasAssociationsSupport() === false)
 		{
@@ -467,7 +467,7 @@ class AssociationsHelper extends JHelperContent
 			return false;
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		if (method_exists($helper, 'allowEdit'))
@@ -495,7 +495,7 @@ class AssociationsHelper extends JHelperContent
 			return false;
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		if (method_exists($helper, 'allowAdd'))
@@ -529,7 +529,7 @@ class AssociationsHelper extends JHelperContent
 			return false;
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		if (method_exists($helper, 'isCheckoutItem'))
@@ -567,7 +567,7 @@ class AssociationsHelper extends JHelperContent
 			return true;
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		if (method_exists($helper, 'canCheckinItem'))
@@ -601,7 +601,7 @@ class AssociationsHelper extends JHelperContent
 			return false;
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		$support = $helper->getTypeSupport($typeName);
@@ -627,7 +627,7 @@ class AssociationsHelper extends JHelperContent
 			return false;
 		}
 
-		// Get the extension specific helper method
+		// Get the extension specific helpers method
 		$helper = self::getExtensionHelper($extensionName);
 
 		return $helper->getTypeFieldName($typeName, $fieldName);

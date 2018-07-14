@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\Registry\Registry;
 
 /**
- * Redirect component helper.
+ * Redirect component helpers.
  *
  * @since  1.6
  */

@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Mailto route helper class.
+ * Mailto route helpers class.
  *
  * @package     Joomla.Site
  * @subpackage  com_mailto

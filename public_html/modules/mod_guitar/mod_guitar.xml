@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension
+	type="module"
+	version="3.0"
+	client="site"
+	method="upgrade">
+	<name>Guitar Module</name>
+	<description>Guitar Module</description>
+
+	<files>
+		<filename module="mod_guitar">mod_guitar.php</filename>
+	</files>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_guitar.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_guitar.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic"
+                      addfieldpath="/administrator/components/com_guitar/models/fields">
+
+				<field
+						type="text"
+						name="guitar_text"
+						label="COM_GUITAR_GUITAR_TEXT_FIELD_LABEL"
+						description="COM_GUITAR_GUITAR_TEXT_FIELD_DESC"
+						maxlength="35"
+						size="10"
+						default="Hello, Guitar!"
+						filter="safehtml"
+						class="guitar_text_field"
+						readonly="false"
+						diabled="false"
+				/>
+
+				<field
+						type="textarea"
+						name="foo_textarea"
+						label="COM_GUITAR_GUITAR_TEXTAREA_FIELD_LABEL"
+						description="COM_GUITAR_GUITAR_TEXTAREA_FIELD_DESC"
+						default="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+						rows="5"
+						cols="25"
+						class="guitar_textarea_field"
+						filter="safehtml"
+				/>
+
+				<field
+						type="editor"
+						name="foo_editor"
+						label="COM_GUITAR_GUITAR_EDITOR_FIELD_LABEL"
+						default="Fusce id neque justo, a suscipit dui."
+						width="5"
+						height="25"
+						rows="5"
+						cols="25"
+						filter="raw"
+						editor="tinymce|codemirror"
+						buttons="image"
+						hide="pagebreak"
+				/>
+
+                <field
+                        name="catid"
+                        type="category"
+                        extension="com_guitar"
+                        label="Show Songs From Category"
+                        description="Select a category to display"
+                        published=""
+                />
+
+                <field
+                        name="song"
+                        type="sql"
+                        label="Select a song"
+                        query="SELECT id, album FROM #__guitar_songs"
+                        key_field="id"
+                        value_field="album"
+                />
+
+                <field
+                        name="keyword"
+                        type="guitarkeywords"
+                        label="Keyword"
+                        description="Select a Keyword"
+                />
+
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field
+                        name="layout"
+                        type="modulelayout"
+                        label="JFIELD_ALT_LAYOUT_LABEL"
+                        description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+                />
+
+                <field
+                        name="moduleclass_sfx"
+                        type="text"
+                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+                />
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>

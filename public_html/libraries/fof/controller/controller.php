@@ -480,7 +480,7 @@ class FOFController extends FOFUtilsObject
 		{
 			$mName = $rMethod->getName();
 
-			// If the developer screwed up and declared one of the helper method public do NOT make them available as
+			// If the developer screwed up and declared one of the helpers method public do NOT make them available as
 			// tasks.
 			if ((substr($mName, 0, 8) == 'onBefore') || (substr($mName, 0, 7) == 'onAfter') || substr($mName, 0, 1) == '_')
 			{

@@ -11,7 +11,7 @@ defined('JPATH_PLATFORM') or die;
 
 JFormHelper::loadFieldClass('groupedlist');
 
-// Import the com_menus helper.
+// Import the com_menus helpers.
 JLoader::register('MenusHelper', JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
 
 /**
