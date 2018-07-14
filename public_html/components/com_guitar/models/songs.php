@@ -1,102 +1,198 @@
 <?php
+
+/**
+ * @version    CVS: 1.0.0
+ * @package    Com_Guitar
+ * @author     William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright  2018 William del Rosario
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+
+jimport('joomla.application.component.modellist');
+
+/**
+ * Methods supporting a list of Guitar records.
+ *
+ * @since  1.6
+ */
 class GuitarModelSongs extends JModelList
 {
-    public function getListQuery()
-    {
-        $db = JFactory::getDBO();
-        $query = $db->getQuery(true);
-        $query->select('songs.id,songs.album');
-        $query->from($db->quoteName('#__guitar_songs') . ' AS songs');
+	/**
+	 * Constructor.
+	 *
+	 * @param   array  $config  An optional associative array of configuration settings.
+	 *
+	 * @see        JController
+	 * @since      1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields']))
+		{
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+        
+        
+	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 *
+	 * @param   string  $ordering   Elements order
+	 * @param   string  $direction  Order direction
+	 *
+	 * @return void
+	 *
+	 * @throws Exception
+	 *
+	 * @since    1.6
+	 */
+	protected function populateState($ordering = null, $direction = null)
+	{
+            
+
+            // List state information.
+            parent::populateState($ordering, $direction);
+
+            $app = Factory::getApplication();
+
+            $ordering  = $app->getUserStateFromRequest($this->context . '.ordercol', 'filter_order', $ordering);
+            $direction = $app->getUserStateFromRequest($this->context . '.orderdirn', 'filter_order_Dir', $ordering);
+
+            $this->setState('list.ordering', $ordering);
+            $this->setState('list.direction', $direction);
+
+            $start = $app->getUserStateFromRequest($this->context . '.limitstart', 'limitstart', 0, 'int');
+            $limit = $app->getUserStateFromRequest($this->context . '.limit', 'limit', 0, 'int');
+
+            if ($limit == 0)
+            {
+                $limit = $app->get('list_limit', 0);
+            }
+
+            $this->setState('list.limit', $limit);
+            $this->setState('list.start', $start);
+	}
+
+	/**
+	 * Build an SQL query to load the list data.
+	 *
+	 * @return   JDatabaseQuery
+	 *
+	 * @since    1.6
+	 */
+	protected function getListQuery()
+	{
+            // Create a new query object.
+            $db    = $this->getDbo();
+            $query = $db->getQuery(true);
+
+            // Select the required fields from the table.
+            $query->select(
+                        $this->getState(
+                                'list.select', 'DISTINCT a.*'
+                        )
+                );
+
+            $query->from('`#__guitar_songs` AS a');
 
         // Join over the categories.
-        $query->select('genres.title AS category_title');
-        $query->join('LEFT', '#__categories AS genres ON genres.id = songs.catid');
+        $query->select('c.title AS category_title');
+        $query->join('LEFT', '#__categories AS c ON c.id = a.catid');
+            
+            
 
-        // By start and finish publish dates.
-        $nullDate = $db->Quote($db->getNullDate());
-        $nowDate = $db->Quote(JFactory::getDate()->toSql());
-        $query
-            ->where('(songs.publish_up = ' . $nullDate . ' OR songs.publish_up <= ' . $nowDate . ')')
-            ->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')')
-            ->where('songs.published = 1');
+            // Filter by search in title
+            $search = $this->getState('filter.search');
 
-        // Get author's name
-        $query
-            ->select(
-            "CASE WHEN songs.created_by_alias > ' ' 
-                          THEN songs.created_by_alias 
-                          ELSE users.name 
-                          END AS author")
-            ->join('LEFT', '#__users AS users ON users.id = songs.created_by');
+            if (!empty($search))
+            {
+                if (stripos($search, 'id:') === 0)
+                {
+                    $query->where('a.id = ' . (int) substr($search, 3));
+                }
+                else
+                {
+                    $search = $db->Quote('%' . $db->escape($search, true) . '%');
+                }
+            }
+            
 
-        //format the slug
-        $case_when = ' CASE WHEN ';
-        $case_when .= $query->charLength('songs.alias', '!=', '0');
-        $case_when .= ' THEN ';
-        $songs_id = $query->castAsChar('songs.id');
-        $case_when .= $query->concatenate(array($songs_id, 'songs.alias'), ':');
-        $case_when .= ' ELSE ';
-        $case_when .= $songs_id.' END as slug';
-        $query->select($case_when);
+            // Add the list ordering clause.
+            $orderCol  = $this->state->get('list.ordering');
+            $orderDirn = $this->state->get('list.direction');
 
-        // get the category slug
-        $case_when1 = ' CASE WHEN ';
-        $case_when1 .= $query->charLength('genres.alias', '!=', '0');
-        $case_when1 .= ' THEN ';
-        $genres_id = $query->castAsChar('genres.id');
-        $case_when1 .= $query->concatenate(array($genres_id, 'genres.alias'), ':');
-        $case_when1 .= ' ELSE ';
-        $case_when1 .= $genres_id.' END as catslug';
-        $query->select($case_when1);
+            if ($orderCol && $orderDirn)
+            {
+                $query->order($db->escape($orderCol . ' ' . $orderDirn));
+            }
 
-//        $componentParams        = JComponentHelper::getParams('com_guitar');
-//        $menuParams = new JRegistry;
-//
-//        $app = JFactory::getApplication();
-//        $active = $app->getMenu()->getActive();
-//        $currentLink = $active->link;
-//        $menuParams->loadString($active->params);
-//
-//        if ($active && strpos($currentLink, 'view=songs')) {
-//            $componentParams->merge($menuParams);
-//            $params  = $componentParams;
-//        }
-//        else {
-//            $menuParams->merge($componentParams);
-//            $params  = $menuParams;
-//        }
-//
-//           // Ordering Options for Songs and Category Views
-////        // get the component's parameters
-////        $params        = JComponentHelper::getParams('com_guitar');
-////
-//        //retrieve individual parameter settings
-//        $songOrderby        = $params->get('orderby_sec', 'rdate');
-//        $songOrderDate    = $params->get('order_date', 'publish_up');
-//
-//        //set order by in the query
-//        switch($songOrderby){
-//            case 'rdate':
-//                $query->order('songs.' . $songOrderDate . ' DESC');
-//                break;
-//            case 'date':
-//                $query->order('songs.' . $songOrderDate . ' ASC');
-//                break;
-//            case 'alpha':
-//                $query->order('songs.title ASC');
-//                break;
-//            case 'ralpha':
-//                $query->order('songs.title DESC');
-//                break;
-//            case 'author':
-//                $query->order('songs.author ASC');
-//                break;
-//            case 'rauthor':
-//                $query->order('songs.author DESC');
-//                break;
-//        }
-        return $query;
-    }
+            return $query;
+	}
+
+	/**
+	 * Method to get an array of data items
+	 *
+	 * @return  mixed An array of data on success, false on failure.
+	 */
+	public function getItems()
+	{
+		$items = parent::getItems();
+		
+
+		return $items;
+	}
+
+	/**
+	 * Overrides the default function to check Date fields format, identified by
+	 * "_dateformat" suffix, and erases the field if it's not correct.
+	 *
+	 * @return void
+	 */
+	protected function loadFormData()
+	{
+		$app              = Factory::getApplication();
+		$filters          = $app->getUserState($this->context . '.filter', array());
+		$error_dateformat = false;
+
+		foreach ($filters as $key => $value)
+		{
+			if (strpos($key, '_dateformat') && !empty($value) && $this->isValidDate($value) == null)
+			{
+				$filters[$key]    = '';
+				$error_dateformat = true;
+			}
+		}
+
+		if ($error_dateformat)
+		{
+			$app->enqueueMessage(JText::_("COM_GUITAR_SEARCH_FILTER_DATE_FORMAT"), "warning");
+			$app->setUserState($this->context . '.filter', $filters);
+		}
+
+		return parent::loadFormData();
+	}
+
+	/**
+	 * Checks if a given date is valid and in a specified format (YYYY-MM-DD)
+	 *
+	 * @param   string  $date  Date to be checked
+	 *
+	 * @return bool
+	 */
+	private function isValidDate($date)
+	{
+		$date = str_replace('/', '-', $date);
+		return (date_create($date)) ? Factory::getDate($date)->format("Y-m-d") : null;
+	}
 }

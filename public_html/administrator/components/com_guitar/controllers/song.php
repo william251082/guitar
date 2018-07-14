@@ -1,26 +1,32 @@
 <?php
+/**
+ * @version    CVS: 1.0.0
+ * @package    Com_Guitar
+ * @author     William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright  2018 William del Rosario
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+// No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.controllerform');
+
+/**
+ * Song controller class.
+ *
+ * @since  1.6
+ */
 class GuitarControllerSong extends JControllerForm
 {
-    public function __construct($config = array())
-    {
-        parent::__construct($config);
-    }
-
-    public function batch($model = null) {
-
-        // Check the session token to avoid cross site scripting attacks
-        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
-        // Make sure we are using the Song model
-        $model = $this->getModel('Song', '', array());
-
-        // After running the batch process, redirect to the song list view
-        $this->setRedirect(JRoute::_('index.php?option=com_guitar&view=songs' .
-            $this->getRedirectToListAppend(), false));
-
-        // Joomla! provides the rest of the code needed for batch processing
-        return parent::batch($model);
-    }
+	/**
+	 * Constructor
+	 *
+	 * @throws Exception
+	 */
+	public function __construct()
+	{
+		$this->view_list = 'songs';
+		parent::__construct();
+	}
 }

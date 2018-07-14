@@ -1,70 +1,169 @@
 <?php
+
+/**
+ * @version    CVS: 1.0.0
+ * @package    Com_Guitar
+ * @author     William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright  2018 William del Rosario
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+// No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.view');
+
+/**
+ * View class for a list of Guitar.
+ *
+ * @since  1.6
+ */
 class GuitarViewSongs extends JViewLegacy
 {
-    public function display($tpl = null)
+	protected $items;
+
+	protected $pagination;
+
+	protected $state;
+
+	/**
+	 * Display the view
+	 *
+	 * @param   string  $tpl  Template name
+	 *
+	 * @return void
+	 *
+	 * @throws Exception
+	 */
+	public function display($tpl = null)
+	{
+	    // Get some data from the models
+		$this->state = $this->get('State');
+		$this->items = $this->get('Items');
+		$this->pagination = $this->get('Pagination');
+        $this->filterForm = $this->get('FilterForm');
+        $this->activeFilters = $this->get('ActiveFilters');
+
+		// Check for errors.
+		if (count($errors = $this->get('Errors')))
+		{
+			throw new Exception(implode("\n", $errors));
+		}
+
+		GuitarHelper::addSubmenu('songs');
+
+		$this->addToolbar();
+
+		$this->sidebar = JHtmlSidebar::render();
+
+		parent::display($tpl);
+	}
+
+	/**
+	 * Add the page title and toolbar.
+	 *
+	 * @return void
+	 *
+	 * @since    1.6
+	 */
+	protected function addToolbar()
+	{
+		$state = $this->get('State');
+		$canDo = GuitarHelper::getActions();
+
+		JToolBarHelper::title(JText::_('COM_GUITAR_TITLE_SONGS'), 'songs.png');
+
+		// Check if the form exists before showing the add/edit buttons
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/song';
+
+		if (file_exists($formPath))
+		{
+			if ($canDo->get('core.create'))
+			{
+				JToolBarHelper::addNew('song.add', 'JTOOLBAR_NEW');
+
+				if (isset($this->items[0]))
+				{
+					JToolbarHelper::custom('songs.duplicate', 'copy.png', 'copy_f2.png', 'JTOOLBAR_DUPLICATE', true);
+				}
+			}
+
+			if ($canDo->get('core.edit') && isset($this->items[0]))
+			{
+				JToolBarHelper::editList('song.edit', 'JTOOLBAR_EDIT');
+			}
+		}
+
+		if ($canDo->get('core.edit.state'))
+		{
+			if (isset($this->items[0]->state))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::custom('songs.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+				JToolBarHelper::custom('songs.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			}
+			elseif (isset($this->items[0]))
+			{
+				// If this component does not use state then show a direct delete button as we can not trash
+				JToolBarHelper::deleteList('', 'songs.delete', 'JTOOLBAR_DELETE');
+			}
+
+			if (isset($this->items[0]->state))
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::archiveList('songs.archive', 'JTOOLBAR_ARCHIVE');
+			}
+
+			if (isset($this->items[0]->checked_out))
+			{
+				JToolBarHelper::custom('songs.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true);
+			}
+		}
+
+		// Show trash and delete for components that uses the state field
+		if (isset($this->items[0]->state))
+		{
+			if ($state->get('filter.state') == -2 && $canDo->get('core.delete'))
+			{
+				JToolBarHelper::deleteList('', 'songs.delete', 'JTOOLBAR_EMPTY_TRASH');
+				JToolBarHelper::divider();
+			}
+			elseif ($canDo->get('core.edit.state'))
+			{
+				JToolBarHelper::trash('songs.trash', 'JTOOLBAR_TRASH');
+				JToolBarHelper::divider();
+			}
+		}
+
+		if ($canDo->get('core.admin'))
+		{
+			JToolBarHelper::preferences('com_guitar');
+		}
+
+		// Set sidebar action - New in 3.0
+		JHtmlSidebar::setAction('index.php?option=com_guitar&view=songs');
+	}
+
+	/**
+	 * Method to order fields 
+	 *
+	 * @return void 
+	 */
+	protected function getSortFields()
+	{
+		return array(
+			'a.`id`' => JText::_('JGRID_HEADING_ID'),
+		);
+	}
+
+    /**
+     * Check if state is set
+     *
+     * @param   mixed  $state  State
+     *
+     * @return bool
+     */
+    public function getState($state)
     {
-        require_once JPATH_COMPONENT.'/helpers/guitar.php';
-
-        // Get some data from the models
-        $items		= $this->get('Items');
-        $this->items      = &$items;
-//        var_dump($this->items); die;
-        $pagination = $this->get('Pagination');
-        $this->pagination = $pagination;
-
-        GuitarHelper::addSubmenu('songs');
-        $this->sidebar = JHtmlSidebar::render();
-
-        //Set the toolbar
-        $this->addToolBar();
-
-        parent::display($tpl);
-    }
-
-    protected function addToolBar()
-    {
-        $user  = JFactory::getUser();
-
-        JToolBarHelper::title(JText::_('COM_GUITAR_MANAGER_SONGS'));
-
-        if ($user->authorise('core.create', 'com_guitar')) {
-            JToolBarHelper::addNew('song.add');
-        }
-
-        if ($user->authorise('core.edit', 'com_guitar')
-            || $user->authorise('core.edit.own', 'com_guitar')) {
-            JToolBarHelper::editList('song.edit');
-        }
-
-        if ($user->authorise('core.delete', 'com_guitar')
-            || $user->authorise('core.delete.own', 'com_guitar')) {
-            JToolBarHelper::deleteList('', 'songs.delete');
-        }
-
-        if ($user->authorise('core.edit.state', 'com_guitar')) {
-            JToolbarHelper::publish('songs.publish', 'JTOOLBAR_PUBLISH', true);
-            JToolbarHelper::unpublish('songs.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-            JToolbarHelper::checkin('songs.checkin');
-        }
-
-        // Add a button to allow for batch copy operations
-        if ($user->authorise('core.edit'))
-        {
-            // We make sure the built in modal functionality has been enabled
-            JHtml::_('bootstrap.modal', 'collapseModal');
-            // Use the globally defined term for Batch operations
-            $title = JText::_('JTOOLBAR_BATCH');
-            $dhtml = "<button data-toggle=\"modal\" 
-							  data-target=\"#collapseModal\" 
-							  class=\"btn btn-small\">
-						<i class=\"icon-checkbox-partial\" title=\"$title\"></i>
-						$title</button>";
-            JToolBar::getInstance('toolbar')->appendButton('Custom', $dhtml, 'batch');
-        }
-        if ($user->authorise('core.admin', 'com_guitar')){
-            JToolBarHelper::preferences('com_guitar');
-        }
+        return isset($this->state->{$state}) ? $this->state->{$state} : false;
     }
 }

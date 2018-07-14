@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
-
     <name>com_guitar</name>
-    <description>COM_GUITAR_XML_DESCRIPTION</description>
-    <creationDate>July 2018</creationDate>
+    <creationDate>2018-07-13</creationDate>
+    <copyright>2018 William del Rosario</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <author>William del Rosario</author>
-    <license>Licenced</license>
-    <version>1.0.0</version>
-
+    <authorEmail>williamdelrosario@yahoo.com</authorEmail>
+    <authorUrl>http://</authorUrl>
+    <version>CVS: 1.0.0</version>
+    <description>Guitarists Hangout Webiste</description>
+    
+    
+    
     <install> <!-- Runs on install -->
         <sql>
             <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
         </sql>
     </install>
+    <update> <!-- Runs on update -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/update.mysql.utf8.sql</file>
+        </sql>
+    </update>
     <uninstall> <!-- Runs on uninstall -->
         <sql>
             <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
@@ -20,45 +29,60 @@
     </uninstall>
 
     <files folder="site">
-        <filename>guitar.php</filename>
         <filename>index.html</filename>
+        <filename>guitar.php</filename>
         <filename>controller.php</filename>
+        <filename>router.php</filename>
         <folder>views</folder>
         <folder>models</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
     </files>
-
-    <languages folder="site/language">
-        <language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
+    <media destination="com_guitar" folder="media">
+        <folder>js</folder>
+        <folder>css</folder>
+    </media>
+    <languages folder="site/languages">
+			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
     </languages>
-
     <administration>
-        <menu>com_guitar</menu>
+        <menu>COM_GUITAR</menu>
         <submenu>
-            <!--
-                Note that all & must be escaped to &amp; for the file to be valid
-                XML and be parsed by the installer
-            -->
-        </submenu>
+            
+			<menu link="option=com_guitar&amp;view=songs" view="songs" alt="Guitar/Songs">COM_GUITAR_TITLE_SONGS</menu>
 
-        <files folder="admin">
+        </submenu>
+        <files folder="administrator">
             <filename>access.xml</filename>
-            <filename>controller.php</filename>
-            <filename>guitar.php</filename>
             <filename>config.xml</filename>
+            <filename>controller.php</filename>
             <filename>index.html</filename>
+            <filename>guitar.php</filename>
             <folder>controllers</folder>
+            <folder>assets</folder>
             <folder>helpers</folder>
             <folder>models</folder>
             <folder>sql</folder>
             <folder>tables</folder>
             <folder>views</folder>
         </files>
-
-        <languages folder="admin/language">
-            <language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
-            <language tag="en-GB">en-GB/en-GB.com_guitar.sys.ini</language>
+        <languages folder="administrator/languages">
+            
+			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_guitar.sys.ini</language>
         </languages>
     </administration>
-
+    <config>
+        <fields name="params">
+            <fieldset name="component">
+                <field name="save_history" default="0" />
+            </fieldset>
+        </fields>
+    </config>
+    <plugins>
+        <plugin group="search" plugin="guitar"/>
+    </plugins>
+    
 </extension>
-
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.component-creator.com/ -->

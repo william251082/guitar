@@ -1,65 +1,68 @@
 <?php
+/**
+ * @version    CVS: 1.0.0
+ * @package    Com_Guitar
+ * @author     William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright  2018 William del Rosario
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+// No direct access
 defined('_JEXEC') or die;
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-global $params;
+
+$canEdit = JFactory::getUser()->authorise('core.edit', 'com_guitar.' . $this->item->id);
+
+if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . $this->item->id))
+{
+	$canEdit = JFactory::getUser()->id == $this->item->created_by;
+}
 ?>
 
-<div class="item-page guitar-song">
-    <?php if (empty($this->item)) { ?>
-        <p><?php echo JText::_('COM_GUITAR_NO_SONG'); ?></p>
-    <?php } else { ?>
-        <?php if (!$this->print) { ?>
-            <div class="btn-group pull-right">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="icon-cog"></i>
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu actions">
-                    <li class="print-icon">
-                        <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?>
-                    </li>
-                    <li class="email-icon">
-                        <?php echo JHtml::_('icon.email', $this->item, $params); ?>
-                    </li>
-                </ul>
-            </div>
-            <?php
-        } else { ?>
-            <div class="pull-right">
-                <?php echo JHtml::_('icon.print_screen', $this->item, $params); ?>
-            </div>
-            <?php
-        } ?>
-        <h3><?php echo $this->item->album; ?></h3>
+<div class="item_fields">
 
-        <?php if ($this->item->canEdit) : ?>
-            <?php echo 'Edit song: '.$this->item->editLink; ?>
-        <?php endif; ?>
+	<table class="table">
+		
 
-        <p><?php echo $this->item->song; ?></p>
+	</table>
 
-        <div class="song-submission-info">
-            <?php if (!empty($this->params['show_author'])) { ?>
-                <div class="song-author">
-                	<span class="gc-label">
-                    	<?php echo JText::_('COM_GUITAR_SONG_ARTIST'); ?>
-                    </span>
-                    <span class="gc-data">
-                    	<?php echo $this->item->author; ?>
-                    </span>
-                </div>
-            <?php } ?>
-            <?php if (!empty($this->params['show_publish_date'])) { ?>
-                <div class="song-created-date">
-                	<span class="gc-label">
-                    	<?php echo JText::_('COM_GUITAR_SONG_CREATED_DATE'); ?>
-                    </span>
-                    <span class="gc-data">
-                    	<?php echo date('M j, Y', strtotime($this->item->created)); ?>
-                    </span>
-                </div>
-            <?php } ?>
-            <div style="clear:both;"></div>
-        </div>
-    <?php } ?>
 </div>
+
+<?php if($canEdit): ?>
+
+	<a class="btn" href="<?php echo JRoute::_(
+	        'index.php?option=com_guitar&task=song.edit&id='.$this->item->id
+    ); ?>"><?php echo JText::_("COM_GUITAR_EDIT_ITEM"); ?></a>
+
+<?php endif; ?>
+
+<?php if (JFactory::getUser()->authorise('core.delete','com_guitar.song.'.$this->item->id)) : ?>
+
+	<a class="btn btn-danger" href="#deleteModal" role="button" data-toggle="modal">
+		<?php echo JText::_("COM_GUITAR_DELETE_ITEM"); ?>
+	</a>
+
+	<div
+            id="deleteModal"
+            class="modal hide fade"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="deleteModal"
+            aria-hidden="true"
+    >
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3><?php echo JText::_('COM_GUITAR_DELETE_ITEM'); ?></h3>
+		</div>
+		<div class="modal-body">
+			<p><?php echo JText::sprintf('COM_GUITAR_DELETE_CONFIRM', $this->item->id); ?></p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Close</button>
+			<a href="<?php echo JRoute::_(
+			        'index.php?option=com_guitar&task=song.remove&id=' . $this->item->id, false, 2
+            ); ?>" class="btn btn-danger">
+				<?php echo JText::_('COM_GUITAR_DELETE_ITEM'); ?>
+			</a>
+		</div>
+	</div>
+
+<?php endif; ?>

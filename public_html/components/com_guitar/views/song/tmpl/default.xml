@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <layout title="COM_GUITAR_TITLE_ITEM_VIEW_SONG" option="View">
@@ -23,59 +22,3 @@
         </fieldset>
     </fields>
 </metadata>
-||||||| merged common ancestors
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<metadata>
-    <layout title="COM_GUITAR_SONG_VIEW_DEFAULT_ALBUM">
-        <message>
-            <![CDATA[COM_GUITAR_SONG_VIEW_DEFAULT_DESC]]>
-        </message>
-    </layout>
-
-    <fields name="request">
-        <fieldset name="request" >
-            <field
-                    name="id"
-                    type="sql"
-                    label="Select a song"
-                    required="true"
-                    query="SELECT id, album FROM #__guitar_songs"
-                    key_field="id"
-                    value_field="album"
-            />
-        </fieldset>
-    </fields>
-    <fields name="params">
-        <fieldset
-                name="song"
-                label="COM_GUITAR_SONG"
-                description="COM_GUITAR_CONFIG_SONG_SETTINGS_DESC">
-
-            <field
-                    name="show_author"
-                    type="radio"
-                    class="btn-group"
-                    label="JGLOBAL_SHOW_AUTHOR_LABEL"
-                    description="JGLOBAL_SHOW_AUTHOR_DESC"
-                    default="">
-                <option value="">JGLOBAL_USE_GLOBAL</option>
-                <option value="0">JHIDE</option>
-                <option value="1">JSHOW</option>
-            </field>
-
-            <field
-                    name="show_publish_date"
-                    type="radio"
-                    class="btn-group"
-                    label="JGLOBAL_SHOW_PUBLISH_DATE_LABEL"
-                    description="JGLOBAL_SHOW_PUBLISH_DATE_DESC"
-                    default="">
-                <option value="">JGLOBAL_USE_GLOBAL</option>
-                <option value="0">JHIDE</option>
-                <option value="1">JSHOW</option>
-            </field>
-        </fieldset>
-    </fields>
-</metadata>
->>>>>>> 49269d37ee293462d1afd29c6dbe34c925905cdb

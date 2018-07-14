@@ -1,115 +1,134 @@
 <?php
+
+/**
+ * @version    CVS: 1.0.0
+ * @package    Com_Guitar
+ * @author     William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright  2018 William del Rosario
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+// No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.view');
+
+/**
+ * View to edit
+ *
+ * @since  1.6
+ */
 class GuitarViewSong extends JViewLegacy
 {
+	protected $state;
+
+	protected $item;
+
+	protected $form;
+
+	protected $params;
+
+	/**
+	 * Display the view
+	 *
+	 * @param   string  $tpl  Template name
+	 *
+	 * @return void
+	 *
+	 * @throws Exception
+	 */
 	public function display($tpl = null)
 	{
-         //Get the currently logged on user
-        $user = JFactory::getUser();
+		$app  = JFactory::getApplication();
+		$user = JFactory::getUser();
 
-        // Make sure our user is allowed to view this item.  Note: this method always returns true for the super user!
-        if (!$user->authorise('song.view', 'com_guitar'))
-        {
-            $app = JFactory::getApplication();
-            $app->redirect(
-                JRoute::_(
-                    'index.php?option=com_guitar&view=songs', false
-                ),
-                JText::_('COM_GUITAR_VIEW_NOT_AUTHORIZED'),
-                'error'
-            );
-            return false;
-        }
-		// Get some data from the models
-		$item		= $this->get('Item');
-		$this->item      = &$item;
+		$this->state  = $this->get('State');
+		$this->item   = $this->get('Item');
+		$this->params = $app->getParams('com_guitar');
 
-		//determine if this is a print screen
-        $app = JFactory::getApplication();
-        $this->print = $app->input->getBool('print');
+		if (!empty($this->item))
+		{
+			$this->form = $this->get('Form');
+		}
 
-        //set meta description
-        if ($this->item->metadesc) {
-            $this->document->setDescription($this->item->metadesc);
-        }
+		// Check for errors.
+		if (count($errors = $this->get('Errors')))
+		{
+			throw new Exception(implode("\n", $errors));
+		}
 
-        //set metakeywords
-        if ($this->item->metakey) {
-            $this->document->setMetadata('keywords', $this->item->metakey);
-        }
+		
 
-        //get component's parameters
-        $componentParams        = JComponentHelper::getParams('com_guitar');
-//        $this->params  = $params->toArray();
+		if ($this->_layout == 'edit')
+		{
+			$authorised = $user->authorise('core.create', 'com_guitar');
 
-        // Copy the application parameters for merging
-        $menuParams = new JRegistry;
+			if ($authorised !== true)
+			{
+				throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'));
+			}
+		}
 
-        // Find the active menu
-        $active = $app->getMenu()->getActive();
-        $currentLink = $active->link;
-        $menuParams->loadString($active->params);
+		$this->_prepareDocument();
 
-        // Check which parameters take priority
-        if ($active && (strpos($currentLink, 'view=song') && (strpos($currentLink, '&id='.(string) $item->id)))) {
-            // If the current view is the active item AND the song view for this song, then the menu item params take priority
-            // $item->params are the song params, $mergeParams are the menu item params
-            // Merge so that the menu item params take priority
-            $componentParams->merge($menuParams);
-            $this->params  = $componentParams->toArray();
-        }
-        else {
-            // Merge so that song params take priority
-            $menuParams->merge($componentParams);
-            $this->params  = $menuParams->toArray();
-        }
-
-        $title = $this->document->getTitle() . " - " . $this->item->album;
-        $this->document->setTitle($title);
-
-        $this->item->canEdit = $this->allowEdit();
-
-        if ($this->item->canEdit) {
-            $uri  = JURI::getInstance();
-            $url = 'index.php?option=com_guitar&task=song.edit&id=' . $this->item->id . '&return=' . base64_encode($uri);
-
-            $icon = $this->item->published ? 'edit.png' : 'edit_unpublished.png';
-            $text = JHtml::_('image', 'system/' . $icon, JText::_('JGLOBAL_EDIT'), null, true);
-            $this->item->editLink = JHtml::_('link', JRoute::_($url), $text, array());
-        }
-
-        parent::display($tpl);
+		parent::display($tpl);
 	}
 
-	// Perform ACL checks to see if the user is able to edit the document
-    // Private function to embed edit logic check in view
-    private function allowEdit() {
+	/**
+	 * Prepares the document
+	 *
+	 * @return void
+	 *
+	 * @throws Exception
+	 */
+	protected function _prepareDocument()
+	{
+		$app   = JFactory::getApplication();
+		$menus = $app->getMenu();
+		$title = null;
 
-        // may this user edit any songs?
-        $user		= JFactory::getUser();
+		// Because the application sets a default page title,
+		// We need to get it from the menu item itself
+		$menu = $menus->getActive();
 
-  //      $option = (isset($this->option) ? $this->option : false);
-//        var_dump($this->option);die;
+		if ($menu)
+		{
+			$this->params->def('page_heading', $this->params->get('page_title', $menu->title));
+		}
+		else
+		{
+			$this->params->def('page_heading', JText::_('COM_GUITAR_DEFAULT_PAGE_TITLE'));
+		}
 
-        if ($user->authorise('core.edit.own',  'com_guitar')) {
-            return true;
-        }
+		$title = $this->params->get('page_title', '');
 
-        // If the user is not allowed to edit all songs, they may be allowed
-        // to edit their own - so check if they are allowed to edit their own
-        // and if this is their document
-        $user		= JFactory::getUser();
+		if (empty($title))
+		{
+			$title = $app->get('sitename');
+		}
+		elseif ($app->get('sitename_pagetitles', 0) == 1)
+		{
+			$title = JText::sprintf('JPAGETITLE', $app->get('sitename'), $title);
+		}
+		elseif ($app->get('sitename_pagetitles', 0) == 2)
+		{
+			$title = JText::sprintf('JPAGETITLE', $title, $app->get('sitename'));
+		}
 
-        if ($user->authorise('core.edit.own',  'com_guitar')) {
-            $ownerId = $this->item->created_by;
-            // If the owner is this user, then they may edit
-            $userId		= $user->get('id');
-            if ($ownerId == $userId) {
-                return true;
-            }
-        }
-        // Tests have failed, no edit allowed
-        return false;
-    }
+		$this->document->setTitle($title);
+
+		if ($this->params->get('menu-meta_description'))
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
+
+		if ($this->params->get('menu-meta_keywords'))
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
+		}
+
+		if ($this->params->get('robots'))
+		{
+			$this->document->setMetadata('robots', $this->params->get('robots'));
+		}
+	}
 }

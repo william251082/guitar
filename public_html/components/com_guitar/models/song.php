@@ -1,66 +1,270 @@
 <?php
+
+/**
+ * @version    CVS: 1.0.0
+ * @package    Com_Guitar
+ * @author     William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright  2018 William del Rosario
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+// No direct access.
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.modelitem');
+jimport('joomla.event.dispatcher');
+
+use Joomla\CMS\Factory;
+use Joomla\Utilities\ArrayHelper;
+
+/**
+ * Guitar model.
+ *
+ * @since  1.6
+ */
 class GuitarModelSong extends JModelItem
 {
-	public function &getItem($pk = null)
+    public $_item;
+
+	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 *
+	 * @return void
+	 *
+	 * @since    1.6
+	 *
+	 */
+	protected function populateState()
 	{
-		$app = JFactory::getApplication('site');
-		$id = $app->input->getInt('id');
+		$app  = Factory::getApplication('com_guitar');
+		$user = Factory::getUser();
 
-		$db = JFactory::getDBO();
-		$query = $db->getQuery(true);
-        $query
-            ->select('songs.*')
-            ->from($db->quoteName('#__guitar_songs').' AS songs')
-		    ->where('songs.id = '. $id);
+		// Check published state
+		if ((!$user->authorise('core.edit.state', 'com_guitar')) && (!$user->authorise('core.edit', 'com_guitar')))
+		{
+			$this->setState('filter.published', 1);
+			$this->setState('filter.archived', 2);
+		}
 
-        // Join over the categories.
-        $query->select('genres.title AS category_title');
-        $query->join('LEFT', '#__categories AS genres ON genres.id = songs.catid');
+		// Load state from the request userState on edit or from the passed variable on default
+		if (Factory::getApplication()->input->get('layout') == 'edit')
+		{
+			$id = Factory::getApplication()->getUserState('com_guitar.edit.song.id');
+		}
+		else
+		{
+			$id = Factory::getApplication()->input->get('id');
+			Factory::getApplication()->setUserState('com_guitar.edit.song.id', $id);
+		}
 
-        // By start and finish publish dates.
-        $nullDate = $db->Quote($db->getNullDate());
-        $nowDate = $db->Quote(JFactory::getDate()->toSql());
-        $query
-            ->where('(songs.publish_up = ' . $nullDate . ' OR songs.publish_up <= ' . $nowDate . ')')
-            ->where('(songs.publish_down = ' . $nullDate . ' OR songs.publish_down >= ' . $nowDate . ')');
+		$this->setState('song.id', $id);
 
-        // Get author's name
-        $query
-            ->select(
-            "CASE WHEN songs.created_by_alias > ' ' 
-                          THEN songs.created_by_alias 
-                          ELSE users.name 
-                          END AS author")
-            ->join('LEFT', '#__users AS users ON users.id = songs.created_by');
+		// Load the parameters.
+		$params       = $app->getParams();
+		$params_array = $params->toArray();
 
-        $query->where('songs.published = 1');
+		if (isset($params_array['item_id']))
+		{
+			$this->setState('song.id', $params_array['item_id']);
+		}
 
-        //format the slug
-        $case_when = ' CASE WHEN ';
-        $case_when .= $query->charLength('songs.alias', '!=', '0');
-        $case_when .= ' THEN ';
-        $songs_id = $query->castAsChar('songs.id');
-        $case_when .= $query->concatenate(array($songs_id, 'songs.alias'), ':');
-        $case_when .= ' ELSE ';
-        $case_when .= $songs_id.' END as slug';
-        $query->select($case_when);
-
-        // get the category slug
-        $case_when1 = ' CASE WHEN ';
-        $case_when1 .= $query->charLength('genres.alias', '!=', '0');
-        $case_when1 .= ' THEN ';
-        $genres_id = $query->castAsChar('genres.id');
-        $case_when1 .= $query->concatenate(array($genres_id, 'genres.alias'), ':');
-        $case_when1 .= ' ELSE ';
-        $case_when1 .= $genres_id.' END as catslug';
-        $query->select($case_when1);
-
-		$db->setQuery($query);
-		$data = $db->loadObject();
-
-		// Return database object
-		return $data;
+		$this->setState('params', $params);
 	}
+
+	/**
+	 * Method to get an object.
+	 *
+	 * @param   integer $id The id of the object to get.
+	 *
+	 * @return  mixed    Object on success, false on failure.
+     *
+     * @throws Exception
+	 */
+	public function getItem($id = null)
+	{
+            if ($this->_item === null)
+            {
+                $this->_item = false;
+
+                if (empty($id))
+                {
+                    $id = $this->getState('song.id');
+                }
+
+                // Get a level row instance.
+                $table = $this->getTable();
+
+                // Attempt to load the row.
+                if ($table->load($id))
+                {
+                    
+
+                    // Check published state.
+                    if ($published = $this->getState('filter.published'))
+                    {
+                        if (isset($table->state) && $table->state != $published)
+                        {
+                            throw new Exception(JText::_('COM_GUITAR_ITEM_NOT_LOADED'), 403);
+                        }
+                    }
+
+                    // Convert the JTable to a clean JObject.
+                    $properties  = $table->getProperties(1);
+                    $this->_item = ArrayHelper::toObject($properties, 'JObject');
+
+                    
+                } 
+            }
+        
+            
+
+            return $this->_item;
+        }
+
+	/**
+	 * Get an instance of JTable class
+	 *
+	 * @param   string $type   Name of the JTable class to get an instance of.
+	 * @param   string $prefix Prefix for the table class name. Optional.
+	 * @param   array  $config Array of configuration values for the JTable object. Optional.
+	 *
+	 * @return  JTable|bool JTable if success, false on failure.
+	 */
+	public function getTable($type = 'Song', $prefix = 'GuitarTable', $config = array())
+	{
+		$this->addTablePath(JPATH_ADMINISTRATOR . '/components/com_guitar/tables');
+
+		return JTable::getInstance($type, $prefix, $config);
+	}
+
+	/**
+	 * Get the id of an item by alias
+	 *
+	 * @param   string $alias Item alias
+	 *
+	 * @return  mixed
+	 */
+	public function getItemIdByAlias($alias)
+	{
+            $table      = $this->getTable();
+            $properties = $table->getProperties();
+            $result     = null;
+
+            if (key_exists('alias', $properties))
+            {
+                $table->load(array('alias' => $alias));
+                $result = $table->id;
+            }
+            
+                return $result;
+            
+	}
+
+	/**
+	 * Method to check in an item.
+	 *
+	 * @param   integer $id The id of the row to check out.
+	 *
+	 * @return  boolean True on success, false on failure.
+	 *
+	 * @since    1.6
+	 */
+	public function checkin($id = null)
+	{
+		// Get the id.
+		$id = (!empty($id)) ? $id : (int) $this->getState('song.id');
+                
+		if ($id)
+		{
+			// Initialise the table
+			$table = $this->getTable();
+
+			// Attempt to check the row in.
+			if (method_exists($table, 'checkin'))
+			{
+				if (!$table->checkin($id))
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
+                
+	}
+
+	/**
+	 * Method to check out an item for editing.
+	 *
+	 * @param   integer $id The id of the row to check out.
+	 *
+	 * @return  boolean True on success, false on failure.
+	 *
+	 * @since    1.6
+	 */
+	public function checkout($id = null)
+	{
+		// Get the user id.
+		$id = (!empty($id)) ? $id : (int) $this->getState('song.id');
+
+                
+		if ($id)
+		{
+			// Initialise the table
+			$table = $this->getTable();
+
+			// Get the current user object.
+			$user = Factory::getUser();
+
+			// Attempt to check the row out.
+			if (method_exists($table, 'checkout'))
+			{
+				if (!$table->checkout($user->get('id'), $id))
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
+                
+	}
+
+	/**
+	 * Publish the element
+	 *
+	 * @param   int $id    Item id
+	 * @param   int $state Publish state
+	 *
+	 * @return  boolean
+	 */
+	public function publish($id, $state)
+	{
+		$table = $this->getTable();
+                
+		$table->load($id);
+		$table->state = $state;
+
+		return $table->store();
+                
+	}
+
+	/**
+	 * Method to delete an item
+	 *
+	 * @param   int $id Element id
+	 *
+	 * @return  bool
+	 */
+	public function delete($id)
+	{
+		$table = $this->getTable();
+
+                
+                    return $table->delete($id);
+                
+	}
+
+	
 }

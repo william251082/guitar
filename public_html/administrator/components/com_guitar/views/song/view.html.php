@@ -1,84 +1,112 @@
 <?php
+
+/**
+ * @version    CVS: 1.0.0
+ * @package    Com_Guitar
+ * @author     William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright  2018 William del Rosario
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ */
+// No direct access
 defined('_JEXEC') or die;
 
+jimport('joomla.application.component.view');
+
+/**
+ * View to edit
+ *
+ * @since  1.6
+ */
 class GuitarViewSong extends JViewLegacy
 {
-    public function display($tpl = null)
-    {
-        $this->item		= $this->get('Item');
-//        var_dump($this->item); die;
-        $this->form		= $this->get('Form');
-        // Check for errors.
-        if (count($errors = $this->get('Errors'))) {
-            JError::raiseError(500, implode("\n", $errors));
-            return false;
-        }
-        $this->addToolbar();
+	protected $state;
 
-        // Set a message for reviewers or authors trying to edit a document they do not own
-        $user  = JFactory::getUser();
-        if ($this->item->id == 0)
-        {
-            if ($user->authorise('core.create', 'com_guitar'))
-            {
-                JFactory::getApplication()->enqueueMessage("You may not create a song, save is disabled", 'error');
-            }
-        } else {
-            $canEdit= false;
-            if ($user->authorise('core.edit', 'com_guitar'))
-            {
-                $canEdit = true;
-            } elseif ($user->authorise('core.edit.own', 'com_guitar')
-                && ($this->item->created_by == $user->id))
-            {
-                $canEdit = true;
-            }
-            if (!$canEdit)
-            {
-                if ($user->authorise('core.edit.own', 'com_guitar')) {
-                    JFactory::getApplication()->enqueueMessage("Review mode, you may only edit your OWN songs, not other artists.", 'info');
-                } else{
-                    JFactory::getApplication()->enqueueMessage("Review mode, you may not edit this song.", 'info');
-                }
-            }
+	protected $item;
 
-        }
-        parent::display($tpl);
-    }
+	protected $form;
 
-    protected function addToolbar()
-    {
-        $user  = JFactory::getUser();
+	/**
+	 * Display the view
+	 *
+	 * @param   string  $tpl  Template name
+	 *
+	 * @return void
+	 *
+	 * @throws Exception
+	 */
+	public function display($tpl = null)
+	{
+		$this->state = $this->get('State');
+		$this->item  = $this->get('Item');
+		$this->form  = $this->get('Form');
 
-        JFactory::getApplication()->input->set('hidemainmenu', true);
-//        var_dump($this->item); die;
-        $isNew		= ($this->item->id == 0);
-        JToolbarHelper::title(JText::_('COM_GUITAR_MANAGER_SONG'), 'song.png');
+		// Check for errors.
+		if (count($errors = $this->get('Errors')))
+		{
+			throw new Exception(implode("\n", $errors));
+		}
 
-        if ($isNew) {
-            // If the user is allowed to create songs and this is a new document, give them save buttons
-            if ($user->authorise('core.create', 'com_guitar'))  {
-                JToolbarHelper::apply('song.apply');
-                JToolbarHelper::save('song.save');
-            }
-        } else {
-            // If the user is allowed to edit songs, give them save buttons
-            if ($user->authorise('core.edit', 'com_guitar'))  {
-                JToolbarHelper::apply('song.apply');
-                JToolbarHelper::save('song.save');
-                // If the user is allowed to edit their own songs and this is one of their songs, give them a save button
-            } elseif ($user->authorise('core.edit.own', 'com_guitar')
-                && ($this->item->created_by == $user->id))  {
+		$this->addToolbar();
+		parent::display($tpl);
+	}
 
-                JToolbarHelper::apply('song.apply');
-                JToolbarHelper::save('song.save');
-            }
-        }
+	/**
+	 * Add the page title and toolbar.
+	 *
+	 * @return void
+	 *
+	 * @throws Exception
+	 */
+	protected function addToolbar()
+	{
+		JFactory::getApplication()->input->set('hidemainmenu', true);
 
-        // These options don't change data so anyone can use them
-        JToolbarHelper::cancel('song.cancel');
-        JToolbarHelper::divider();
-        JToolbarHelper::help('JHELP_COMPONENTS_GUITAR_SONGS_EDIT');
-    }
+		$user  = JFactory::getUser();
+		$isNew = ($this->item->id == 0);
 
+		if (isset($this->item->checked_out))
+		{
+			$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
+		}
+		else
+		{
+			$checkedOut = false;
+		}
+
+		$canDo = GuitarHelper::getActions();
+
+		JToolBarHelper::title(JText::_('COM_GUITAR_TITLE_SONG'), 'song.png');
+
+		// If not checked out, can save the item.
+		if (!$checkedOut && ($canDo->get('core.edit') || ($canDo->get('core.create'))))
+		{
+			JToolBarHelper::apply('song.apply', 'JTOOLBAR_APPLY');
+			JToolBarHelper::save('song.save', 'JTOOLBAR_SAVE');
+		}
+
+		if (!$checkedOut && ($canDo->get('core.create')))
+		{
+			JToolBarHelper::custom('song.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
+		}
+
+		// If an existing item, can save to a copy.
+		if (!$isNew && $canDo->get('core.create'))
+		{
+			JToolBarHelper::custom('song.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+		}
+
+		// Button for version control
+		if ($this->state->params->get('save_history', 1) && $user->authorise('core.edit')) {
+			JToolbarHelper::versions('com_guitar.song', $this->item->id);
+		}
+
+		if (empty($this->item->id))
+		{
+			JToolBarHelper::cancel('song.cancel', 'JTOOLBAR_CANCEL');
+		}
+		else
+		{
+			JToolBarHelper::cancel('song.cancel', 'JTOOLBAR_CLOSE');
+		}
+	}
 }

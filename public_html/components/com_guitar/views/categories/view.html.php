@@ -9,9 +9,9 @@ class GuitarViewCategories extends JViewLegacy
 		$items		= $this->get('Items');
 		$this->items      = &$items;
 
-        $pagination = $this->get('Pagination');
-        $this->pagination = $pagination;
-
+		$pagination = $this->get('Pagination');
+		$this->pagination = $pagination;		
+		
 		parent::display($tpl);
 	}
 }
