@@ -25,12 +25,34 @@
            filter="JComponentHelper::filterText"
            label="COM_GUITAR_SONG" description="COM_GUITAR_FIELD_SONG_DESC" />
 
-      <field name="catid"
-             type="category"
-             extension="com_guitar"
-             label="JCATEGORY"
-             description="JFIELD_CATEGORY_DESC"
-             class="inputbox"
-             required="true" />
+    <field name="alias" type="text" label="JFIELD_ALIAS_LABEL"
+           description="JFIELD_ALIAS_DESC" class="inputbox"
+           size="45" labelclass="control-label" />
+
+    <field name="catid"
+           type="category"
+           extension="com_guitar"
+           label="JCATEGORY"
+           description="JFIELD_CATEGORY_DESC"
+           class="inputbox"
+           required="true" />
   </fieldset>
+
+  <fieldset name="metadata"
+            label="JGLOBAL_FIELDSET_METADATA_OPTIONS">
+
+    <field name="metakey" type="textarea"
+           label="JFIELD_META_KEYWORDS_LABEL"
+           description="JFIELD_META_KEYWORDS_DESC"
+           class="inputbox" rows="3" cols="30"
+           labelclass="control-label"/>
+
+    <field name="metadesc" type="textarea"
+           label="JFIELD_META_DESCRIPTION_LABEL"
+           description="JFIELD_META_DESCRIPTION_DESC"
+           class="inputbox" rows="3" cols="30"
+           labelclass="control-label"/>
+
+  </fieldset>
+
 </form>
