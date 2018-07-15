@@ -89,7 +89,7 @@ class GuitarModelSong extends JModelItem
 
                 if (empty($id))
                 {
-                    $id = $this->getState('song.id');
+                    $id = $this->getState('id');
                 }
 
                 // Get a level row instance.
@@ -98,8 +98,6 @@ class GuitarModelSong extends JModelItem
                 // Attempt to load the row.
                 if ($table->load($id))
                 {
-                    
-
                     // Check published state.
                     if ($published = $this->getState('filter.published'))
                     {
@@ -108,16 +106,11 @@ class GuitarModelSong extends JModelItem
                             throw new Exception(JText::_('COM_GUITAR_ITEM_NOT_LOADED'), 403);
                         }
                     }
-
                     // Convert the JTable to a clean JObject.
                     $properties  = $table->getProperties(1);
                     $this->_item = ArrayHelper::toObject($properties, 'JObject');
-
-                    
                 } 
             }
-        
-            
 
             return $this->_item;
         }
