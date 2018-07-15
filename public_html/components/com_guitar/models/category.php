@@ -16,6 +16,12 @@ class GuitarModelCategory extends JModelList
 		$query->select('c.title AS category_title');
 		$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
         $query->where('a.catid = ' . (int) $id);
+
+        // By start and finish publish dates.
+        $nullDate = $db->Quote($db->getNullDate());
+        $nowDate = $db->Quote(JFactory::getDate()->toSql());
+        $query->where('(a.publish_up = ' . $nullDate . ' OR a.publish_up <= ' . $nowDate . ')');
+        $query->where('(a.publish_down = ' . $nullDate . ' OR a.publish_down >= ' . $nowDate . ')');
 	
 		return $query;
 	}

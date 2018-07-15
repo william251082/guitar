@@ -165,7 +165,7 @@ class GuitarTableSong extends JTable
         }
         $this->alias = JApplication::stringURLSafe($this->alias);
         if (empty($this->alias)) {
-            $this->alias = JApplication::stringURLSafe($this->album);
+            $this->alias = JApplication::stringURLSafe($this->song_title);
         }
         // Check if the category is set
         if (trim($this->catid) == '') {
