@@ -47,7 +47,7 @@ class TodolistControllerItems extends TodolistController
             }
             else
             {
-                $this->setRedirect(JRoute::_($item->link . $item, false));
+                $this->setRedirect(JRoute::_($item->link . '&id='.$id, false));
             }
         }
         else

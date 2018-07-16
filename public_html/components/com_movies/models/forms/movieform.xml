@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+    <field name="title" filter="safehtml" type="text" required="true" message="Please enter a title" label="COM_MOVIES_FORM_LBL_MOVIE_TITLE" description="COM_MOVIES_FORM_DESC_MOVIE_TITLE" hint="COM_MOVIES_FORM_LBL_MOVIE_TITLE"/>
+    <field name="description" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" required="true" message="Please enter a description " label="COM_MOVIES_FORM_LBL_MOVIE_DESCRIPTION" description="COM_MOVIES_FORM_DESC_MOVIE_DESCRIPTION" hint="COM_MOVIES_FORM_LBL_MOVIE_DESCRIPTION"/>
+    <field name="release_date" class="inputbox" timeformat="12" filter="server_utc" showtime="false" singleheader="false" todaybutton="false" weeknumbers="false" filltable="false" type="calendar" required="true" message="Please select a release date." label="COM_MOVIES_FORM_LBL_MOVIE_RELEASE_DATE" description="COM_MOVIES_FORM_DESC_MOVIE_RELEASE_DATE" hint="COM_MOVIES_FORM_LBL_MOVIE_RELEASE_DATE"/>
+    <field name="review" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" label="COM_MOVIES_FORM_LBL_MOVIE_REVIEW" description="COM_MOVIES_FORM_DESC_MOVIE_REVIEW" hint="COM_MOVIES_FORM_LBL_MOVIE_REVIEW"/>
+    <field name="rating" type="list" label="COM_MOVIES_FORM_LBL_MOVIE_RATING" description="COM_MOVIES_FORM_DESC_MOVIE_RATING" hint="COM_MOVIES_FORM_LBL_MOVIE_RATING">
+      <option value="1">COM_MOVIES_MOVIES_RATING_OPTION_1</option>
+      <option value="2">COM_MOVIES_MOVIES_RATING_OPTION_2</option>
+      <option value="3">COM_MOVIES_MOVIES_RATING_OPTION_3</option>
+      <option value="4">COM_MOVIES_MOVIES_RATING_OPTION_4</option>
+      <option value="5">COM_MOVIES_MOVIES_RATING_OPTION_5</option>
+      <option value="">COM_MOVIES_MOVIES_RATING_OPTION_</option>
+    </field>
+    <field name="director" filter="safehtml" type="text" required="true" message="Please enter a title" label="COM_MOVIES_FORM_LBL_MOVIE_DIRECTOR" description="COM_MOVIES_FORM_DESC_MOVIE_DIRECTOR" hint="COM_MOVIES_FORM_LBL_MOVIE_DIRECTOR"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+  <fieldset name="accesscontrol">
+    <field name="asset_id" type="hidden" filter="unset"/>
+    <field name="rules" type="rules" label="JFIELD_RULES_LABEL" translate_label="false" filter="rules" validate="rules" class="inputbox" component="com_movies" section="movie"/>
+  </fieldset>
+</form>

@@ -162,7 +162,7 @@ class TodolistModelItemForm extends JModelForm
             throw new Exception(JText::_('COM_TODOLIST_ITEM_DOESNT_EXIST'), 404);
         }
 
-        if ($user->authorise('core.delete', 'com_todolist.item.' . $id) !== true)
+        if ($user->authorise('core.delete', 'com_todolist.item.' . $user) !== true)
         {
             throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
         }

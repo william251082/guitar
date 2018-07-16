@@ -17,7 +17,7 @@ class TodolistModelItem extends JModelItem
         if ((!$user->authorise('core.edit.state', 'com_todolist')) && (!$user->authorise('core.edit', 'com_todolist')))
         {
             $this->setState('filter.published', 1);
-            $this->setState('fileter.archived', 2);
+            $this->setState('filter.archived', 2);
         }
 
         $id = JFactory::getApplication()->input->get('id');

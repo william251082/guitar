@@ -21,6 +21,7 @@ class TodolistModelItems extends JModelList
         $list['direction'] = $direction;
 
         $app->setUserState($this->context . '.list', $list);
+//        $app->setUserState($this->context . '.filters', $list);
         $app->input->set('list', null);
 
         parent::populateState($ordering, $direction);
@@ -31,7 +32,11 @@ class TodolistModelItems extends JModelList
         $db    = $this->getDbo();
         $query = $db->getQuery(true);
 
-        $query->select('a.*, created_by.name as created_by_name, modified_by.name as modified_by_name, c.title AS cat_title')
+        $query
+            ->select
+            (
+                'a.*, created_by.name as created_by_name, modified_by.name as modified_by_name, c.title AS cat_title'
+            )
               ->from('`#__todolist_items` AS a')
               ->join('LEFT', '#__users AS created_by ON created_by.id = a.created_by')
               ->join('LEFT', '#__users AS modified_by ON modified_by.id = a.modified_by')
@@ -52,7 +57,9 @@ class TodolistModelItems extends JModelList
         $items = parent::getItems();
 
         // Do something with the items here.
-
+//        foreach ($items as $item) {
+//            $item->some_parameter = "Some Value";
+//        }
         return $items;
     }
 }

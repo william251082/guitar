@@ -6,8 +6,10 @@ JLoader::registerPrefix('Todolist', JPATH_SITE . '/components/com_todolist/');
 
 class TodolistRouter extends JComponentRouterBase
 {
+    // Build SEF url route
     public function build(&$query)
     {
+        // index.php?option=com_todolist&view=item&id=1
         $segments = array();
         $view     = null;
 
@@ -37,6 +39,7 @@ class TodolistRouter extends JComponentRouterBase
         return $segments;
     }
 
+    // Parse SEF url route
     public function parse(&$segments) // /todos/item/1
     {
         $vars = array();
@@ -55,10 +58,14 @@ class TodolistRouter extends JComponentRouterBase
             }
             else
             {
+                //item.complete
                 $vars['task'] = $vars['view'] . '.' . $segment;
             }
         }
 
         return $vars;
     }
+
+    // /blog/123-articles-alias
+    // Joomla 3.8 /blog/articles-alias
 }

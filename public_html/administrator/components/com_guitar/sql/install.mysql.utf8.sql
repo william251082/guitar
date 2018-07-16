@@ -1,9 +1,9 @@
-INSERT INTO `ymfgb_categories` (`id`, `asset_id`, `parent_id`, `lft`, `rgt`, `level`, `path`, `extension`, `title`, `alias`, `note`, `description`, `published`, `checked_out`, `checked_out_time`, `access`, `params`, `metadesc`, `metakey`, `metadata`, `created_user_id`, `created_time`, `modified_user_id`, `modified_time`, `hits`, `language`, `version`) VALUES
+INSERT INTO `#__categories` (`id`, `asset_id`, `parent_id`, `lft`, `rgt`, `level`, `path`, `extension`, `title`, `alias`, `note`, `description`, `published`, `checked_out`, `checked_out_time`, `access`, `params`, `metadesc`, `metakey`, `metadata`, `created_user_id`, `created_time`, `modified_user_id`, `modified_time`, `hits`, `language`, `version`) VALUES
 (NULL, 106, 1, 35, 36, 1, 'jazz', 'com_guitar', 'Jazz', 'jazz', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":""}', '', '', '{"author":"","robots":""}', 43, '2013-01-27 16:44:05', 0, '0000-00-00 00:00:00', 0, '*', 1),
 (NULL, 107, 1, 37, 38, 1, 'classical', 'com_guitar', 'Classical', 'classical', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":""}', '', '', '{"author":"","robots":""}', 43, '2013-01-27 16:44:15', 0, '0000-00-00 00:00:00', 0, '*', 1);
 
-DROP TABLE IF EXISTS `ymfgb_guitar_songs`;
-CREATE TABLE IF NOT EXISTS `ymfgb_guitar_songs` (
+DROP TABLE IF EXISTS `#__guitar_songs`;
+CREATE TABLE IF NOT EXISTS `#__guitar_songs` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 `catid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -34,8 +34,8 @@ PRIMARY KEY (`id`),
 KEY `catid` (`catid`)
 ) ENGINE=MyISAM DEFAULT COLLATE=utf8mb4_unicode_ci;
 
-DROP TABLE IF EXISTS `ymfgb_guitar_guitarists`;
-CREATE TABLE `ymfgb_guitar_guitarists` (
+DROP TABLE IF EXISTS `#__guitar_guitarists`;
+CREATE TABLE `#__guitar_guitarists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `genre_id` int(11) DEFAULT NULL,
@@ -48,8 +48,8 @@ PRIMARY KEY (`id`),
 KEY `catid` (`catid`)
 );
 
-DROP TABLE IF EXISTS `ymfgb_guitar_bands`;
-CREATE TABLE `ymfgb_guitar_bands` (
+DROP TABLE IF EXISTS `#__guitar_bands`;
+CREATE TABLE `#__guitar_bands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `genre_id` int(11) DEFAULT NULL,
   `band_name` varchar(255) DEFAULT NULL,
@@ -57,8 +57,8 @@ PRIMARY KEY (`id`),
 KEY `fk_subject_id` (`genre_id`)
 );
 
-DROP TABLE IF EXISTS `ymfgb_guitar_albums`;
-CREATE TABLE `ymfgb_guitar_albums` (
+DROP TABLE IF EXISTS `#__guitar_albums`;
+CREATE TABLE `#__guitar_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `genre_id` int(11) DEFAULT NULL,
   `album_title` varchar(250) NOT NULL DEFAULT '',
@@ -67,9 +67,6 @@ PRIMARY KEY (`id`),
 KEY `fk_subject_id` (`genre_id`)
 );
 
-
-
-
-INSERT IGNORE INTO `ymfgb_guitar_songs` (`id`,`song_title`,`song_info`, `catid`) VALUES
-	(1, 'Skunk Funk', 'Near You', (SELECT id FROM ymfgb_categories WHERE extension = 'com_guitar' and title = 'Jazz' LIMIT 1)),
-	(2, 'Dolphin Dance', 'Joy Spring', (SELECT id FROM ymfgb_categories WHERE extension = 'com_guitar' and title = 'Classical' LIMIT 1));
+INSERT IGNORE INTO `#__guitar_songs` (`id`,`song_title`,`song_info`, `catid`) VALUES
+	(1, 'Skunk Funk', 'Near You', (SELECT id FROM #__categories WHERE extension = 'com_guitar' and title = 'Jazz' LIMIT 1)),
+	(2, 'Dolphin Dance', 'Joy Spring', (SELECT id FROM #__categories WHERE extension = 'com_guitar' and title = 'Classical' LIMIT 1));
