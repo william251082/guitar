@@ -31,7 +31,7 @@ class GuitarController extends JControllerLegacy
 	{
 	    require_once JPATH_COMPONENT.'/helpers/guitar.php';
 
-		$view = JFactory::getApplication()->input->getCmd('view', 'songs');
+		$view = JFactory::getApplication()->input->getCmd('view', 'bands');
 		JFactory::getApplication()->input->set('view', $view);
 
 		parent::display($cachable, $urlparams);

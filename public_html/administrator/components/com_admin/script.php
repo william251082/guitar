@@ -880,7 +880,7 @@ class JoomlaInstallerScript
 			'/administrator/components/com_templates/controllers/source.php',
 			'/administrator/components/com_templates/models/source.php',
 			'/administrator/components/com_templates/views/source/index.html',
-			'/administrator/components/com_templates/views/source/tmpl/edit.php',
+			'/administrator/components/com_templates/views/source/tmpl/editv2.php',
 			'/administrator/components/com_templates/views/source/tmpl/edit_ftp.php',
 			'/administrator/components/com_templates/views/source/tmpl/index.html',
 			'/administrator/components/com_templates/views/source/view.html.php',

@@ -50,11 +50,19 @@ KEY `catid` (`catid`)
 
 DROP TABLE IF EXISTS `#__guitar_bands`;
 CREATE TABLE `#__guitar_bands` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `genre_id` int(11) DEFAULT NULL,
-  `band_name` varchar(255) DEFAULT NULL,
-PRIMARY KEY (`id`),
-KEY `fk_subject_id` (`genre_id`)
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `catid` int(10) UNSIGNED NOT NULL DEFAULT '0',
+    `state` tinyint(3) NOT NULL DEFAULT '1',
+    `title` varchar(255) NOT NULL DEFAULT '',
+    `description` mediumtext NOT NULL,
+    `status` tinyint(3) NOT NULL DEFAULT '0',
+    `ordering` int(11) NOT NULL,
+    `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+    `created_by` int(11) NOT NULL DEFAULT '0',
+    `modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+    `modified_by` int(11) NOT NULL DEFAULT '0',
+    PRIMARY KEY  (`id`)
+  DEFAULT CHARSET=utf8;
 );
 
 DROP TABLE IF EXISTS `#__guitar_albums`;
