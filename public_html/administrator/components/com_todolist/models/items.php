@@ -81,6 +81,7 @@ class TodolistModelItems extends JModelList
             {
                 $search = $db->Quote('%' . $db->escape($search, true) . '%');
                 $query->where('( a.title LIKE ' . $search . ' )');
+                // Adding a.title LIKE '%some string%'
             }
         }
 

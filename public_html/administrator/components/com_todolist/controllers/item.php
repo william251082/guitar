@@ -1,5 +1,6 @@
 <?php
 defined('_JEXEC') or die;
+// For individual tasks such as save and delete
 
 jimport('joomla.application.component.controllerform');
 

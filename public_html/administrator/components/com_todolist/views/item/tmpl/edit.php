@@ -39,7 +39,6 @@ JHtml::_('behavior.keepalive');
 
     <div class="form-horizontal">
         <?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
-
         <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general', JText::_('COM_TODOLIST_TITLE_ITEM', true)); ?>
         <div class="row-fluid">
             <div class="span10 form-horizontal">

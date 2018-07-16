@@ -1,6 +1,11 @@
 <?php
-/**
- * To-do list entry point
- */
+defined('_JEXEC') or die;
 
- echo 'This file is intentionally blank.';
+jimport('joomla.application.component.controller');
+
+JLoader::registerPrefix('Todolist', JPATH_COMPONENT);
+JLoader::register('TodolistController', JPATH_COMPONENT . '/controller.php');
+
+$controller = JControllerLegacy::getInstance('Todolist');
+$controller->execute(JFactory::getApplication()->input->get('task'));
+$controller->redirect();

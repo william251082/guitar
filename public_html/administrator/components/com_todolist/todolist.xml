@@ -21,7 +21,16 @@
 
     <files folder="site">
         <filename>todolist.php</filename>
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <folder>controllers</folder>
+        <folder>views</folder>
+        <folder>models</folder>
     </files>
+
+    <languages folder="languages/site">
+        <language tag="en-GB">en-GB/en-GB.com_todolist.ini</language>
+    </languages>
 
     <administration>
         <menu>com_todolist</menu>

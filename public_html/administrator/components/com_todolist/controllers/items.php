@@ -7,6 +7,7 @@ use Joomla\Utilities\ArrayHelper;
 
 class TodolistControllerItems extends JControllerAdmin
 {
+    // Batch duplicating of items
     public function duplicate()
     {
         Jsession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -35,11 +36,12 @@ class TodolistControllerItems extends JControllerAdmin
 
     public function getModel($name = 'item', $prefix = 'TodolistModel', $config = array())
     {
-        $model = parent::getModel($name, $prefix, arrary('ignore_request' => true));
+        $model = parent::getModel($name, $prefix, array('ignore request' => true));
 
         return $model;
     }
 
+    // Drag and drop reordering of items
     public function saveOrderAjax()
     {
         // Get the input
