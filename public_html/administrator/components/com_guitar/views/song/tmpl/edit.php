@@ -3,8 +3,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -23,6 +23,27 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 	js = jQuery.noConflict();
 	js(document).ready(function () {
 		
+	js('input:hidden.guitarist').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('guitaristhidden')){
+			js('#jform_guitarist option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_guitarist").trigger("liszt:updated");
+	js('input:hidden.catid').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('catidhidden')){
+			js('#jform_catid option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_catid").trigger("liszt:updated");
+	js('input:hidden.genre').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('genrehidden')){
+			js('#jform_genre option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_genre").trigger("liszt:updated");
 	});
 
 	Joomla.submitbutton = function (task) {
@@ -48,53 +69,57 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
+
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general', JText::_('COM_GUITAR_TITLE_SONG', true)); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
-
 				<fieldset class="adminform">
 
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="details">
-                            <input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+									<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+				<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
+				<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
+				<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
+				<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
+
+				<?php echo $this->form->renderField('created_by'); ?>
+				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('title'); ?>
+				<?php echo $this->form->renderField('description'); ?>
+				<?php echo $this->form->renderField('release_date'); ?>
+				<?php echo $this->form->renderField('review'); ?>
+				<?php echo $this->form->renderField('rating'); ?>
+				<?php echo $this->form->renderField('credits'); ?>
+				<?php echo $this->form->renderField('guitarist'); ?>
+
+			<?php
+				foreach((array)$this->item->guitarist as $value): 
+					if(!is_array($value)):
+						echo '<input type="hidden" class="guitarist" name="jform[guitaristhidden]['.$value.']" value="'.$value.'" />';
+					endif;
+				endforeach;
+			?>				<?php echo $this->form->renderField('catid'); ?>
+
+			<?php
+				foreach((array)$this->item->catid as $value): 
+					if(!is_array($value)):
+						echo '<input type="hidden" class="catid" name="jform[catidhidden]['.$value.']" value="'.$value.'" />';
+					endif;
+				endforeach;
+			?>				<?php echo $this->form->renderField('genre'); ?>
+
+			<?php
+				foreach((array)$this->item->genre as $value): 
+					if(!is_array($value)):
+						echo '<input type="hidden" class="genre" name="jform[genrehidden]['.$value.']" value="'.$value.'" />';
+					endif;
+				endforeach;
+			?>
+
 					<?php if ($this->state->params->get('save_history', 1)) : ?>
-					    <div class="control-group">
-					    	<div class="control-label"><?php echo $this->form->getLabel('version_note'); ?></div>
-					    	<div class="controls"><?php echo $this->form->getInput('version_note'); ?></div>
-					    </div>
-                        <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('id'); ?></div>
-                        </div>
-
-                        <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('song_title'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('song_title'); ?></div>
-                        </div>
-
-                        <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('alias'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('alias'); ?></div>
-                        </div>
-
-                        <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('song_info'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('song_info'); ?></div>
-                        </div>
-
-                        <div class="control-group">
-                            <div class="control-label"><?php echo $this->form->getLabel('catid'); ?></div>
-                            <div class="controls"><?php echo $this->form->getInput('catid'); ?></div>
-                        </div>
-
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('version_note'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('version_note'); ?></div>
+					</div>
 					<?php endif; ?>
-
-                        </div>
-
-                        <input type="hidden" name="task" value=""/>
-                        <?php echo JHtml::_('form.token'); ?>
-
-                    </div>
 				</fieldset>
 			</div>
 		</div>
@@ -107,6 +132,9 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 <?php endif; ?>
 
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
+
+		<input type="hidden" name="task" value=""/>
+		<?php echo JHtml::_('form.token'); ?>
 
 	</div>
 </form>

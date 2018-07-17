@@ -4,8 +4,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -16,7 +16,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class GuitarTableSong extends JTable
+class GuitarTablesong extends JTable
 {
 	
 	/**
@@ -26,7 +26,7 @@ class GuitarTableSong extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTableSong', array('typeAlias' => 'com_guitar.song'));
+		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTablesong', array('typeAlias' => 'com_guitar.song'));
 		parent::__construct('#__guitar_songs', 'id', $db);
 	}
 
@@ -46,6 +46,99 @@ class GuitarTableSong extends JTable
 	    $date = JFactory::getDate();
 		$task = JFactory::getApplication()->input->get('task');
 	    
+		$input = JFactory::getApplication()->input;
+		$task = $input->getString('task', '');
+
+		if ($array['id'] == 0 && empty($array['created_by']))
+		{
+			$array['created_by'] = JFactory::getUser()->id;
+		}
+
+		if ($array['id'] == 0 && empty($array['modified_by']))
+		{
+			$array['modified_by'] = JFactory::getUser()->id;
+		}
+
+		if ($task == 'apply' || $task == 'save')
+		{
+			$array['modified_by'] = JFactory::getUser()->id;
+		}
+
+		// Support for empty date field: release_date
+		if($array['release_date'] == '0000-00-00' )
+		{
+			$array['release_date'] = '';
+		}
+
+		// Support for multiple field: rating
+		if (isset($array['rating']))
+		{
+			if (is_array($array['rating']))
+			{
+				$array['rating'] = implode(',',$array['rating']);
+			}
+			elseif (strpos($array['rating'], ',') != false)
+			{
+				$array['rating'] = explode(',',$array['rating']);
+			}
+			elseif (strlen($array['rating']) == 0)
+			{
+				$array['rating'] = '';
+			}
+		}
+		else
+		{
+			$array['rating'] = '';
+		}
+
+		// Support for multiple or not foreign key field: guitarist
+			if(!empty($array['guitarist']))
+			{
+				if(is_array($array['guitarist'])){
+					$array['guitarist'] = implode(',',$array['guitarist']);
+				}
+				else if(strrpos($array['guitarist'], ',') != false){
+					$array['guitarist'] = explode(',',$array['guitarist']);
+				}
+			}
+			else {
+				$array['guitarist'] = '';
+			}
+
+		// Support for multiple field: catid
+		if (isset($array['catid']))
+		{
+			if (is_array($array['catid']))
+			{
+				$array['catid'] = implode(',',$array['catid']);
+			}
+			elseif (strpos($array['catid'], ',') != false)
+			{
+				$array['catid'] = explode(',',$array['catid']);
+			}
+			elseif (strlen($array['catid']) == 0)
+			{
+				$array['catid'] = '';
+			}
+		}
+		else
+		{
+			$array['catid'] = '';
+		}
+
+		// Support for multiple or not foreign key field: genre
+			if(!empty($array['genre']))
+			{
+				if(is_array($array['genre'])){
+					$array['genre'] = implode(',',$array['genre']);
+				}
+				else if(strrpos($array['genre'], ',') != false){
+					$array['genre'] = explode(',',$array['genre']);
+				}
+			}
+			else {
+				$array['genre'] = '';
+			}
 
 		if (isset($array['params']) && is_array($array['params']))
 		{
@@ -119,31 +212,6 @@ class GuitarTableSong extends JTable
 		return $rules;
 	}
 
-    public function store($updateNulls = false)
-    {
-        $date = JFactory::getDate();
-        $user = JFactory::getUser();
-        if (!$this->id) {
-            if(!(int)$this->created) {
-                $this->created = $date->toSql();
-            }
-            if (empty($this->created_by)) {
-                $this->created_by = $user->get('id');
-            }
-        }
-        // Set publish up to null date if not set
-        if(!$this->publish_up) {
-            $this->publish_up = $this->_db->getNullDate();
-        }
-        // Set publish down to null date if not set
-        if(!$this->publish_down) {
-            $this->publish_down = $this->_db->getNullDate();
-        }
-
-        // Attempt to store the user data.
-        return parent::store($updateNulls);
-    }
-
 	/**
 	 * Overloaded check function
 	 *
@@ -156,50 +224,14 @@ class GuitarTableSong extends JTable
 		{
 			$this->ordering = self::getNextOrder();
 		}
+		
+		
 
-        // check for valid name
-        if (trim($this->song_title) == '') {
-            $this->setError(JText::_('COM_GUITAR_ERR_TABLES_ALBUM'));
-
-            return false;
-        }
-        $this->alias = JApplication::stringURLSafe($this->alias);
-        if (empty($this->alias)) {
-            $this->alias = JApplication::stringURLSafe($this->song_title);
-        }
-        // Check if the category is set
-        if (trim($this->catid) == '') {
-            $this->setError(JText::_('COM_CONTACT_WARNING_CATEGORY'));
-
-            return false;
-        }
-        // Cleanup the metakeywords
-        // remove the extra space and cr (\r) and if (\n) characters from the string
-        if (!empty($this->metakey)) {
-            // only process if not empty
-            $bad_characters = array("\n", "\r", "\"", "<", ">",); // array of characters to remove
-            $after_clean = JString::str_ireplace($bad_characters, "", $this->metakey); // remove bad characters
-            $keys = explode(',', $after_clean); // create array using commas as delimiter
-            $clean_keys = array();
-            foreach ($keys as $key) {
-                if (trim($key)) //ignore blank keywords
-                    $clean_keys[] = trim($key);
-            }
-        }
-        $this->metakey = implode(", ", $clean_keys); // put array back together delimited by ", "
-
-        // remove quotes and <> brackets
-        if (!empty($this->metadesc)) {
-            // only process if not empty
-            $bad_characters = array("\"", "<", ">");
-            $this->metadesc = JString::str_ireplace($bad_characters, "", $this->metadesc);
-        }
-        // check if the publish down data is not earlier than the publish up
-        if ((int)$this->publish_down > 0 && $this->publish_down < $this->publish_up) {
-            $this->setError(JText::_('JGLOBAL_START_PUBLISH_AFTER_FINISH'));
-
-            return false;
-        }
+		// Support for subform field credits
+		if (is_array($this->credits))
+		{
+			$this->credits = json_encode($this->credits);
+		}
 
 		return parent::check();
 	}

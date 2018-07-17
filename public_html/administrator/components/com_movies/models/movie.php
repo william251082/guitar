@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 
 // No direct access.
@@ -39,8 +39,51 @@ class MoviesModelMovie extends JModelAdmin
 
         
         
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
         
         
+        /**
+         * This method revises if the $id of the item belongs to the current user
+         * @param   integer     $id     The id of the item
+         * @return  boolean             true if the user is the owner of the row, false if not.
+         *
+         */
+        public function userIDItem($id){
+            try{
+                $user = JFactory::getUser();
+                $db    = JFactory::getDbo();
+
+                $query = $db->getQuery(true);
+                $query->select("id")
+                      ->from($db->quoteName('#__movies_movies'))
+                      ->where("id = " . $db->escape($id))
+                      ->where("created_by = " . $user->id);
+
+                $db->setQuery($query);
+
+                $results = $db->loadObject();
+                if ($results){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $exc){
+                return false;
+            }
+        }
         
 	/**
 	 * Returns a reference to the a Table object, always creating it.
@@ -125,6 +168,19 @@ class MoviesModelMovie extends JModelAdmin
 			}
 
 			$data->rating = $array;
+
+			// Support for multiple or not foreign key field: catid
+			$array = array();
+
+			foreach ((array) $data->catid as $value)
+			{
+				if (!is_array($value))
+				{
+					$array[] = $value;
+				}
+			}
+
+			$data->catid = $array;
 		}
 
 		return $data;
@@ -141,14 +197,16 @@ class MoviesModelMovie extends JModelAdmin
 	 */
 	public function getItem($pk = null)
 	{
-            
+            if(!$pk || $this->userIDItem($pk) || $this->isAdminOrSuperUser()){
             if ($item = parent::getItem($pk))
             {
                 // Do any procesing on fields here if needed
             }
 
             return $item;
-            
+            }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -180,7 +238,7 @@ class MoviesModelMovie extends JModelAdmin
 
 		foreach ($pks as $pk)
 		{
-                    
+                    if(!$pk || $this->userIDItem($pk) || $this->isAdminOrSuperUser()){
 			if ($table->load($pk, true))
 			{
 				// Reset the id to create a new record.
@@ -191,6 +249,18 @@ class MoviesModelMovie extends JModelAdmin
 					throw new Exception($table->getError());
 				}
 				
+				if (!empty($table->director))
+				{
+					if (is_array($table->director))
+					{
+						$table->director = implode(',', $table->director);
+					}
+				}
+				else
+				{
+					$table->director = '';
+				}
+
 
 				// Trigger the before save event.
 				$result = $dispatcher->trigger($this->event_before_save, array($context, &$table, true));
@@ -207,7 +277,9 @@ class MoviesModelMovie extends JModelAdmin
 			{
 				throw new Exception($table->getError());
 			}
-                    
+                    }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 		}
 
 		// Clean cache
@@ -235,7 +307,7 @@ class MoviesModelMovie extends JModelAdmin
 			if (@$table->ordering === '')
 			{
 				$db = JFactory::getDbo();
-				$db->setQuery('SELECT MAX(ordering) FROM #__movies_movie');
+				$db->setQuery('SELECT MAX(ordering) FROM #__movies_movies');
 				$max             = $db->loadResult();
 				$table->ordering = $max + 1;
 			}

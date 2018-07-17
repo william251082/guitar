@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -54,18 +54,33 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_movies' . 
 		</tr>
 
 		<tr>
-			<th><?php echo JText::_('COM_MOVIES_FORM_LBL_MOVIE_REVIEW'); ?></th>
-			<td><?php echo nl2br($this->item->review); ?></td>
-		</tr>
-
-		<tr>
 			<th><?php echo JText::_('COM_MOVIES_FORM_LBL_MOVIE_RATING'); ?></th>
 			<td><?php echo $this->item->rating; ?></td>
 		</tr>
 
 		<tr>
+			<th><?php echo JText::_('COM_MOVIES_FORM_LBL_MOVIE_REVIEW'); ?></th>
+			<td><?php echo nl2br($this->item->review); ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_MOVIES_FORM_LBL_MOVIE_AWARDS'); ?></th>
+			<td><?php echo $this->item->awards; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_MOVIES_FORM_LBL_MOVIE_STARRING'); ?></th>
+			<td><?php echo nl2br($this->item->starring); ?></td>
+		</tr>
+
+		<tr>
 			<th><?php echo JText::_('COM_MOVIES_FORM_LBL_MOVIE_DIRECTOR'); ?></th>
 			<td><?php echo $this->item->director; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_MOVIES_FORM_LBL_MOVIE_CATID'); ?></th>
+			<td><?php echo $this->item->catid; ?></td>
 		</tr>
 
 	</table>

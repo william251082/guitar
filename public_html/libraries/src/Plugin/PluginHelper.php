@@ -53,7 +53,7 @@ abstract class PluginHelper
 		// Build the template and base path for the layout
 		$tPath = JPATH_THEMES . '/' . $template . '/html/plg_' . $type . '_' . $name . '/' . $layout . '.php';
 		$bPath = JPATH_PLUGINS . '/' . $type . '/' . $name . '/tmpl/' . $defaultLayout . '.php';
-		$dPath = JPATH_PLUGINS . '/' . $type . '/' . $name . '/tmpl/default.php';
+		$dPath = JPATH_PLUGINS . '/' . $type . '/' . $name . '/tmpl/edit.php';
 
 		// If the template has a layout override use it
 		if (file_exists($tPath))

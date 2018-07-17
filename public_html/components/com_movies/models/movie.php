@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access.
 defined('_JEXEC') or die;
@@ -26,8 +26,51 @@ class MoviesModelMovie extends JModelItem
     public $_item;
 
         
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
     
         
+        /**
+         * This method revises if the $id of the item belongs to the current user
+         * @param   integer     $id     The id of the item
+         * @return  boolean             true if the user is the owner of the row, false if not.
+         *
+         */
+        public function userIDItem($id){
+            try{
+                $user = JFactory::getUser();
+                $db   = JFactory::getDbo();
+
+                $query = $db->getQuery(true);
+                $query->select("id")
+                      ->from($db->quoteName('#__movies_directors'))
+                      ->where("id = " . $db->escape($id))
+                      ->where("created_by = " . $user->id);
+
+                $db->setQuery($query);
+
+                $results = $db->loadObject();
+                if ($results){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $exc){
+                return false;
+            }
+        }
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -101,7 +144,7 @@ class MoviesModelMovie extends JModelItem
                 // Attempt to load the row.
                 if ($table->load($id))
                 {
-                    
+                    if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
 
                     // Check published state.
                     if ($published = $this->getState('filter.published'))
@@ -116,7 +159,9 @@ class MoviesModelMovie extends JModelItem
                     $properties  = $table->getProperties(1);
                     $this->_item = ArrayHelper::toObject($properties, 'JObject');
 
-                    
+                    } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
                 } 
             }
         
@@ -135,6 +180,67 @@ class MoviesModelMovie extends JModelItem
 		if (!empty($this->_item->rating))
 		{
 			$this->_item->rating = JText::_('COM_MOVIES_MOVIES_RATING_OPTION_' . $this->_item->rating);
+		}
+
+		if (isset($this->_item->director) && $this->_item->director != '')
+		{
+			if (is_object($this->_item->director))
+			{
+				$this->_item->director = ArrayHelper::fromObject($this->_item->director);
+			}
+
+			$values = (is_array($this->_item->director)) ? $this->_item->director : explode(',',$this->_item->director);
+
+			$textValue = array();
+
+			foreach ($values as $value)
+			{
+				$db    = Factory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query
+					->select('`#__movies_directors_3044319`.`name`')
+					->from($db->quoteName('#__movies_directors', '#__movies_directors_3044319'))
+					->where($db->quoteName('id') . ' = ' . $db->quote($value));
+
+				$db->setQuery($query);
+				$results = $db->loadObject();
+
+				if ($results)
+				{
+					$textValue[] = $results->name;
+				}
+			}
+
+			$this->_item->director = !empty($textValue) ? implode(', ', $textValue) : $this->_item->director;
+
+		}
+
+		if (isset($this->_item->catid) && $this->_item->catid != '')
+		{
+			if (is_object($this->_item->catid))
+			{
+				$this->_item->catid = ArrayHelper::fromObject($this->_item->catid);
+			}
+
+			if (is_array($this->_item->catid))
+			{
+				$this->_item->catid = implode(',', $this->_item->catid);
+			}
+
+			$db    = Factory::getDbo();
+			$query = $db->getQuery(true);
+
+			$query
+				->select($db->quoteName('title'))
+				->from($db->quoteName('#__categories'))
+				->where('FIND_IN_SET(' . $db->quoteName('id') . ', ' . $db->quote($this->_item->catid) . ')');
+
+			$db->setQuery($query);
+
+			$result = $db->loadColumn();
+
+			$this->_item->catid = !empty($result) ? implode(', ', $result) : '';
 		}
 
             return $this->_item;
@@ -174,9 +280,11 @@ class MoviesModelMovie extends JModelItem
                 $table->load(array('alias' => $alias));
                 $result = $table->id;
             }
-            
+            if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
                 return $result;
-            
+            } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
 	}
 
 	/**
@@ -192,7 +300,7 @@ class MoviesModelMovie extends JModelItem
 	{
 		// Get the id.
 		$id = (!empty($id)) ? $id : (int) $this->getState('movie.id');
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
 		if ($id)
 		{
 			// Initialise the table
@@ -209,7 +317,9 @@ class MoviesModelMovie extends JModelItem
 		}
 
 		return true;
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -226,7 +336,7 @@ class MoviesModelMovie extends JModelItem
 		// Get the user id.
 		$id = (!empty($id)) ? $id : (int) $this->getState('movie.id');
 
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
 		if ($id)
 		{
 			// Initialise the table
@@ -246,7 +356,9 @@ class MoviesModelMovie extends JModelItem
 		}
 
 		return true;
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -260,12 +372,14 @@ class MoviesModelMovie extends JModelItem
 	public function publish($id, $state)
 	{
 		$table = $this->getTable();
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
 		$table->load($id);
 		$table->state = $state;
 
 		return $table->store();
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -279,9 +393,11 @@ class MoviesModelMovie extends JModelItem
 	{
 		$table = $this->getTable();
 
-                
+                if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
                     return $table->delete($id);
-                
+                } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
 	}
 
 	

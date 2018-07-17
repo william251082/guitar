@@ -4,8 +4,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -31,32 +31,51 @@ class GuitarHelper
 			'index.php?option=com_guitar&view=songs',
 			$vName == 'songs'
 		);
-        JHtmlSidebar::addEntry(
-            JText::_('COM_GUITAR_TITLE_GUITARISTS'),
-            'index.php?option=com_guitar&view=guitarists',
-            $vName == 'guitarists'
-        );
-        JHtmlSidebar::addEntry(
-            JText::_('COM_GUITAR_TITLE_ALBUMS'),
-            'index.php?option=com_guitar&view=albums',
-            $vName == 'albums'
-        );
-        JHtmlSidebar::addEntry(
-            JText::_('COM_GUITAR_BANDS'),
-            'index.php?option=com_guitar&view=bands',
-            $vName == 'bands'
-        );
-        JHtmlSidebar::addEntry(
-            JText::_('COM_GUITAR_SUBMENU_CATEGORIES'),
-            'index.php?option=com_categories&extension=com_guitar',
-            $vName == 'categories'
-        );
-        if ($vName == 'categories') {
-            JToolbarHelper::title(
-                JText::sprintf('COM_CATEGORIES_CATEGORIES_ALBUM', JText::_('com_guitar')),
-                'guitar-categories');
-        }
 
+		JHtmlSidebar::addEntry(
+			JText::_('JCATEGORIES') . ' (' . JText::_('COM_GUITAR_TITLE_SONGS') . ')',
+			"index.php?option=com_categories&extension=com_guitar.songs",
+			$vName == 'categories.songs'
+		);
+		if ($vName=='categories') {
+			JToolBarHelper::title('Guitar Sessions: JCATEGORIES (COM_GUITAR_TITLE_SONGS)');
+		}
+
+JHtmlSidebar::addEntry(
+			JText::_('COM_GUITAR_TITLE_DIRECTORS'),
+			'index.php?option=com_guitar&view=directors',
+			$vName == 'directors'
+		);
+
+JHtmlSidebar::addEntry(
+			JText::_('COM_GUITAR_TITLE_TRANSACTIONS'),
+			'index.php?option=com_guitar&view=transactions',
+			$vName == 'transactions'
+		);
+
+JHtmlSidebar::addEntry(
+			JText::_('COM_GUITAR_TITLE_GROUPS'),
+			'index.php?option=com_guitar&view=groups',
+			$vName == 'groups'
+		);
+
+JHtmlSidebar::addEntry(
+			JText::_('COM_GUITAR_TITLE_PLACES'),
+			'index.php?option=com_guitar&view=places',
+			$vName == 'places'
+		);
+
+JHtmlSidebar::addEntry(
+			JText::_('COM_GUITAR_TITLE_GENRES'),
+			'index.php?option=com_guitar&view=genres',
+			$vName == 'genres'
+		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('COM_GUITAR_TITLE_TESTS'),
+			'index.php?option=com_guitar&view=tests',
+			$vName == 'tests'
+		);
 	}
 
 	/**

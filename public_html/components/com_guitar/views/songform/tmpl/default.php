@@ -3,8 +3,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -43,7 +43,45 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 			  method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
 			
 	<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-				<div class="fltlft" <?php if (!JFactory::getUser()->authorise('core.admin','guitar')): ?> style="display:none;" <?php endif; ?> >
+
+	<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
+
+	<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
+
+	<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
+
+	<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
+
+				<?php echo $this->form->getInput('created_by'); ?>
+				<?php echo $this->form->getInput('modified_by'); ?>
+	<?php echo $this->form->renderField('title'); ?>
+
+	<?php echo $this->form->renderField('description'); ?>
+
+	<?php echo $this->form->renderField('release_date'); ?>
+
+	<?php echo $this->form->renderField('review'); ?>
+
+	<?php echo $this->form->renderField('rating'); ?>
+
+	<?php echo $this->form->renderField('credits'); ?>
+
+	<?php echo $this->form->renderField('guitarist'); ?>
+
+	<?php foreach((array)$this->item->guitarist as $value): ?>
+		<?php if(!is_array($value)): ?>
+			<input type="hidden" class="guitarist" name="jform[guitaristhidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
+		<?php endif; ?>
+	<?php endforeach; ?>
+	<?php echo $this->form->renderField('catid'); ?>
+
+	<?php echo $this->form->renderField('genre'); ?>
+
+	<?php foreach((array)$this->item->genre as $value): ?>
+		<?php if(!is_array($value)): ?>
+			<input type="hidden" class="genre" name="jform[genrehidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
+		<?php endif; ?>
+	<?php endforeach; ?>				<div class="fltlft" <?php if (!JFactory::getUser()->authorise('core.admin','guitar')): ?> style="display:none;" <?php endif; ?> >
                 <?php echo JHtml::_('sliders.start', 'permissions-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
                 <?php echo JHtml::_('sliders.panel', JText::_('ACL Configuration'), 'access-rules'); ?>
                 <fieldset class="panelform">

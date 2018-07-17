@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
     <name>com_movies</name>
-    <creationDate>2018-07-16</creationDate>
-    <copyright>2018 William del Rosario</copyright>
-    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-    <author>William del Rosario</author>
+    <creationDate>2018-07-17</creationDate>
+    <copyright>2018 com_movies</copyright>
+    <license>Proprietary License; For my customers only</license>
+    <author>com_movies</author>
     <authorEmail>williamdelrosario@yahoo.com</authorEmail>
-    <authorUrl>http://</authorUrl>
-    <version>CVS: 1.0.0</version>
-    <description>Movie Reviews</description>
+    <authorUrl>http://guitarsessions.joomla.com</authorUrl>
+    <version>CVS: 1.0.1</version>
+    <description>Movies!</description>
     
-    
+    <scriptfile>script.php</scriptfile>
     
     <install> <!-- Runs on install -->
         <sql>
@@ -52,6 +52,10 @@
             
 			<menu link="option=com_movies&amp;view=movies" view="movies" alt="Movies/Movies">COM_MOVIES_TITLE_MOVIES</menu>
 
+			<menu link="option=com_categories&amp;extension=com_movies.movies" view="categories" alt="Movies/Categories">COM_MOVIES_MOVIES_CATID</menu>
+
+			<menu link="option=com_movies&amp;view=directors" view="directors" alt="Movies/Directors">COM_MOVIES_TITLE_DIRECTORS</menu>
+
 			<menu link="option=com_movies&amp;view=tests" view="tests" alt="Movies/Tests">COM_MOVIES_TITLE_TESTS</menu>
 
         </submenu>
@@ -85,7 +89,9 @@
     <plugins>
         <plugin group="search" plugin="movies"/>
     </plugins>
-    
+    <modules>
+		<module module="mod_movies" />
+	</modules>
 </extension>
 <!-- Component built by the Joomla Component Creator -->
 <!-- http://www.component-creator.com/ -->

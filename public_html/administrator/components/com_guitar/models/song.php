@@ -3,8 +3,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 
 // No direct access.
@@ -37,7 +37,54 @@ class GuitarModelSong extends JModelAdmin
 	 */
 	protected $item = null;
 
+        
+        
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
+        
+        
+        /**
+         * This method revises if the $id of the item belongs to the current user
+         * @param   integer     $id     The id of the item
+         * @return  boolean             true if the user is the owner of the row, false if not.
+         *
+         */
+        public function userIDItem($id){
+            try{
+                $user = JFactory::getUser();
+                $db    = JFactory::getDbo();
 
+                $query = $db->getQuery(true);
+                $query->select("id")
+                      ->from($db->quoteName('#__guitar_songs'))
+                      ->where("id = " . $db->escape($id))
+                      ->where("created_by = " . $user->id);
+
+                $db->setQuery($query);
+
+                $results = $db->loadObject();
+                if ($results){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $exc){
+                return false;
+            }
+        }
+        
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
@@ -77,6 +124,8 @@ class GuitarModelSong extends JModelAdmin
                     )
             );
 
+            
+
             if (empty($form))
             {
                 return false;
@@ -106,6 +155,32 @@ class GuitarModelSong extends JModelAdmin
 
 			$data = $this->item;
                         
+
+			// Support for multiple or not foreign key field: rating
+			$array = array();
+
+			foreach ((array) $data->rating as $value)
+			{
+				if (!is_array($value))
+				{
+					$array[] = $value;
+				}
+			}
+
+			$data->rating = $array;
+
+			// Support for multiple or not foreign key field: catid
+			$array = array();
+
+			foreach ((array) $data->catid as $value)
+			{
+				if (!is_array($value))
+				{
+					$array[] = $value;
+				}
+			}
+
+			$data->catid = $array;
 		}
 
 		return $data;
@@ -122,14 +197,16 @@ class GuitarModelSong extends JModelAdmin
 	 */
 	public function getItem($pk = null)
 	{
-            
+            if(!$pk || $this->userIDItem($pk) || $this->isAdminOrSuperUser()){
             if ($item = parent::getItem($pk))
             {
-
+                // Do any procesing on fields here if needed
             }
 
             return $item;
-            
+            }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -161,7 +238,7 @@ class GuitarModelSong extends JModelAdmin
 
 		foreach ($pks as $pk)
 		{
-                    
+                    if(!$pk || $this->userIDItem($pk) || $this->isAdminOrSuperUser()){
 			if ($table->load($pk, true))
 			{
 				// Reset the id to create a new record.
@@ -172,6 +249,30 @@ class GuitarModelSong extends JModelAdmin
 					throw new Exception($table->getError());
 				}
 				
+				if (!empty($table->guitarist))
+				{
+					if (is_array($table->guitarist))
+					{
+						$table->guitarist = implode(',', $table->guitarist);
+					}
+				}
+				else
+				{
+					$table->guitarist = '';
+				}
+
+				if (!empty($table->genre))
+				{
+					if (is_array($table->genre))
+					{
+						$table->genre = implode(',', $table->genre);
+					}
+				}
+				else
+				{
+					$table->genre = '';
+				}
+
 
 				// Trigger the before save event.
 				$result = $dispatcher->trigger($this->event_before_save, array($context, &$table, true));
@@ -188,7 +289,9 @@ class GuitarModelSong extends JModelAdmin
 			{
 				throw new Exception($table->getError());
 			}
-                    
+                    }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 		}
 
 		// Clean cache

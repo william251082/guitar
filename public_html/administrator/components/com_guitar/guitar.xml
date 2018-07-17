@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
     <name>com_guitar</name>
-    <creationDate>2018-07-13</creationDate>
-    <copyright>2018 William del Rosario</copyright>
-    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <creationDate>2018-07-17</creationDate>
+    <copyright>2018 com_guitar</copyright>
+    <license>Proprietary License; For my customers only</license>
     <author>William del Rosario</author>
     <authorEmail>williamdelrosario@yahoo.com</authorEmail>
-    <authorUrl>http://</authorUrl>
+    <authorUrl>http://guitarsessions.joomla.com</authorUrl>
     <version>CVS: 1.0.0</version>
-    <description>Guitarists Hangout Webiste</description>
+    <description>Guitarists Hangout Website</description>
     
-    
+    <scriptfile>script.php</scriptfile>
     
     <install> <!-- Runs on install -->
         <sql>
@@ -43,13 +43,28 @@
         <folder>css</folder>
     </media>
     <languages folder="site/languages">
-			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
+        
+			<language tag="en-US">en-US/en-US.com_guitar.ini</language>
     </languages>
     <administration>
         <menu>COM_GUITAR</menu>
         <submenu>
             
 			<menu link="option=com_guitar&amp;view=songs" view="songs" alt="Guitar/Songs">COM_GUITAR_TITLE_SONGS</menu>
+
+			<menu link="option=com_categories&amp;extension=com_guitar.songs" view="categories" alt="Guitar/Categories">COM_GUITAR_SONGS_CATID</menu>
+
+			<menu link="option=com_guitar&amp;view=directors" view="directors" alt="Guitar/Directors">COM_GUITAR_TITLE_DIRECTORS</menu>
+
+			<menu link="option=com_guitar&amp;view=transactions" view="transactions" alt="Guitar/Transactions">COM_GUITAR_TITLE_TRANSACTIONS</menu>
+
+			<menu link="option=com_guitar&amp;view=groups" view="groups" alt="Guitar/Groups">COM_GUITAR_TITLE_GROUPS</menu>
+
+			<menu link="option=com_guitar&amp;view=places" view="places" alt="Guitar/Places">COM_GUITAR_TITLE_PLACES</menu>
+
+			<menu link="option=com_guitar&amp;view=genres" view="genres" alt="Guitar/Genres">COM_GUITAR_TITLE_GENRES</menu>
+
+			<menu link="option=com_guitar&amp;view=tests" view="tests" alt="Guitar/Tests">COM_GUITAR_TITLE_TESTS</menu>
 
         </submenu>
         <files folder="administrator">
@@ -68,8 +83,8 @@
         </files>
         <languages folder="administrator/languages">
             
-			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
-			<language tag="en-GB">en-GB/en-GB.com_guitar.sys.ini</language>
+			<language tag="en-US">en-US/en-US.com_guitar.ini</language>
+			<language tag="en-US">en-US/en-US.com_guitar.sys.ini</language>
         </languages>
     </administration>
     <config>
@@ -82,7 +97,9 @@
     <plugins>
         <plugin group="search" plugin="guitar"/>
     </plugins>
-    
+    <modules>
+		<module module="mod_guitar" />
+	</modules>
 </extension>
 <!-- Component built by the Joomla Component Creator -->
 <!-- http://www.component-creator.com/ -->

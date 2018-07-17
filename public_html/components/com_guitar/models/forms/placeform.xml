@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+    <field name="name" filter="safehtml" type="text" required="true" label="COM_GUITAR_FORM_LBL_PLACE_NAME" description="COM_GUITAR_FORM_DESC_PLACE_NAME" hint="COM_GUITAR_FORM_LBL_PLACE_NAME"/>
+    <field name="description" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" label="COM_GUITAR_FORM_LBL_PLACE_DESCRIPTION" description="COM_GUITAR_FORM_DESC_PLACE_DESCRIPTION" hint="COM_GUITAR_FORM_LBL_PLACE_DESCRIPTION"/>
+    <field name="lat" required="true" message="Please enter a Latitude" label="COM_GUITAR_FORM_LBL_PLACE_LAT" description="COM_GUITAR_FORM_DESC_PLACE_LAT" hint="COM_GUITAR_FORM_LBL_PLACE_LAT"/>
+    <field name="lng" required="true" message="Please enter a Longtitude" label="COM_GUITAR_FORM_LBL_PLACE_LNG" description="COM_GUITAR_FORM_DESC_PLACE_LNG" hint="COM_GUITAR_FORM_LBL_PLACE_LNG"/>
+    <field name="country_code" label="COM_GUITAR_FORM_LBL_PLACE_COUNTRY_CODE" description="COM_GUITAR_FORM_DESC_PLACE_COUNTRY_CODE" hint="COM_GUITAR_FORM_LBL_PLACE_COUNTRY_CODE"/>
+    <field name="transaction" type="foreignkey" label="COM_GUITAR_FORM_LBL_PLACE_TRANSACTION" description="COM_GUITAR_FORM_DESC_PLACE_TRANSACTION" class="inputbox" input_type="list" table="#__guitar_transactions" key_field="id" value_field="title" required="true" message="Please select a Transaction" default=""/>
+    <field name="group" type="foreignkey" label="COM_GUITAR_FORM_LBL_PLACE_GROUP" description="COM_GUITAR_FORM_DESC_PLACE_GROUP" class="inputbox" input_type="list" table="#__guitar_groups" key_field="id" value_field="name" default="0"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+  <fieldset name="accesscontrol">
+    <field name="asset_id" type="hidden" filter="unset"/>
+    <field name="rules" type="rules" label="JFIELD_RULES_LABEL" translate_label="false" filter="rules" validate="rules" class="inputbox" component="com_guitar" section="place"/>
+  </fieldset>
+</form>

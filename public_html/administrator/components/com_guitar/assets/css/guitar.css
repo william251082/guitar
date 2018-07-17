@@ -11,6 +11,71 @@
 .color-box-songs { 
       float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
 
+.icon-48-directors {
+      background-image: url(../images/l_directors.png);
+      padding-left:60px!important;
+}
+
+.icon-48-director {
+      background-image: url(../images/l_directors.png);
+      padding-left:60px!important;
+}
+
+.color-box-directors { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-transactions {
+      background-image: url(../images/l_transactions.png);
+      padding-left:60px!important;
+}
+
+.icon-48-transaction {
+      background-image: url(../images/l_transactions.png);
+      padding-left:60px!important;
+}
+
+.color-box-transactions { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-groups {
+      background-image: url(../images/l_groups.png);
+      padding-left:60px!important;
+}
+
+.icon-48-group {
+      background-image: url(../images/l_groups.png);
+      padding-left:60px!important;
+}
+
+.color-box-groups { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-places {
+      background-image: url(../images/l_places.png);
+      padding-left:60px!important;
+}
+
+.icon-48-place {
+      background-image: url(../images/l_places.png);
+      padding-left:60px!important;
+}
+
+.color-box-places { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-genres {
+      background-image: url(../images/l_genres.png);
+      padding-left:60px!important;
+}
+
+.icon-48-genre {
+      background-image: url(../images/l_genres.png);
+      padding-left:60px!important;
+}
+
+.color-box-genres { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
 
 
 .other-filters{

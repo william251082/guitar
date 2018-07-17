@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" hint="COM_GUITAR_SEARCH_FILTER_SUBMIT"
+               label="COM_USERS_FILTER_SEARCH_DESC"
+               class="js-stools-search-string" />
+
+        <field name="release_date.from" label="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_FROM" type="calendar" onchange="this.form.submit();" filter="safehtml" class="inputbox" showtime="false" translateformat="false" hint="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_FROM"/>
+<field name="release_date.to" label="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_TO" type="calendar" onchange="this.form.submit();" filter="safehtml" class="inputbox" showtime="false" translateformat="false" hint="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_TO"/>
+<field name="rating" label="COM_GUITAR_FORM_LBL_SONG_RATING" type="list" onchange="this.form.submit();" default="COM_GUITAR_SONGS_RATING_FILTER">
+  <option value="">COM_GUITAR_SONGS_RATING_FILTER</option>
+  <option value="1">COM_GUITAR_SONGS_RATING_OPTION_1</option>
+  <option value="2">COM_GUITAR_SONGS_RATING_OPTION_2</option>
+  <option value="3">COM_GUITAR_SONGS_RATING_OPTION_3</option>
+  <option value="4">COM_GUITAR_SONGS_RATING_OPTION_4</option>
+  <option value="5">COM_GUITAR_SONGS_RATING_OPTION_5</option>
+  <option value="">COM_GUITAR_SONGS_RATING_OPTION_</option>
+</field>
+<field name="guitarist" type="sql" label="COM_GUITAR_FORM_LBL_SONG_GUITARIST" query="SELECT '' AS `id`, 'COM_GUITAR_SONGS_GUITARIST_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_guitarists`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+<field name="catid" label="COM_GUITAR_FORM_LBL_SONG_CATID" type="category" extension="com_guitar.songs" onchange="this.form.submit();" default="">
+  <option value=""/>
+  <option value="">JOPTION_SELECT_CATEGORY</option>
+</field>
+<field name="genre" type="sql" label="COM_GUITAR_FORM_LBL_SONG_GENRE" query="SELECT '' AS `id`, 'COM_GUITAR_SONGS_GENRE_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_genre`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+
+
+    </fields>
+</form>

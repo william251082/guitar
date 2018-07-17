@@ -11,6 +11,19 @@
 .color-box-movies { 
       float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
 
+.icon-48-directors {
+      background-image: url(../images/l_directors.png);
+      padding-left:60px!important;
+}
+
+.icon-48-director {
+      background-image: url(../images/l_directors.png);
+      padding-left:60px!important;
+}
+
+.color-box-directors { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
 
 
 .other-filters{

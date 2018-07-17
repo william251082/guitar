@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 defined('_JEXEC') or die;
 
@@ -18,6 +18,23 @@ JLoader::register('MoviesHelper', JPATH_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'c
  */
 class MoviesHelpersMovies
 {
+	/**
+	* Get category name using category ID
+	* @param integer $category_id Category ID
+	* @return mixed category name if the category was found, null otherwise
+	*/
+	public static function getCategoryNameByCategoryId($category_id) {
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$query
+			->select('title')
+			->from('#__categories')
+			->where('id = ' . intval($category_id));
+
+		$db->setQuery($query);
+		return $db->loadResult();
+	}
 	/**
 	 * Get an instance of the named model
 	 *

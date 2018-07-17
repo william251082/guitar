@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -30,6 +30,21 @@ class MoviesHelper
 			JText::_('COM_MOVIES_TITLE_MOVIES'),
 			'index.php?option=com_movies&view=movies',
 			$vName == 'movies'
+		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('JCATEGORIES') . ' (' . JText::_('COM_MOVIES_TITLE_MOVIES') . ')',
+			"index.php?option=com_categories&extension=com_movies.movies",
+			$vName == 'categories.movies'
+		);
+		if ($vName=='categories') {
+			JToolBarHelper::title('Movies: JCATEGORIES (COM_MOVIES_TITLE_MOVIES)');
+		}
+
+JHtmlSidebar::addEntry(
+			JText::_('COM_MOVIES_TITLE_DIRECTORS'),
+			'index.php?option=com_movies&view=directors',
+			$vName == 'directors'
 		);
 
 		JHtmlSidebar::addEntry(

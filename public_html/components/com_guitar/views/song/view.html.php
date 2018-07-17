@@ -4,8 +4,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -41,23 +41,9 @@ class GuitarViewSong extends JViewLegacy
 		$app  = JFactory::getApplication();
 		$user = JFactory::getUser();
 
-        // Get some data from the models
 		$this->state  = $this->get('State');
 		$this->item   = $this->get('Item');
 		$this->params = $app->getParams('com_guitar');
-
-        //set meta description
-        if ($this->item->metadesc) {
-            $this->document->setDescription($this->item->metadesc);
-        }
-
-        //set metakeywords
-        if ($this->item->metakey) {
-            $this->document->setMetadata('keywords', $this->item->metakey);
-        }
-
-        $title = $this->document->getTitle() . " - " . $this->item->song_title;
-        $this->document->setTitle($title);
 
 		if (!empty($this->item))
 		{
@@ -69,6 +55,8 @@ class GuitarViewSong extends JViewLegacy
 		{
 			throw new Exception(implode("\n", $errors));
 		}
+
+		
 
 		if ($this->_layout == 'edit')
 		{

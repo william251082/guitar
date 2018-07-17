@@ -1,111 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<extension
-	type="module"
-	version="3.0"
-	client="site"
-	method="upgrade">
-	<name>Guitar Module</name>
-	<description>Guitar Module</description>
-
-	<files>
-		<filename module="mod_guitar">mod_guitar.php</filename>
-	</files>
-
-	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.mod_guitar.ini</language>
-		<language tag="en-GB">en-GB/en-GB.mod_guitar.sys.ini</language>
-	</languages>
-
-	<config>
-		<fields name="params">
-			<fieldset name="basic"
-                      addfieldpath="/administrator/components/com_guitar/models/fields">
-
-				<field
-						type="text"
-						name="guitar_text"
-						label="COM_GUITAR_GUITAR_TEXT_FIELD_LABEL"
-						description="COM_GUITAR_GUITAR_TEXT_FIELD_DESC"
-						maxlength="35"
-						size="10"
-						default="Hello, Guitar!"
-						filter="safehtml"
-						class="guitar_text_field"
-						readonly="false"
-						diabled="false"
-				/>
-
-				<field
-						type="textarea"
-						name="foo_textarea"
-						label="COM_GUITAR_GUITAR_TEXTAREA_FIELD_LABEL"
-						description="COM_GUITAR_GUITAR_TEXTAREA_FIELD_DESC"
-						default="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-						rows="5"
-						cols="25"
-						class="guitar_textarea_field"
-						filter="safehtml"
-				/>
-
-				<field
-						type="editor"
-						name="foo_editor"
-						label="COM_GUITAR_GUITAR_EDITOR_FIELD_LABEL"
-						default="Fusce id neque justo, a suscipit dui."
-						width="5"
-						height="25"
-						rows="5"
-						cols="25"
-						filter="raw"
-						editor="tinymce|codemirror"
-						buttons="image"
-						hide="pagebreak"
-				/>
-
+<extension type="module" version="3.0" method="upgrade" client="site">
+    <name>MOD_GUITAR_NAME</name>
+    <creationDate>2018-07-17</creationDate>
+    <copyright>2018 com_guitar</copyright>
+    <license>Proprietary License; For my customers only</license>
+    <author>William del Rosario</author>
+    <authorEmail>williamdelrosario@yahoo.com</authorEmail>
+    <authorUrl>http://guitarsessions.joomla.com</authorUrl>
+    <version>CVS: 1.0.0</version>
+    <description>MOD_GUITAR_DESCRIPTION</description>
+    
+    <files>
+        <filename module="mod_guitar">mod_guitar.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <languages folder="languages">
+        
+			<language tag="en-US">en-US/en-US.mod_guitar.ini</language>
+			<language tag="en-US">en-US/en-US.mod_guitar.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset 
+                name="content_type" 
+                label="MOD_GUITAR_CONTENT_TYPE_TAB_LBL"
+                description="MOD_GUITAR_CONTENT_TYPE_TAB_DESC">
                 <field
-                        name="catid"
-                        type="category"
-                        extension="com_guitar"
-                        label="Show Songs From Category"
-                        description="Select a category to display"
-                        published=""
-                />
-
-                <field
-                        name="song"
-                        type="sql"
-                        label="Select a song"
-                        query="SELECT id, album FROM #__guitar_songs"
-                        key_field="id"
-                        value_field="album"
-                />
-
-                <field
-                        name="keyword"
-                        type="guitarkeywords"
-                        label="Keyword"
-                        description="Select a Keyword"
-                />
-
+                    name="content_type" type="list"
+                    label="MOD_GUITAR_CONTENT_TYPE_LBL"
+                    description="MOD_GUITAR_CONTENT_TYPE_DESC">
+                    <option value="blank">MOD_GUITAR_CUSTOM_CONTENT</option>
+                    <option value="list">MOD_GUITAR_LIST</option>
+                    <option value="item">MOD_GUITAR_ITEM</option>
+                </field>
             </fieldset>
-
-            <fieldset name="advanced">
+            <fieldset 
+                name="blank_content" 
+                label="MOD_GUITAR_CUSTOM_CONTENT_TAB_LBL"
+                description="MOD_GUITAR_CUSTOM_CONTENT_TAB_DESC">
+                <field 
+                    name="html_content" type="editor" filter="safehtml"
+                    label="MOD_GUITAR_HTML_LBL"
+                    description="MOD_GUITAR_HTML_DESC" />
+            </fieldset>
+            <fieldset 
+                name="list_content" 
+                label="MOD_GUITAR_LIST_CONTENT_TAB_LBL"
+                description="MOD_GUITAR_LIST_CONTENT_TAB_DESC">
                 <field
-                        name="layout"
-                        type="modulelayout"
-                        label="JFIELD_ALT_LAYOUT_LABEL"
-                        description="JFIELD_ALT_MODULE_LAYOUT_DESC"
-                />
-
+                    name="table" type="list"
+                    label="MOD_GUITAR_TABLE_LBL"
+                    description="MOD_GUITAR_TABLE_DESC">
+                    
+	<option value="#__guitar_songs">#__guitar_songs</option>
+	<option value="#__guitar_guitarists">#__guitar_guitarists</option>
+	<option value="#__guitar_transactions">#__guitar_transactions</option>
+	<option value="#__guitar_groups">#__guitar_groups</option>
+	<option value="#__guitar_place">#__guitar_place</option>
+	<option value="#__guitar_genre">#__guitar_genre</option>
+                </field>
+                <field 
+                    name="field" type="groupedlist" default=""
+                    label="MOD_GUITAR_FIELD_LBL"
+                    description="MOD_GUITAR_FIELD_DESC">
+                    
+	<group label="#__guitar_songs">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+		<option value="title">title</option>
+		<option value="description">description</option>
+		<option value="release_date">release_date</option>
+		<option value="review">review</option>
+		<option value="rating">rating</option>
+		<option value="credits">credits</option>
+		<option value="guitarist">guitarist</option>
+		<option value="catid">catid</option>
+		<option value="genre">genre</option>
+	</group>
+	<group label="#__guitar_guitarists">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+		<option value="name">name</option>
+		<option value="songs">songs</option>
+		<option value="genre">genre</option>
+	</group>
+	<group label="#__guitar_transactions">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+		<option value="title">title</option>
+		<option value="description">description</option>
+		<option value="guitarist">guitarist</option>
+		<option value="place">place</option>
+		<option value="group">group</option>
+	</group>
+	<group label="#__guitar_groups">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+		<option value="name">name</option>
+		<option value="description">description</option>
+		<option value="transaction">transaction</option>
+		<option value="place">place</option>
+	</group>
+	<group label="#__guitar_place">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+		<option value="name">name</option>
+		<option value="description">description</option>
+		<option value="lat">lat</option>
+		<option value="lng">lng</option>
+		<option value="country_code">country_code</option>
+		<option value="transaction">transaction</option>
+		<option value="group">group</option>
+	</group>
+	<group label="#__guitar_genre">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+		<option value="name">name</option>
+		<option value="description">description</option>
+		<option value="songs">songs</option>
+		<option value="guitarists">guitarists</option>
+	</group>
+                </field>
+                <field 
+                    name="offset" type="text" default="0" filter="uint" class="input-small"
+                    label="MOD_GUITAR_OFFSET_LBL"
+                    description="MOD_GUITAR_OFFSET_DESC" />
+                <field 
+                    name="limit" type="text" default="10" filter="uint" class="input-small"
+                    label="MOD_GUITAR_LIMIT_LBL"
+                    description="MOD_GUITAR_LIMIT_DESC" />
+            </fieldset>
+            <fieldset 
+                name="item_content" 
+                label="MOD_GUITAR_ITEM_CONTENT_TAB"
+                description="MOD_GUITAR_ITEM_CONTENT_TAB_DESC">
                 <field
-                        name="moduleclass_sfx"
-                        type="text"
-                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+                    name="item_table" type="list"
+                    label="MOD_GUITAR_TABLE_LBL"
+                    description="MOD_GUITAR_TABLE_DESC">
+                    
+	<option value="#__guitar_songs">#__guitar_songs</option>
+	<option value="#__guitar_guitarists">#__guitar_guitarists</option>
+	<option value="#__guitar_transactions">#__guitar_transactions</option>
+	<option value="#__guitar_groups">#__guitar_groups</option>
+	<option value="#__guitar_place">#__guitar_place</option>
+	<option value="#__guitar_genre">#__guitar_genre</option>
+                </field>
+                <field 
+                    name="item_id" type="text" filter="uint" class="input-small"
+                    label="MOD_GUITAR_ITEM_ID_LBL"
+                    description="MOD_GUITAR_ITEM_ID_DESC"
                 />
-
-			</fieldset>
-		</fields>
-	</config>
+            </fieldset>
+        </fields>
+    </config>
 </extension>

@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -24,18 +24,6 @@ $user    = JFactory::getUser();
 $canEdit = MoviesHelpersMovies::canUserEdit($this->item, $user);
 
 
-if($this->item->state == 1){
-	$state_string = 'Publish';
-	$state_value = 1;
-} else {
-	$state_string = 'Unpublish';
-	$state_value = 0;
-}
-if($this->item->id) {
-	$canState = JFactory::getUser()->authorise('core.edit.state','com_movies.movie');
-} else {
-	$canState = JFactory::getUser()->authorise('core.edit.state','com_movies.movie.'.$this->item->id);
-}
 ?>
 
 <div class="test-edit front-end-edit">

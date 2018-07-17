@@ -3,8 +3,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -22,15 +22,58 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 	<table class="table">
 		
 
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_TITLE'); ?></th>
+			<td><?php echo $this->item->title; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_DESCRIPTION'); ?></th>
+			<td><?php echo nl2br($this->item->description); ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_RELEASE_DATE'); ?></th>
+			<td><?php echo $this->item->release_date; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_REVIEW'); ?></th>
+			<td><?php echo nl2br($this->item->review); ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_RATING'); ?></th>
+			<td><?php echo $this->item->rating; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_CREDITS'); ?></th>
+			<td><?php echo $this->item->credits; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_GUITARIST'); ?></th>
+			<td><?php echo $this->item->guitarist; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_CATID'); ?></th>
+			<td><?php echo $this->item->catid; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_GENRE'); ?></th>
+			<td><?php echo $this->item->genre; ?></td>
+		</tr>
+
 	</table>
 
 </div>
 
-<?php if($canEdit): ?>
+<?php if($canEdit && $this->item->checked_out == 0): ?>
 
-	<a class="btn" href="<?php echo JRoute::_(
-	        'index.php?option=com_guitar&task=song.edit&id='.$this->item->id
-    ); ?>"><?php echo JText::_("COM_GUITAR_EDIT_ITEM"); ?></a>
+	<a class="btn" href="<?php echo JRoute::_('index.php?option=com_guitar&task=song.edit&id='.$this->item->id); ?>"><?php echo JText::_("COM_GUITAR_EDIT_ITEM"); ?></a>
 
 <?php endif; ?>
 
@@ -40,14 +83,7 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 		<?php echo JText::_("COM_GUITAR_DELETE_ITEM"); ?>
 	</a>
 
-	<div
-            id="deleteModal"
-            class="modal hide fade"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="deleteModal"
-            aria-hidden="true"
-    >
+	<div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h3><?php echo JText::_('COM_GUITAR_DELETE_ITEM'); ?></h3>
@@ -57,9 +93,7 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal">Close</button>
-			<a href="<?php echo JRoute::_(
-			        'index.php?option=com_guitar&task=song.remove&id=' . $this->item->id, false, 2
-            ); ?>" class="btn btn-danger">
+			<a href="<?php echo JRoute::_('index.php?option=com_guitar&task=song.remove&id=' . $this->item->id, false, 2); ?>" class="btn btn-danger">
 				<?php echo JText::_('COM_GUITAR_DELETE_ITEM'); ?>
 			</a>
 		</div>

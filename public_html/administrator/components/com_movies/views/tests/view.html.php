@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -150,10 +150,7 @@ class MoviesViewTests extends JViewLegacy
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
 			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.`state`' => JText::_('JSTATUS'),
-			'a.`title`' => JText::_('COM_MOVIES_MOVIES_TITLE'),
-			'a.`release_date`' => JText::_('COM_MOVIES_MOVIES_RELEASE_DATE'),
-			'a.`rating`' => JText::_('COM_MOVIES_MOVIES_RATING'),
-			'a.`director`' => JText::_('COM_MOVIES_MOVIES_DIRECTOR'),
+			'a.`name`' => JText::_('COM_MOVIES_DIRECTORS_NAME'),
 		);
 	}
 

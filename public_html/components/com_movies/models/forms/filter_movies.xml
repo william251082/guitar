@@ -16,6 +16,11 @@
   <option value="5">COM_MOVIES_MOVIES_RATING_OPTION_5</option>
   <option value="">COM_MOVIES_MOVIES_RATING_OPTION_</option>
 </field>
+<field name="director" type="sql" label="COM_MOVIES_FORM_LBL_MOVIE_DIRECTOR" query="SELECT '' AS `id`, 'COM_MOVIES_MOVIES_DIRECTOR_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__movies_directors`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+<field name="catid" label="COM_MOVIES_FORM_LBL_MOVIE_CATID" type="category" extension="com_movies.movies" onchange="this.form.submit();" default="">
+  <option value=""/>
+  <option value="">JOPTION_SELECT_CATEGORY</option>
+</field>
 
 
     </fields>

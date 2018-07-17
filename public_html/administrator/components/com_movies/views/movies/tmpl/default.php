@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 
 // No direct access
@@ -81,7 +81,13 @@ $sortFields = $this->getSortFields();
 				<?php echo JHtml::_('searchtools.sort',  'COM_MOVIES_MOVIES_RATING', 'a.`rating`', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
+				<?php echo JHtml::_('searchtools.sort',  'COM_MOVIES_MOVIES_STARRING', 'a.`starring`', $listDirn, $listOrder); ?>
+				</th>
+				<th class='left'>
 				<?php echo JHtml::_('searchtools.sort',  'COM_MOVIES_MOVIES_DIRECTOR', 'a.`director`', $listDirn, $listOrder); ?>
+				</th>
+				<th class='left'>
+				<?php echo JHtml::_('searchtools.sort',  'COM_MOVIES_MOVIES_CATID', 'a.`catid`', $listDirn, $listOrder); ?>
 				</th>
 
 					
@@ -158,7 +164,13 @@ $sortFields = $this->getSortFields();
 					<?php echo $item->rating; ?>
 				</td>				<td>
 
+					<?php echo $item->starring; ?>
+				</td>				<td>
+
 					<?php echo $item->director; ?>
+				</td>				<td>
+
+					<?php echo $item->catid; ?>
 				</td>
 
 					</tr>

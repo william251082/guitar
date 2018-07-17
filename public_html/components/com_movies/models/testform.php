@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 
 // No direct access.
@@ -26,8 +26,51 @@ class MoviesModelTestForm extends JModelForm
     private $item = null;
 
     
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
 
     
+        /**
+         * This method revises if the $id of the item belongs to the current user
+         * @param   integer     $id     The id of the item
+         * @return  boolean             true if the user is the owner of the row, false if not.
+         *
+         */
+        public function userIDItem($id){
+            try{
+                $user = JFactory::getUser();
+                $db    = JFactory::getDbo();
+
+                $query = $db->getQuery(true);
+                $query->select("id")
+                      ->from($db->quoteName('#__movies_directors'))
+                      ->where("id = " . $db->escape($id))
+                      ->where("created_by = " . $user->id);
+
+                $db->setQuery($query);
+
+                $results = $db->loadObject();
+                if ($results){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $exc){
+                return false;
+            }
+        }
 
     /**
      * Method to auto-populate the model state.
@@ -94,19 +137,19 @@ class MoviesModelTestForm extends JModelForm
             {
                 $user = Factory::getUser();
                 $id   = $table->id;
-                
+                if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
 
                 
 				if ($id)
 				{
-					$canEdit = $user->authorise('core.edit', 'com_movies.movie.' . $id) || $user->authorise('core.create', 'com_movies.movie.' . $id);
+					$canEdit = $user->authorise('core.edit', 'com_movies.director.' . $id) || $user->authorise('core.create', 'com_movies.director.' . $id);
 				}
 				else
 				{
 					$canEdit = $user->authorise('core.edit', 'com_movies') || $user->authorise('core.create', 'com_movies');
 				}
 
-                if (!$canEdit && $user->authorise('core.edit.own', 'com_movies.movie.' . $id))
+                if (!$canEdit && $user->authorise('core.edit.own', 'com_movies.director.' . $id))
                 {
                         $canEdit = $user->id == $table->created_by;
                 }
@@ -129,8 +172,14 @@ class MoviesModelTestForm extends JModelForm
                 $properties = $table->getProperties(1);
                 $this->item = ArrayHelper::toObject($properties, 'JObject');
                 
+		if (is_object($this->item->catid))
+		{
+			$this->item->catid = ArrayHelper::fromObject($this->item->catid);
+		}
 
-                
+                } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
             }
         }
 
@@ -173,9 +222,11 @@ class MoviesModelTestForm extends JModelForm
         $table->load(array('alias' => $alias));
 
 
-        
+        if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
             return $table->id;
-        
+        } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
     }
 
     /**
@@ -191,7 +242,7 @@ class MoviesModelTestForm extends JModelForm
     {
         // Get the id.
         $id = (!empty($id)) ? $id : (int) $this->getState('test.id');
-        
+        if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
         if ($id)
         {
             // Initialise the table
@@ -208,7 +259,9 @@ class MoviesModelTestForm extends JModelForm
         }
 
         return true;
-        
+        }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
     }
 
     /**
@@ -224,7 +277,7 @@ class MoviesModelTestForm extends JModelForm
     {
         // Get the user id.
         $id = (!empty($id)) ? $id : (int) $this->getState('test.id');
-        
+        if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
         if ($id)
         {
             // Initialise the table
@@ -244,7 +297,9 @@ class MoviesModelTestForm extends JModelForm
         }
 
         return true;
-        
+        }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
     }
 
     /**
@@ -292,18 +347,6 @@ class MoviesModelTestForm extends JModelForm
             $data = $this->getItem();
         }
         
-		// Support for multiple or not foreign key field: rating
-		$array = array();
-
-		foreach ((array) $data->rating as $value)
-		{
-			if (!is_array($value))
-			{
-				$array[] = $value;
-			}
-		}
-
-		$data->rating = $array;
 
         return $data;
     }
@@ -324,11 +367,11 @@ class MoviesModelTestForm extends JModelForm
         $state = (!empty($data['state'])) ? 1 : 0;
         $user  = Factory::getUser();
 
-        
+        if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
         if ($id)
         {
             // Check the user can edit this item
-            $authorised = $user->authorise('core.edit', 'com_movies.movie.' . $id) || $authorised = $user->authorise('core.edit.own', 'com_movies.movie.' . $id);
+            $authorised = $user->authorise('core.edit', 'com_movies.director.' . $id) || $authorised = $user->authorise('core.edit.own', 'com_movies.director.' . $id);
         }
         else
         {
@@ -351,7 +394,9 @@ class MoviesModelTestForm extends JModelForm
         {
             return false;
         }
-        
+        }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
     }
 
     /**
@@ -369,7 +414,7 @@ class MoviesModelTestForm extends JModelForm
     {
         $user = Factory::getUser();
 
-        
+        if(!$pk || $this->userIDItem($pk) || $this->isAdminOrSuperUser()){
             if (empty($pk))
             {
                     $pk = (int) $this->getState('test.id');
@@ -380,7 +425,7 @@ class MoviesModelTestForm extends JModelForm
                     throw new Exception(JText::_('COM_MOVIES_ITEM_DOESNT_EXIST'), 404);
             }
 
-            if ($user->authorise('core.delete', 'com_movies.movie.' . $id) !== true)
+            if ($user->authorise('core.delete', 'com_movies.director.' . $id) !== true)
             {
                     throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
             }
@@ -393,7 +438,9 @@ class MoviesModelTestForm extends JModelForm
             }
 
             return $pk;
-        
+        }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
     }
 
     /**

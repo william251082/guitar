@@ -3,8 +3,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -28,33 +28,54 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 <form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post"
       name="adminForm" id="adminForm">
 
-	
+	<?php echo JLayoutHelper::render('default_filter', array('view' => $this), dirname(__FILE__)); ?>
 	<table class="table table-striped" id="songList">
 		<thead>
-		    <tr>
-		    	<?php if (isset($this->items[0]->state)): ?>
+		<tr>
+			<?php if (isset($this->items[0]->state)): ?>
+				<th width="5%">
+	<?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.state', $listDirn, $listOrder); ?>
+</th>
+			<?php endif; ?>
 
-		    	<?php endif; ?>
+							<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_ID', 'a.id', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_TITLE', 'a.title', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_RELEASE_DATE', 'a.release_date', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_RATING', 'a.rating', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_GUITARIST', 'a.guitarist', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_CATID', 'a.catid', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_GENRE', 'a.genre', $listDirn, $listOrder); ?>
+				</th>
 
-                <th class="id">
-		    		<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_ID', 'a.id', $listDirn, $listOrder); ?>
-                </th>
 
-                <th class="title">
-                    <?php echo JText::_('COM_GUITAR_SONG_TITLE'); ?>
-                </th>
-                <th width="1%" class="left">
-                    <?php echo JText::_('COM_GUITAR_GENRE'); ?>
-                </th>
+							<?php if ($canEdit || $canDelete): ?>
+					<th class="center">
+				<?php echo JText::_('COM_GUITAR_SONGS_ACTIONS'); ?>
+				</th>
+				<?php endif; ?>
 
-                <?php if ($canEdit || $canDelete): ?>
-                    <th class="right">
-		    		    <?php echo JText::_('COM_GUITAR_SONGS_ACTIONS'); ?>
-                    </th>
-		    		<?php endif; ?>
-		    </tr>
+		</tr>
 		</thead>
-
+		<tfoot>
+		<tr>
+			<td colspan="<?php echo isset($this->items[0]) ? count(get_object_vars($this->items[0])) : 10; ?>">
+				<?php echo $this->pagination->getListFooter(); ?>
+			</td>
+		</tr>
+		</tfoot>
 		<tbody>
 		<?php foreach ($this->items as $i => $item) : ?>
 			<?php $canEdit = $user->authorise('core.edit', 'com_guitar'); ?>
@@ -67,24 +88,52 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 
 				<?php if (isset($this->items[0]->state)) : ?>
 					<?php $class = ($canChange) ? 'active' : 'disabled'; ?>
-					
+					<td class="center">
+	<a class="btn btn-micro <?php echo $class; ?>" href="<?php echo ($canChange) ? JRoute::_('index.php?option=com_guitar&task=song.publish&id=' . $item->id . '&state=' . (($item->state + 1) % 2), false, 2) : '#'; ?>">
+	<?php if ($item->state == 1): ?>
+		<i class="icon-publish"></i>
+	<?php else: ?>
+		<i class="icon-unpublish"></i>
+	<?php endif; ?>
+	</a>
+</td>
 				<?php endif; ?>
 
-                <td>
-					<?php echo $item->id;?>
+								<td>
+
+					<?php echo $item->id; ?>
 				</td>
-                <td>
-                    <a href="<?php echo JRoute::_(
-                        'index.php?option=com_guitar&view=song&id=' . $item->song_title
-                    ); ?>">
-                        <?php echo $item->song_title;?>
-                    </a>
-                </td>
-                <td width="25%"  class="left">
-                    <?php echo $item->category_title; ?>
-                </td>
+				<td>
+				<?php if (isset($item->checked_out) && $item->checked_out) : ?>
+					<?php echo JHtml::_('jgrid.checkedout', $i, $item->uEditor, $item->checked_out_time, 'songs.', $canCheckin); ?>
+				<?php endif; ?>
+				<a href="<?php echo JRoute::_('index.php?option=com_guitar&view=song&id='.(int) $item->id); ?>">
+				<?php echo $this->escape($item->title); ?></a>
+				</td>
+				<td>
+
+					<?php echo $item->release_date; ?>
+				</td>
+				<td>
+
+					<?php echo $item->rating; ?>
+				</td>
+				<td>
+
+					<?php echo $item->guitarist; ?>
+				</td>
+				<td>
+
+					<?php echo $item->catid; ?>
+				</td>
+				<td>
+
+					<?php echo $item->genre; ?>
+				</td>
+
+
 								<?php if ($canEdit || $canDelete): ?>
-					<td width="25%" class="right">
+					<td class="center">
 						<?php if ($canEdit): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_guitar&task=songform.edit&id=' . $item->id, false, 2); ?>" class="btn btn-mini" type="button"><i class="icon-edit" ></i></a>
 						<?php endif; ?>
@@ -97,15 +146,6 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
-
-        <tfoot>
-        <tr>
-            <td colspan="<?php echo isset($this->items[0]) ? count(get_object_vars($this->items[0])) : 10; ?>">
-                <?php echo $this->pagination->getListFooter(); ?>
-            </td>
-        </tr>
-        </tfoot>
-
 	</table>
 
 	<?php if ($canCreate) : ?>

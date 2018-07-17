@@ -4,8 +4,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access.
 defined('_JEXEC') or die;
@@ -25,6 +25,52 @@ class GuitarModelSong extends JModelItem
 {
     public $_item;
 
+        
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
+    
+        
+        /**
+         * This method revises if the $id of the item belongs to the current user
+         * @param   integer     $id     The id of the item
+         * @return  boolean             true if the user is the owner of the row, false if not.
+         *
+         */
+        public function userIDItem($id){
+            try{
+                $user = JFactory::getUser();
+                $db   = JFactory::getDbo();
+
+                $query = $db->getQuery(true);
+                $query->select("id")
+                      ->from($db->quoteName('#__guitar_genre'))
+                      ->where("id = " . $db->escape($id))
+                      ->where("created_by = " . $user->id);
+
+                $db->setQuery($query);
+
+                $results = $db->loadObject();
+                if ($results){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $exc){
+                return false;
+            }
+        }
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -89,7 +135,7 @@ class GuitarModelSong extends JModelItem
 
                 if (empty($id))
                 {
-                    $id = $this->getState('id');
+                    $id = $this->getState('song.id');
                 }
 
                 // Get a level row instance.
@@ -98,6 +144,8 @@ class GuitarModelSong extends JModelItem
                 // Attempt to load the row.
                 if ($table->load($id))
                 {
+                    if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
+
                     // Check published state.
                     if ($published = $this->getState('filter.published'))
                     {
@@ -106,11 +154,128 @@ class GuitarModelSong extends JModelItem
                             throw new Exception(JText::_('COM_GUITAR_ITEM_NOT_LOADED'), 403);
                         }
                     }
+
                     // Convert the JTable to a clean JObject.
                     $properties  = $table->getProperties(1);
                     $this->_item = ArrayHelper::toObject($properties, 'JObject');
+
+                    } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
                 } 
             }
+        
+            
+
+		if (isset($this->_item->created_by))
+		{
+			$this->_item->created_by_name = Factory::getUser($this->_item->created_by)->name;
+		}
+
+		if (isset($this->_item->modified_by))
+		{
+			$this->_item->modified_by_name = Factory::getUser($this->_item->modified_by)->name;
+		}
+
+		if (!empty($this->_item->rating))
+		{
+			$this->_item->rating = JText::_('COM_GUITAR_SONGS_RATING_OPTION_' . $this->_item->rating);
+		}
+
+		if (isset($this->_item->guitarist) && $this->_item->guitarist != '')
+		{
+			if (is_object($this->_item->guitarist))
+			{
+				$this->_item->guitarist = ArrayHelper::fromObject($this->_item->guitarist);
+			}
+
+			$values = (is_array($this->_item->guitarist)) ? $this->_item->guitarist : explode(',',$this->_item->guitarist);
+
+			$textValue = array();
+
+			foreach ($values as $value)
+			{
+				$db    = Factory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query
+					->select('`#__guitar_guitarists_3044531`.`name`')
+					->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044531'))
+					->where($db->quoteName('id') . ' = ' . $db->quote($value));
+
+				$db->setQuery($query);
+				$results = $db->loadObject();
+
+				if ($results)
+				{
+					$textValue[] = $results->name;
+				}
+			}
+
+			$this->_item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $this->_item->guitarist;
+
+		}
+
+		if (isset($this->_item->catid) && $this->_item->catid != '')
+		{
+			if (is_object($this->_item->catid))
+			{
+				$this->_item->catid = ArrayHelper::fromObject($this->_item->catid);
+			}
+
+			if (is_array($this->_item->catid))
+			{
+				$this->_item->catid = implode(',', $this->_item->catid);
+			}
+
+			$db    = Factory::getDbo();
+			$query = $db->getQuery(true);
+
+			$query
+				->select($db->quoteName('title'))
+				->from($db->quoteName('#__categories'))
+				->where('FIND_IN_SET(' . $db->quoteName('id') . ', ' . $db->quote($this->_item->catid) . ')');
+
+			$db->setQuery($query);
+
+			$result = $db->loadColumn();
+
+			$this->_item->catid = !empty($result) ? implode(', ', $result) : '';
+		}
+
+		if (isset($this->_item->genre) && $this->_item->genre != '')
+		{
+			if (is_object($this->_item->genre))
+			{
+				$this->_item->genre = ArrayHelper::fromObject($this->_item->genre);
+			}
+
+			$values = (is_array($this->_item->genre)) ? $this->_item->genre : explode(',',$this->_item->genre);
+
+			$textValue = array();
+
+			foreach ($values as $value)
+			{
+				$db    = Factory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query
+					->select('`#__guitar_genre_3044758`.`name`')
+					->from($db->quoteName('#__guitar_genre', '#__guitar_genre_3044758'))
+					->where($db->quoteName('id') . ' = ' . $db->quote($value));
+
+				$db->setQuery($query);
+				$results = $db->loadObject();
+
+				if ($results)
+				{
+					$textValue[] = $results->name;
+				}
+			}
+
+			$this->_item->genre = !empty($textValue) ? implode(', ', $textValue) : $this->_item->genre;
+
+		}
 
             return $this->_item;
         }
@@ -149,9 +314,11 @@ class GuitarModelSong extends JModelItem
                 $table->load(array('alias' => $alias));
                 $result = $table->id;
             }
-            
+            if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
                 return $result;
-            
+            } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
 	}
 
 	/**
@@ -167,7 +334,7 @@ class GuitarModelSong extends JModelItem
 	{
 		// Get the id.
 		$id = (!empty($id)) ? $id : (int) $this->getState('song.id');
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
 		if ($id)
 		{
 			// Initialise the table
@@ -184,7 +351,9 @@ class GuitarModelSong extends JModelItem
 		}
 
 		return true;
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -201,7 +370,7 @@ class GuitarModelSong extends JModelItem
 		// Get the user id.
 		$id = (!empty($id)) ? $id : (int) $this->getState('song.id');
 
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
 		if ($id)
 		{
 			// Initialise the table
@@ -221,7 +390,9 @@ class GuitarModelSong extends JModelItem
 		}
 
 		return true;
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -235,12 +406,14 @@ class GuitarModelSong extends JModelItem
 	public function publish($id, $state)
 	{
 		$table = $this->getTable();
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
 		$table->load($id);
 		$table->state = $state;
 
 		return $table->store();
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -254,9 +427,11 @@ class GuitarModelSong extends JModelItem
 	{
 		$table = $this->getTable();
 
-                
+                if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
                     return $table->delete($id);
-                
+                } else {
+                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                                          }
 	}
 
 	

@@ -306,7 +306,7 @@ abstract class ModuleHelper
 		// Build the template and base path for the layout
 		$tPath = JPATH_THEMES . '/' . $template . '/html/' . $module . '/' . $layout . '.php';
 		$bPath = JPATH_BASE . '/modules/' . $module . '/tmpl/' . $defaultLayout . '.php';
-		$dPath = JPATH_BASE . '/modules/' . $module . '/tmpl/default.php';
+		$dPath = JPATH_BASE . '/modules/' . $module . '/tmpl/edit.php';
 
 		// If the template has a layout override use it
 		if (file_exists($tPath))

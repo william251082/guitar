@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -23,6 +23,20 @@ $document->addStyleSheet(JUri::root() . 'media/com_movies/css/form.css');
 	js = jQuery.noConflict();
 	js(document).ready(function () {
 		
+	js('input:hidden.director').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('directorhidden')){
+			js('#jform_director option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_director").trigger("liszt:updated");
+	js('input:hidden.catid').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('catidhidden')){
+			js('#jform_catid option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_catid").trigger("liszt:updated");
 	});
 
 	Joomla.submitbutton = function (task) {
@@ -64,10 +78,27 @@ $document->addStyleSheet(JUri::root() . 'media/com_movies/css/form.css');
 				<?php echo $this->form->renderField('title'); ?>
 				<?php echo $this->form->renderField('description'); ?>
 				<?php echo $this->form->renderField('release_date'); ?>
-				<?php echo $this->form->renderField('review'); ?>
 				<?php echo $this->form->renderField('rating'); ?>
+				<?php echo $this->form->renderField('review'); ?>
+				<?php echo $this->form->renderField('awards'); ?>
+				<?php echo $this->form->renderField('starring'); ?>
 				<?php echo $this->form->renderField('director'); ?>
 
+			<?php
+				foreach((array)$this->item->director as $value): 
+					if(!is_array($value)):
+						echo '<input type="hidden" class="director" name="jform[directorhidden]['.$value.']" value="'.$value.'" />';
+					endif;
+				endforeach;
+			?>				<?php echo $this->form->renderField('catid'); ?>
+
+			<?php
+				foreach((array)$this->item->catid as $value): 
+					if(!is_array($value)):
+						echo '<input type="hidden" class="catid" name="jform[catidhidden]['.$value.']" value="'.$value.'" />';
+					endif;
+				endforeach;
+			?>
 
 					<?php if ($this->state->params->get('save_history', 1)) : ?>
 					<div class="control-group">

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -27,7 +27,7 @@ class MoviesTablemovie extends JTable
 	public function __construct(&$db)
 	{
 		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'MoviesTablemovie', array('typeAlias' => 'com_movies.movie'));
-		parent::__construct('#__movies_movie', 'id', $db);
+		parent::__construct('#__movies_movies', 'id', $db);
 	}
 
 	/**
@@ -89,6 +89,41 @@ class MoviesTablemovie extends JTable
 		else
 		{
 			$array['rating'] = '';
+		}
+
+		// Support for multiple or not foreign key field: director
+			if(!empty($array['director']))
+			{
+				if(is_array($array['director'])){
+					$array['director'] = implode(',',$array['director']);
+				}
+				else if(strrpos($array['director'], ',') != false){
+					$array['director'] = explode(',',$array['director']);
+				}
+			}
+			else {
+				$array['director'] = '';
+			}
+
+		// Support for multiple field: catid
+		if (isset($array['catid']))
+		{
+			if (is_array($array['catid']))
+			{
+				$array['catid'] = implode(',',$array['catid']);
+			}
+			elseif (strpos($array['catid'], ',') != false)
+			{
+				$array['catid'] = explode(',',$array['catid']);
+			}
+			elseif (strlen($array['catid']) == 0)
+			{
+				$array['catid'] = '';
+			}
+		}
+		else
+		{
+			$array['catid'] = '';
 		}
 
 		if (isset($array['params']) && is_array($array['params']))
@@ -177,6 +212,12 @@ class MoviesTablemovie extends JTable
 		}
 		
 		
+
+		// Support for subform field awards
+		if (is_array($this->awards))
+		{
+			$this->awards = json_encode($this->awards);
+		}
 
 		return parent::check();
 	}

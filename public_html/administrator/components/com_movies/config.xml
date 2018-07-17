@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <fieldset label="COM_MOVIES" name="movies">
-        <field name="show_director" type="checkbox" label="COM_MOVIES_FORM_LBL_SHOW_DIRECTOR" description="COM_MOVIES_FORM_DESC_SHOW_DIRECTOR" hint="COM_MOVIES_FORM_LBL_SHOW_DIRECTOR"/>
+        <field name="show_director" default="1" type="radio" label="COM_MOVIES_FORM_LBL_SHOW_DIRECTOR" description="COM_MOVIES_FORM_DESC_SHOW_DIRECTOR" hint="COM_MOVIES_FORM_LBL_SHOW_DIRECTOR">
+  <option value="1">Yes</option>
+  <option value="0">No</option>
+</field>
 
     </fieldset>
 

@@ -1,10 +1,10 @@
 <?php
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -83,11 +83,22 @@ if($this->item->id) {
 
 	<?php echo $this->form->renderField('release_date'); ?>
 
-	<?php echo $this->form->renderField('review'); ?>
-
 	<?php echo $this->form->renderField('rating'); ?>
 
+	<?php echo $this->form->renderField('review'); ?>
+
+	<?php echo $this->form->renderField('awards'); ?>
+
+	<?php echo $this->form->renderField('starring'); ?>
+
 	<?php echo $this->form->renderField('director'); ?>
+
+	<?php foreach((array)$this->item->director as $value): ?>
+		<?php if(!is_array($value)): ?>
+			<input type="hidden" class="director" name="jform[directorhidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
+		<?php endif; ?>
+	<?php endforeach; ?>
+	<?php echo $this->form->renderField('catid'); ?>
 				<div class="fltlft" <?php if (!JFactory::getUser()->authorise('core.admin','movies')): ?> style="display:none;" <?php endif; ?> >
                 <?php echo JHtml::_('sliders.start', 'permissions-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
                 <?php echo JHtml::_('sliders.panel', JText::_('ACL Configuration'), 'access-rules'); ?>

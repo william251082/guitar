@@ -244,7 +244,7 @@ Joomla.editors.instances = Joomla.editors.instances || {
 	};
 
 	/**
-	 * USED IN: administrator/components/com_banners/views/client/tmpl/default.php
+	 * USED IN: administrator/components/com_banners/views/client/tmpl/edit.php
 	 * Actually, probably not used anywhere. Can we deprecate in favor of <input type="email">?
 	 *
 	 * Verifies if the string is in a valid email format
@@ -435,7 +435,7 @@ Joomla.editors.instances = Joomla.editors.instances || {
 	};
 
 	/**
-	 * USED IN: administrator/components/com_cache/views/cache/tmpl/default.php
+	 * USED IN: administrator/components/com_cache/views/cache/tmpl/edit.php
 	 * administrator/components/com_installer/views/discover/tmpl/default_item.php
 	 * administrator/components/com_installer/views/update/tmpl/default_item.php
 	 * administrator/components/com_languages/helpers/html/languages.php
@@ -514,7 +514,7 @@ Joomla.editors.instances = Joomla.editors.instances || {
 	};
 
 	/**
-	 * USED IN: administrator/components/com_modules/views/module/tmpl/default.php
+	 * USED IN: administrator/components/com_modules/views/module/tmpl/edit.php
 	 *
 	 * Writes a dynamically generated list
 	 *
@@ -608,7 +608,7 @@ Joomla.editors.instances = Joomla.editors.instances || {
 	};
 
 	/**
-	 * USED IN: administrator/components/com_menus/views/menus/tmpl/default.php
+	 * USED IN: administrator/components/com_menus/views/menus/tmpl/edit.php
 	 * Probably not used at all
 	 *
 	 * @param radioObj
@@ -639,7 +639,7 @@ Joomla.editors.instances = Joomla.editors.instances || {
 	};
 
 	/**
-	 * USED IN: administrator/components/com_users/views/mail/tmpl/default.php
+	 * USED IN: administrator/components/com_users/views/mail/tmpl/edit.php
 	 * Let's get rid of this and kill it
 	 *
 	 * @param frmName
@@ -766,7 +766,7 @@ Joomla.editors.instances = Joomla.editors.instances || {
 	/**
 	 * Add Joomla! loading image layer.
 	 *
-	 * Used in: /administrator/components/com_installer/views/languages/tmpl/default.php
+	 * Used in: /administrator/components/com_installer/views/languages/tmpl/edit.php
 	 *          /installation/template/js/installation.js
 	 *
 	 * @param   {String}       task           The task to do [load, show, hide] (defaults to show).

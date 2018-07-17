@@ -339,7 +339,7 @@ abstract class FOFView extends FOFUtilsObject
 	 * This function searches for Joomla! version override templates. For example,
 	 * if you have run this under Joomla! 3.0 and you try to load
 	 * admin:com_foobar/myview/default it will automatically search for the
-	 * template files default.j30.php, default.j3.php and default.php, in this
+	 * template files default.j30.php, default.j3.php and edit.php, in this
 	 * order.
 	 *
 	 * @param   string  $path         See above

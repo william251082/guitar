@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 defined('_JEXEC') or die;
 
@@ -22,8 +22,51 @@ class MoviesModelTests extends JModelList
         
     
         
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
     
         
+        /**
+         * This method revises if the $id of the item belongs to the current user
+         * @param   integer     $id     The id of the item
+         * @return  boolean             true if the user is the owner of the row, false if not.
+         *
+         */
+        public function userIDItem($id){
+            try{
+                $user = JFactory::getUser();
+                $db    = JFactory::getDbo();
+
+                $query = $db->getQuery(true);
+                $query->select("id")
+                      ->from($db->quoteName('#__movies_directors'))
+                      ->where("id = " . $db->escape($id))
+                      ->where("created_by = " . $user->id);
+
+                $db->setQuery($query);
+
+                $results = $db->loadObject();
+                if ($results){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $exc){
+                return false;
+            }
+        }
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -53,7 +96,7 @@ class MoviesModelTests extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('a.title', 'asc');
+		parent::populateState('a.name', 'asc');
 	}
 
 	/**
@@ -75,9 +118,11 @@ class MoviesModelTests extends JModelList
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
 
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
                     return parent::getStoreId($id);
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -104,10 +149,6 @@ class MoviesModelTests extends JModelList
 	{
 		$items = parent::getItems();
                 
-		foreach ($items as $oneItem)
-		{
-					$oneItem->rating = JText::_('COM_MOVIES_MOVIES_RATING_OPTION_' . strtoupper($oneItem->rating));
-		}
 
 		return $items;
 	}

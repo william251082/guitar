@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 defined('_JEXEC') or die;
 
@@ -41,9 +41,12 @@ class MoviesModelMovies extends JModelList
 				'title', 'a.`title`',
 				'description', 'a.`description`',
 				'release_date', 'a.`release_date`',
-				'review', 'a.`review`',
 				'rating', 'a.`rating`',
+				'review', 'a.`review`',
+				'awards', 'a.`awards`',
+				'starring', 'a.`starring`',
 				'director', 'a.`director`',
+				'catid', 'a.`catid`',
 			);
 		}
 
@@ -52,8 +55,51 @@ class MoviesModelMovies extends JModelList
 
     
         
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
     
         
+        /**
+         * This method revises if the $id of the item belongs to the current user
+         * @param   integer     $id     The id of the item
+         * @return  boolean             true if the user is the owner of the row, false if not.
+         *
+         */
+        public function userIDItem($id){
+            try{
+                $user = JFactory::getUser();
+                $db    = JFactory::getDbo();
+
+                $query = $db->getQuery(true);
+                $query->select("id")
+                      ->from($db->quoteName('#__movies_directors'))
+                      ->where("id = " . $db->escape($id))
+                      ->where("created_by = " . $user->id);
+
+                $db->setQuery($query);
+
+                $results = $db->loadObject();
+                if ($results){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $exc){
+                return false;
+            }
+        }
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -84,6 +130,12 @@ class MoviesModelMovies extends JModelList
 		// Filtering rating
 		$this->setState('filter.rating', $app->getUserStateFromRequest($this->context.'.filter.rating', 'filter_rating', '', 'string'));
 
+		// Filtering director
+		$this->setState('filter.director', $app->getUserStateFromRequest($this->context.'.filter.director', 'filter_director', '', 'string'));
+
+		// Filtering catid
+		$this->setState('filter.catid', $app->getUserStateFromRequest($this->context.'.filter.catid', 'filter_catid', '', 'string'));
+
 
 		// Load the parameters.
 		$params = JComponentHelper::getParams('com_movies');
@@ -112,9 +164,11 @@ class MoviesModelMovies extends JModelList
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
 
-                
+                if(!$id || $this->userIDItem($id) || $this->isAdminOrSuperUser()){
                     return parent::getStoreId($id);
-                
+                }else{
+                               throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                           }
 	}
 
 	/**
@@ -136,11 +190,14 @@ class MoviesModelMovies extends JModelList
 				'list.select', 'DISTINCT a.*'
 			)
 		);
-		$query->from('`#__movies_movie` AS a');
+		$query->from('`#__movies_movies` AS a');
                 
 		// Join over the users for the checked out user
 		$query->select("uc.name AS uEditor");
 		$query->join("LEFT", "#__users AS uc ON uc.id=a.checked_out");
+		if(!$this->isAdminOrSuperUser()){
+			$query->where("a.created_by = " . JFactory::getUser()->get("id"));
+		}
 
 		// Join over the user field 'created_by'
 		$query->select('`created_by`.name AS `created_by`');
@@ -149,6 +206,9 @@ class MoviesModelMovies extends JModelList
 		// Join over the user field 'modified_by'
 		$query->select('`modified_by`.name AS `modified_by`');
 		$query->join('LEFT', '#__users AS `modified_by` ON `modified_by`.id = a.`modified_by`');
+		// Join over the foreign key 'director'
+		$query->select('`#__movies_directors_3044319`.`name` AS directors_fk_value_3044319');
+		$query->join('LEFT', '#__movies_directors AS #__movies_directors_3044319 ON #__movies_directors_3044319.`id` = a.`director`');
                 
 
 		// Filter by published state
@@ -175,7 +235,7 @@ class MoviesModelMovies extends JModelList
 			else
 			{
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where('( a.title LIKE ' . $search . '  OR  a.director LIKE ' . $search . ' )');
+				$query->where('( a.title LIKE ' . $search . ' )');
 			}
 		}
                 
@@ -201,6 +261,22 @@ class MoviesModelMovies extends JModelList
 		{
 			$query->where("a.`rating` = '".$db->escape($filter_rating)."'");
 		}
+
+		// Filtering director
+		$filter_director = $this->state->get("filter.director");
+
+		if ($filter_director !== null && !empty($filter_director))
+		{
+			$query->where("a.`director` = '".$db->escape($filter_director)."'");
+		}
+
+		// Filtering catid
+		$filter_catid = $this->state->get("filter.catid");
+
+		if ($filter_catid !== null && !empty($filter_catid))
+		{
+			$query->where("a.`catid` = '".$db->escape($filter_catid)."'");
+		}
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');
 		$orderDirn = $this->state->get('list.direction');
@@ -225,6 +301,48 @@ class MoviesModelMovies extends JModelList
 		foreach ($items as $oneItem)
 		{
 					$oneItem->rating = JText::_('COM_MOVIES_MOVIES_RATING_OPTION_' . strtoupper($oneItem->rating));
+
+			if (isset($oneItem->director))
+			{
+				$values    = explode(',', $oneItem->director);
+				$textValue = array();
+
+				foreach ($values as $value)
+				{
+					$db    = JFactory::getDbo();
+					$query = $db->getQuery(true);
+					$query
+						->select('`#__movies_directors_3044319`.`name`')
+						->from($db->quoteName('#__movies_directors', '#__movies_directors_3044319'))
+						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
+
+					$db->setQuery($query);
+					$results = $db->loadObject();
+
+					if ($results)
+					{
+						$textValue[] = $results->name;
+					}
+				}
+
+				$oneItem->director = !empty($textValue) ? implode(', ', $textValue) : $oneItem->director;
+			}
+
+			if (isset($oneItem->catid))
+			{
+				$db    = JFactory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query
+					->select($db->quoteName('title'))
+					->from($db->quoteName('#__categories'))
+					->where('FIND_IN_SET(' . $db->quoteName('id') . ', ' . $db->quote($oneItem->catid) . ')');
+
+				$db->setQuery($query);
+				$result = $db->loadColumn();
+
+				$oneItem->catid = !empty($result) ? implode(', ', $result) : '';
+			}
 		}
 
 		return $items;

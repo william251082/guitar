@@ -4,8 +4,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -31,13 +31,7 @@ class GuitarController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
-	    // Get the document object
         $app  = JFactory::getApplication();
-
-        $id = $this->input->getInt('id');
-
-        // Set the view based on the request paarameters
-        // if no view is set default to the "songs" view
         $view = $app->input->getCmd('view', 'songs');
 		$app->input->set('view', $view);
 

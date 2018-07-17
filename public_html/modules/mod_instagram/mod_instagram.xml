@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" method="upgrade" client="site">
+    <name>MOD_INSTAGRAM_NAME</name>
+    <creationDate>2018-07-17</creationDate>
+    <copyright>2018 com_instagram</copyright>
+    <license>Proprietary License; For my customers only</license>
+    <author>com_instagram</author>
+    <authorEmail>williamdelrosario@yahoo.com</authorEmail>
+    <authorUrl>http://guitarsessions.joomla.com</authorUrl>
+    <version>CVS: 1.0.0</version>
+    <description>MOD_INSTAGRAM_DESCRIPTION</description>
+    
+    <files>
+        <filename module="mod_instagram">mod_instagram.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <languages folder="languages">
+        
+			<language tag="en-US">en-US/en-US.mod_instagram.ini</language>
+			<language tag="en-US">en-US/en-US.mod_instagram.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset 
+                name="content_type" 
+                label="MOD_INSTAGRAM_CONTENT_TYPE_TAB_LBL"
+                description="MOD_INSTAGRAM_CONTENT_TYPE_TAB_DESC">
+                <field
+                    name="content_type" type="list"
+                    label="MOD_INSTAGRAM_CONTENT_TYPE_LBL"
+                    description="MOD_INSTAGRAM_CONTENT_TYPE_DESC">
+                    <option value="blank">MOD_INSTAGRAM_CUSTOM_CONTENT</option>
+                    <option value="list">MOD_INSTAGRAM_LIST</option>
+                    <option value="item">MOD_INSTAGRAM_ITEM</option>
+                </field>
+            </fieldset>
+            <fieldset 
+                name="blank_content" 
+                label="MOD_INSTAGRAM_CUSTOM_CONTENT_TAB_LBL"
+                description="MOD_INSTAGRAM_CUSTOM_CONTENT_TAB_DESC">
+                <field 
+                    name="html_content" type="editor" filter="safehtml"
+                    label="MOD_INSTAGRAM_HTML_LBL"
+                    description="MOD_INSTAGRAM_HTML_DESC" />
+            </fieldset>
+            <fieldset 
+                name="list_content" 
+                label="MOD_INSTAGRAM_LIST_CONTENT_TAB_LBL"
+                description="MOD_INSTAGRAM_LIST_CONTENT_TAB_DESC">
+                <field
+                    name="table" type="list"
+                    label="MOD_INSTAGRAM_TABLE_LBL"
+                    description="MOD_INSTAGRAM_TABLE_DESC">
+                    
+	<option value="#__instagram_photos">#__instagram_photos</option>
+	<option value="#__instagram_comments">#__instagram_comments</option>
+                </field>
+                <field 
+                    name="field" type="groupedlist" default=""
+                    label="MOD_INSTAGRAM_FIELD_LBL"
+                    description="MOD_INSTAGRAM_FIELD_DESC">
+                    
+	<group label="#__instagram_photos">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+	</group>
+	<group label="#__instagram_comments">
+		<option value="id">id</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+	</group>
+                </field>
+                <field 
+                    name="offset" type="text" default="0" filter="uint" class="input-small"
+                    label="MOD_INSTAGRAM_OFFSET_LBL"
+                    description="MOD_INSTAGRAM_OFFSET_DESC" />
+                <field 
+                    name="limit" type="text" default="10" filter="uint" class="input-small"
+                    label="MOD_INSTAGRAM_LIMIT_LBL"
+                    description="MOD_INSTAGRAM_LIMIT_DESC" />
+            </fieldset>
+            <fieldset 
+                name="item_content" 
+                label="MOD_INSTAGRAM_ITEM_CONTENT_TAB"
+                description="MOD_INSTAGRAM_ITEM_CONTENT_TAB_DESC">
+                <field
+                    name="item_table" type="list"
+                    label="MOD_INSTAGRAM_TABLE_LBL"
+                    description="MOD_INSTAGRAM_TABLE_DESC">
+                    
+	<option value="#__instagram_photos">#__instagram_photos</option>
+	<option value="#__instagram_comments">#__instagram_comments</option>
+                </field>
+                <field 
+                    name="item_id" type="text" filter="uint" class="input-small"
+                    label="MOD_INSTAGRAM_ITEM_ID_LBL"
+                    description="MOD_INSTAGRAM_ITEM_ID_DESC"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

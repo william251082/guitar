@@ -4,8 +4,8 @@
  * @version    CVS: 1.0.0
  * @package    Com_Guitar
  * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright  2018 com_guitar
+ * @license    Proprietary License; For my customers only
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -36,7 +36,6 @@ class GuitarViewSongs extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-	    // Get some data from the models
 		$this->state = $this->get('State');
 		$this->items = $this->get('Items');
 		$this->pagination = $this->get('Pagination');
@@ -54,7 +53,6 @@ class GuitarViewSongs extends JViewLegacy
 		$this->addToolbar();
 
 		$this->sidebar = JHtmlSidebar::render();
-
 		parent::display($tpl);
 	}
 
@@ -152,6 +150,14 @@ class GuitarViewSongs extends JViewLegacy
 	{
 		return array(
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
+			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.`state`' => JText::_('JSTATUS'),
+			'a.`title`' => JText::_('COM_GUITAR_SONGS_TITLE'),
+			'a.`release_date`' => JText::_('COM_GUITAR_SONGS_RELEASE_DATE'),
+			'a.`rating`' => JText::_('COM_GUITAR_SONGS_RATING'),
+			'a.`guitarist`' => JText::_('COM_GUITAR_SONGS_GUITARIST'),
+			'a.`catid`' => JText::_('COM_GUITAR_SONGS_CATID'),
+			'a.`genre`' => JText::_('COM_GUITAR_SONGS_GENRE'),
 		);
 	}
 

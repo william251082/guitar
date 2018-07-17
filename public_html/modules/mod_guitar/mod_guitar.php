@@ -1,16 +1,24 @@
 <?php
 
-defined('_JEXEC') or die('Restricted access');
+/**
+ * @version     CVS: 1.0.0
+ * @package     com_guitar
+ * @subpackage  mod_guitar
+ * @author      William del Rosario <williamdelrosario@yahoo.com>
+ * @copyright   2018 com_guitar
+ * @license     Proprietary License; For my customers only
+ */
+defined('_JEXEC') or die;
 
-require_once __DIR__ . '/helper.php';
+// Include the syndicate functions only once
+JLoader::register('ModGuitarHelper', dirname(__FILE__) . '/helper.php');
 
-$data = array();
-$data['text'] = htmlspecialchars($params->get('guitar_text'));
-$data['textarea'] = htmlspecialchars($params->get('guitar_textarea'));
-$data['texteditor'] = $params->get('guitar_editor');
-//$data['items'] = modGuitarHelper::getList($params->get('catid'));
-$data['items'] = modGuitarHelper::getItem($params->get('song'));
+$doc = JFactory::getDocument();
 
-$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+/* */
+$doc->addStyleSheet(JURI::base() . '/media/mod_guitar/css/style.css');
 
-require JModuleHelper::getLayoutPath('mod_guitar', $params->get('layout', 'default'));
+/* */
+$doc->addScript(JURI::base() . '/media/mod_guitar/js/script.js');
+
+require JModuleHelper::getLayoutPath('mod_guitar', $params->get('content_type', 'blank'));

@@ -15,7 +15,7 @@ defined('FOF_INCLUDED') or die;
  * This class searches for Joomla! version override Layouts. For example,
  * if you have run this under Joomla! 3.0 and you try to load
  * mylayout.default it will automatically search for the
- * layout files default.j30.php, default.j3.php and default.php, in this
+ * layout files default.j30.php, default.j3.php and edit.php, in this
  * order.
  *
  * @package  FrameworkOnFramework

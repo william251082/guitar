@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @version    CVS: 1.0.0
+ * @version    CVS: 1.0.1
  * @package    Com_Movies
- * @author     William del Rosario <williamdelrosario@yahoo.com>
- * @copyright  2018 William del Rosario
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @author     com_movies <williamdelrosario@yahoo.com>
+ * @copyright  2018 com_movies
+ * @license    Proprietary License; For my customers only
  */
 
 defined('_JEXEC') or die;
@@ -42,6 +42,20 @@ class MoviesModelTests extends JModelList
 	}
 
         
+       /**
+        * Checks whether or not a user is manager or super user
+        *
+        * @return bool
+        */
+        public function isAdminOrSuperUser()
+        {
+            try{
+                $user = JFactory::getUser();
+                return in_array("8", $user->groups) || in_array("7", $user->groups);
+            }catch(Exception $exc){
+                return false;
+            }
+        }
         
 	/**
 	 * Method to auto-populate the model state.
@@ -120,11 +134,6 @@ class MoviesModelTests extends JModelList
 	{
 		$items = parent::getItems();
 		
-		foreach ($items as $item)
-		{
-
-			$item->rating = JText::_('COM_MOVIES_MOVIES_RATING_OPTION_' . strtoupper($item->rating));
-		}
 
 		return $items;
 	}
