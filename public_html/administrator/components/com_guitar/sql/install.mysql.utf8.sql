@@ -2,7 +2,6 @@ CREATE TABLE IF NOT EXISTS `#__guitar_songs` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
 `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-
 `ordering` INT(11)  NOT NULL ,
 `state` TINYINT(1)  NOT NULL ,
 `checked_out` INT(11)  NOT NULL ,
