@@ -19,6 +19,9 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 
 <div class="item_fields">
 
+    <div id="map" class="map"></div>
+    <div class="map-callout map-callout-bottom" id="greeting-container"></div>
+
 	<table class="table">
 		
 
@@ -63,7 +66,10 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 
 <?php if($canEdit && $this->item->checked_out == 0): ?>
 
-	<a class="btn" href="<?php echo JRoute::_('index.php?option=com_guitar&task=place.edit&id='.$this->item->id); ?>"><?php echo JText::_("COM_GUITAR_EDIT_ITEM"); ?></a>
+	<a class="btn" href="<?php echo JRoute::_(
+	        'index.php?option=com_guitar&task=place.edit&id='.$this->item->id
+    ); ?>"><?php echo JText::_("COM_GUITAR_EDIT_ITEM"); ?>
+    </a>
 
 <?php endif; ?>
 

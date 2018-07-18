@@ -139,6 +139,41 @@ class GuitarViewSongs extends JViewLegacy
 
 		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_guitar&view=songs');
+
+        JHtmlSidebar::addFilter(
+
+            JText::_('JOPTION_SELECT_PUBLISHED'),
+
+            'filter_published',
+
+            JHtml::_('select.options', JHtml::_(
+                'jgrid.publishedOptions'
+            ), "value", "text", $this->state->get('filter.state'), true)
+
+        );
+        $select_label = JText::_('COM_GUITAR_STATE_FILTER');
+        $options = array();
+        $options[0] = new stdClass();
+        $options[0]->value = "0";
+        $options[0]->text = 'COM_GUITAR_STATE_INCOMPLETE';
+        $options[1] = new stdClass();
+        $options[1]->value = "1";
+        $options[1]->text = 'COM_GUITAR_STATE_COMPLETE';
+
+        JHtmlSidebar::addFilter(
+            $select_label,
+            'filter_state',
+            JHtml::_('select.options', $options , "value", "text", $this->state->get('filter.status'), true)
+        );
+
+        JHtmlSidebar::addFilter(
+            JText::_("JOPTION_SELECT_CATEGORY"),
+            'filter_catid',
+            JHtml::_('select.options', JHtml::_(
+                'category.options', 'com_guitar'
+            ), "value", "text", $this->state->get('filter.catid'))
+
+        );
 	}
 
 	/**

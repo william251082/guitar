@@ -47,12 +47,9 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_PLACES_DESCRIPTION', 'a.description', $listDirn, $listOrder); ?>
 				</th>
-				<th class=''>
-				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_PLACES_LAT', 'a.lat', $listDirn, $listOrder); ?>
-				</th>
-				<th class=''>
-				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_PLACES_LNG', 'a.lng', $listDirn, $listOrder); ?>
-				</th>
+                <th class='left'>
+                <?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_PLACES_POSITION', 'a.`lat`, a.`lng`', $listDirn, $listOrder); ?>
+                </th>
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_PLACES_COUNTRY_CODE', 'a.country_code', $listDirn, $listOrder); ?>
 				</th>
@@ -117,14 +114,10 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 
 					<?php echo $item->description; ?>
 				</td>
-				<td>
+                <td>
 
-					<?php echo $item->lat; ?>
-				</td>
-				<td>
-
-					<?php echo $item->lng; ?>
-				</td>
+                    <?php echo "[" . $item->lat . ", " . $item->lng . "]"; ?>
+                </td>
 				<td>
 
 					<?php echo $item->country_code; ?>

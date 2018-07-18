@@ -70,6 +70,8 @@ class GuitarViewPlace extends JViewLegacy
 
 		$this->_prepareDocument();
 
+        $this->addMap();
+
 		parent::display($tpl);
 	}
 
@@ -131,4 +133,24 @@ class GuitarViewPlace extends JViewLegacy
 			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}
 	}
+
+    public function addMap()
+    {
+        $document = JFactory::getDocument();
+
+        // everything's dependent upon JQuery
+        JHtml::_('jquery.framework');
+
+        // we need the Openlayers JS and CSS libraries
+        $document->addScript("https://openlayers.org/en/v4.6.4/build/ol.js");
+        $document->addStyleSheet("https://openlayers.org/en/v4.6.4/css/ol.css");
+
+        // ... and our own JS and CSS
+        $document->addScript(JURI::root() . "media/com_guitar/js/openstreetmap.js");
+        $document->addStyleSheet(JURI::root() . "media/com_guitar/css/openstreetmap.css");
+
+        // get the data to pass to our JS code
+        $params = $this->get("mapParams");
+        $document->addScriptOptions('params', $params);
+    }
 }

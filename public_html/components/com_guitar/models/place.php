@@ -133,6 +133,16 @@ class GuitarModelPlace extends JModelItem
             {
                 $this->_item = false;
 
+                $db    = JFactory::getDbo();
+                $query = $db->getQuery(true);
+                $query
+                    ->select(
+                    'c.title as category, p.lat as latitude, p.lng as longitude')
+                    ->from('#__guitar_place as p')
+                    ->leftJoin('#__categories as c ON p.catid=c.id')
+                    ->where('p.id=' . (int)$id);
+                $db->setQuery((string)$query);
+
                 if (empty($id))
                 {
                     $id = $this->getState('place.id');
@@ -160,8 +170,8 @@ class GuitarModelPlace extends JModelItem
                     $this->_item = ArrayHelper::toObject($properties, 'JObject');
 
                     } else {
-                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
-                                          }
+                        throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                        }
                 } 
             }
         
@@ -248,6 +258,24 @@ class GuitarModelPlace extends JModelItem
             return $this->_item;
         }
 
+    public function getMapParams()
+    {
+        if ($this->_item)
+        {
+            $this->mapParams = array(
+                'latitude' => $this->_item->lat,
+                'longitude' => $this->_item->lng,
+                'zoom' => 10,
+//                'greeting' => $this->_item->greeting
+            );
+            return $this->mapParams;
+        }
+        else
+        {
+            throw new Exception('No place details available for map', 500);
+        }
+    }
+
 	/**
 	 * Get an instance of JTable class
 	 *
@@ -276,6 +304,7 @@ class GuitarModelPlace extends JModelItem
             $table      = $this->getTable();
             $properties = $table->getProperties();
             $result     = null;
+            $id = null;
 
             if (key_exists('alias', $properties))
             {
@@ -285,8 +314,8 @@ class GuitarModelPlace extends JModelItem
             if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
                 return $result;
             } else {
-                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
-                                          }
+                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+            }
 	}
 
 	/**
@@ -398,8 +427,8 @@ class GuitarModelPlace extends JModelItem
                 if(!$id || $this->isAdminOrSuperUser() || $table->created_by == JFactory::getUser()->id){
                     return $table->delete($id);
                 } else {
-                                                throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
-                                          }
+                    throw new Exception(JText::_("JERROR_ALERTNOAUTHOR"), 401);
+                    }
 	}
 
 	

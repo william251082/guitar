@@ -75,20 +75,21 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
 
-									<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-				<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
-				<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
-				<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
-				<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
+                    <input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+                    <input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
+                    <input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
+                    <input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
+                    <input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
-				<?php echo $this->form->renderField('created_by'); ?>
-				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('title'); ?>
-				<?php echo $this->form->renderField('description'); ?>
-				<?php echo $this->form->renderField('release_date'); ?>
-				<?php echo $this->form->renderField('review'); ?>
-				<?php echo $this->form->renderField('rating'); ?>
-				<?php echo $this->form->renderField('credits'); ?>
-				<?php echo $this->form->renderField('guitarist'); ?>
+				    <?php echo $this->form->renderField('created_by'); ?>
+				    <?php echo $this->form->renderField('modified_by'); ?>
+                    <?php echo $this->form->renderField('title'); ?>
+				    <?php echo $this->form->renderField('description'); ?>
+				    <?php echo $this->form->renderField('release_date'); ?>
+				    <?php echo $this->form->renderField('review'); ?>
+				    <?php echo $this->form->renderField('rating'); ?>
+				    <?php echo $this->form->renderField('credits'); ?>
+				    <?php echo $this->form->renderField('guitarist'); ?>
 
 			<?php
 				foreach((array)$this->item->guitarist as $value): 
