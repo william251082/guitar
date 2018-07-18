@@ -18,8 +18,6 @@ jimport('joomla.application.component.modellist');
  */
 class GuitarModelSongs extends JModelList
 {
-    
-        
 /**
 	* Constructor.
 	*
