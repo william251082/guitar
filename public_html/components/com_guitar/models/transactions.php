@@ -151,7 +151,7 @@ class GuitarModelTransactions extends JModelList
 		// Join over the created by field 'modified_by'
 		$query->join('LEFT', '#__users AS modified_by ON modified_by.id = a.modified_by');
 		// Join over the foreign key 'guitarist'
-		$query->select('`#__guitar_guitarists_3044847`.`name` AS directors_fk_value_3044847');
+		$query->select('`#__guitar_guitarists_3044847`.`name` AS guitarists_fk_value_3044847');
 		$query->join('LEFT', '#__guitar_guitarists AS #__guitar_guitarists_3044847 ON #__guitar_guitarists_3044847.`id` = a.`guitarist`');
 		// Join over the foreign key 'place'
 		$query->select('`#__guitar_place_3044859`.`name` AS places_fk_value_3044859');

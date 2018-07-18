@@ -42,7 +42,7 @@
         <folder>js</folder>
         <folder>css</folder>
     </media>
-    <languages folder="site/languages">
+    <languages folder="site/language">
         
 			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
     </languages>
@@ -54,7 +54,7 @@
 
 			<menu link="option=com_categories&amp;extension=com_guitar.songs" view="categories" alt="Guitar/Categories">COM_GUITAR_SONGS_CATID</menu>
 
-			<menu link="option=com_guitar&amp;view=directors" view="directors" alt="Guitar/Directors">COM_GUITAR_TITLE_DIRECTORS</menu>
+			<menu link="option=com_guitar&amp;view=guitarists" view="guitarists" alt="Guitar/Guitarists">COM_GUITAR_TITLE_GUITARISTS</menu>
 
 			<menu link="option=com_guitar&amp;view=transactions" view="transactions" alt="Guitar/Transactions">COM_GUITAR_TITLE_TRANSACTIONS</menu>
 
@@ -81,7 +81,7 @@
             <folder>tables</folder>
             <folder>views</folder>
         </files>
-        <languages folder="administrator/languages">
+        <languages folder="administrator/language">
             
 			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_guitar.sys.ini</language>
@@ -101,5 +101,3 @@
 		<module module="mod_guitar" />
 	</modules>
 </extension>
-<!-- Component built by the Joomla Component Creator -->
-<!-- http://www.component-creator.com/ -->

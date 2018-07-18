@@ -16,7 +16,7 @@ jimport('joomla.application.component.modellist');
  *
  * @since  1.6
  */
-class GuitarModelTransactions extends JModelList
+class GuitarModelGuitarists extends JModelList
 {
     
         
@@ -38,11 +38,9 @@ class GuitarModelTransactions extends JModelList
 				'state', 'a.`state`',
 				'created_by', 'a.`created_by`',
 				'modified_by', 'a.`modified_by`',
-				'title', 'a.`title`',
-				'description', 'a.`description`',
-				'guitarist', 'a.`guitarist`',
-				'place', 'a.`place`',
-				'group', 'a.`group`',
+				'name', 'a.`name`',
+				'songs', 'a.`songs`',
+				'genre', 'a.`genre`',
 			);
 		}
 
@@ -80,7 +78,7 @@ class GuitarModelTransactions extends JModelList
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_groups'))
+                      ->from($db->quoteName('#__guitar_genre'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -119,11 +117,11 @@ class GuitarModelTransactions extends JModelList
 
 		$published = $app->getUserStateFromRequest($this->context . '.filter.state', 'filter_published', '', 'string');
 		$this->setState('filter.state', $published);
-		// Filtering guitarist
-		$this->setState('filter.guitarist', $app->getUserStateFromRequest($this->context.'.filter.guitarist', 'filter_guitarist', '', 'string'));
+		// Filtering songs
+		$this->setState('filter.songs', $app->getUserStateFromRequest($this->context.'.filter.songs', 'filter_songs', '', 'string'));
 
-		// Filtering group
-		$this->setState('filter.group', $app->getUserStateFromRequest($this->context.'.filter.group', 'filter_group', '', 'string'));
+		// Filtering genre
+		$this->setState('filter.genre', $app->getUserStateFromRequest($this->context.'.filter.genre', 'filter_genre', '', 'string'));
 
 
 		// Load the parameters.
@@ -131,7 +129,7 @@ class GuitarModelTransactions extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('a.description', 'asc');
+		parent::populateState('a.id', 'asc');
 	}
 
 	/**
@@ -179,7 +177,7 @@ class GuitarModelTransactions extends JModelList
 				'list.select', 'DISTINCT a.*'
 			)
 		);
-		$query->from('`#__guitar_transactions` AS a');
+		$query->from('`#__guitar_guitarists` AS a');
                 
 		// Join over the users for the checked out user
 		$query->select("uc.name AS uEditor");
@@ -195,15 +193,12 @@ class GuitarModelTransactions extends JModelList
 		// Join over the user field 'modified_by'
 		$query->select('`modified_by`.name AS `modified_by`');
 		$query->join('LEFT', '#__users AS `modified_by` ON `modified_by`.id = a.`modified_by`');
-		// Join over the foreign key 'guitarist'
-		$query->select('`#__guitar_guitarists_3044847`.`name` AS guitarists_fk_value_3044847');
-		$query->join('LEFT', '#__guitar_guitarists AS #__guitar_guitarists_3044847 ON #__guitar_guitarists_3044847.`id` = a.`guitarist`');
-		// Join over the foreign key 'place'
-		$query->select('`#__guitar_place_3044859`.`name` AS places_fk_value_3044859');
-		$query->join('LEFT', '#__guitar_place AS #__guitar_place_3044859 ON #__guitar_place_3044859.`id` = a.`place`');
-		// Join over the foreign key 'group'
-		$query->select('`#__guitar_groups_3044860`.`name` AS groups_fk_value_3044860');
-		$query->join('LEFT', '#__guitar_groups AS #__guitar_groups_3044860 ON #__guitar_groups_3044860.`id` = a.`group`');
+		// Join over the foreign key 'songs'
+		$query->select('`#__guitar_songs_3044774`.`title` AS songs_fk_value_3044774');
+		$query->join('LEFT', '#__guitar_songs AS #__guitar_songs_3044774 ON #__guitar_songs_3044774.`id` = a.`songs`');
+		// Join over the foreign key 'genre'
+		$query->select('`#__guitar_genre_3044777`.`name` AS genres_fk_value_3044777');
+		$query->join('LEFT', '#__guitar_genre AS #__guitar_genre_3044777 ON #__guitar_genre_3044777.`id` = a.`genre`');
                 
 
 		// Filter by published state
@@ -230,25 +225,25 @@ class GuitarModelTransactions extends JModelList
 			else
 			{
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where('( a.description LIKE ' . $search . ' )');
+				
 			}
 		}
                 
 
-		// Filtering guitarist
-		$filter_guitarist = $this->state->get("filter.guitarist");
+		// Filtering songs
+		$filter_songs = $this->state->get("filter.songs");
 
-		if ($filter_guitarist !== null && !empty($filter_guitarist))
+		if ($filter_songs !== null && !empty($filter_songs))
 		{
-			$query->where("a.`guitarist` = '".$db->escape($filter_guitarist)."'");
+			$query->where("a.`songs` = '".$db->escape($filter_songs)."'");
 		}
 
-		// Filtering group
-		$filter_group = $this->state->get("filter.group");
+		// Filtering genre
+		$filter_genre = $this->state->get("filter.genre");
 
-		if ($filter_group !== null && !empty($filter_group))
+		if ($filter_genre !== null && !empty($filter_genre))
 		{
-			$query->where("a.`group` = '".$db->escape($filter_group)."'");
+			$query->where("a.`genre` = '".$db->escape($filter_genre)."'");
 		}
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');
@@ -274,9 +269,9 @@ class GuitarModelTransactions extends JModelList
 		foreach ($items as $oneItem)
 		{
 
-			if (isset($oneItem->guitarist))
+			if (isset($oneItem->songs))
 			{
-				$values    = explode(',', $oneItem->guitarist);
+				$values    = explode(',', $oneItem->songs);
 				$textValue = array();
 
 				foreach ($values as $value)
@@ -284,8 +279,8 @@ class GuitarModelTransactions extends JModelList
 					$db    = JFactory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_guitarists_3044847`.`name`')
-						->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044847'))
+						->select('`#__guitar_songs_3044774`.`title`')
+						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3044774'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -293,16 +288,16 @@ class GuitarModelTransactions extends JModelList
 
 					if ($results)
 					{
-						$textValue[] = $results->name;
+						$textValue[] = $results->title;
 					}
 				}
 
-				$oneItem->guitarist = !empty($textValue) ? implode(', ', $textValue) : $oneItem->guitarist;
+				$oneItem->songs = !empty($textValue) ? implode(', ', $textValue) : $oneItem->songs;
 			}
 
-			if (isset($oneItem->group))
+			if (isset($oneItem->genre))
 			{
-				$values    = explode(',', $oneItem->group);
+				$values    = explode(',', $oneItem->genre);
 				$textValue = array();
 
 				foreach ($values as $value)
@@ -310,8 +305,8 @@ class GuitarModelTransactions extends JModelList
 					$db    = JFactory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_groups_3044860`.`name`')
-						->from($db->quoteName('#__guitar_groups', '#__guitar_groups_3044860'))
+						->select('`#__guitar_genre_3044777`.`name`')
+						->from($db->quoteName('#__guitar_genre', '#__guitar_genre_3044777'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -323,7 +318,7 @@ class GuitarModelTransactions extends JModelList
 					}
 				}
 
-				$oneItem->group = !empty($textValue) ? implode(', ', $textValue) : $oneItem->group;
+				$oneItem->genre = !empty($textValue) ? implode(', ', $textValue) : $oneItem->genre;
 			}
 		}
 

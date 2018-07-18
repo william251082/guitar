@@ -686,7 +686,7 @@ class Microdata
 	 * Return the expected display type: [normal|nested|meta]
 	 * In which way to display the Property:
 	 * normal -> itemprop="name"
-	 * nested -> itemprop="director" itemscope itemtype="https://schema.org/Person"
+	 * nested -> itemprop="guitarist" itemscope itemtype="https://schema.org/Person"
 	 * meta   -> `<meta itemprop="datePublished" content="1991-05-01">`
 	 *
 	 * @param   string  $type      The Type where to find the Property

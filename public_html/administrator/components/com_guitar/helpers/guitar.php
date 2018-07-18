@@ -42,9 +42,9 @@ class GuitarHelper
 		}
 
         JHtmlSidebar::addEntry(
-			JText::_('COM_GUITAR_TITLE_DIRECTORS'),
-			'index.php?option=com_guitar&view=directors',
-			$vName == 'directors'
+			JText::_('COM_GUITAR_TITLE_GUITARISTS'),
+			'index.php?option=com_guitar&view=guitarists',
+			$vName == 'guitarists'
 		);
 
         JHtmlSidebar::addEntry(

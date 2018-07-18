@@ -19,7 +19,7 @@ jimport('joomla.application.component.modellist');
  *
  * @since  1.6
  */
-class GuitarModelSongs extends JModelList
+class GuitarModelGuitarists extends JModelList
 {
 	/**
 	 * Constructor.
@@ -39,14 +39,8 @@ class GuitarModelSongs extends JModelList
 				'state', 'a.state',
 				'created_by', 'a.created_by',
 				'modified_by', 'a.modified_by',
-				'title', 'a.title',
-				'description', 'a.description',
-				'release_date', 'a.release_date',
-				'review', 'a.review',
-				'rating', 'a.rating',
-				'credits', 'a.credits',
-				'guitarist', 'a.guitarist',
-				'catid', 'a.catid',
+				'name', 'a.name',
+				'songs', 'a.songs',
 				'genre', 'a.genre',
 			);
 		}
@@ -143,7 +137,7 @@ class GuitarModelSongs extends JModelList
                         )
                 );
 
-            $query->from('`#__guitar_songs` AS a');
+            $query->from('`#__guitar_guitarists` AS a');
             
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS uEditor');
@@ -154,12 +148,12 @@ class GuitarModelSongs extends JModelList
 
 		// Join over the created by field 'modified_by'
 		$query->join('LEFT', '#__users AS modified_by ON modified_by.id = a.modified_by');
-		// Join over the foreign key 'guitarist'
-		$query->select('`#__guitar_guitarists_3044531`.`name` AS guitarists_fk_value_3044531');
-		$query->join('LEFT', '#__guitar_guitarists AS #__guitar_guitarists_3044531 ON #__guitar_guitarists_3044531.`id` = a.`guitarist`');
+		// Join over the foreign key 'songs'
+		$query->select('`#__guitar_songs_3044774`.`title` AS songs_fk_value_3044774');
+		$query->join('LEFT', '#__guitar_songs AS #__guitar_songs_3044774 ON #__guitar_songs_3044774.`id` = a.`songs`');
 		// Join over the foreign key 'genre'
-		$query->select('`#__guitar_genre_3044758`.`name` AS genres_fk_value_3044758');
-		$query->join('LEFT', '#__guitar_genre AS #__guitar_genre_3044758 ON #__guitar_genre_3044758.`id` = a.`genre`');
+		$query->select('`#__guitar_genre_3044777`.`name` AS genres_fk_value_3044777');
+		$query->join('LEFT', '#__guitar_genre AS #__guitar_genre_3044777 ON #__guitar_genre_3044777.`id` = a.`genre`');
 		if(!$this->isAdminOrSuperUser()){
 			$query->where("a.created_by = " . JFactory::getUser()->get("id"));
 		}
@@ -181,49 +175,16 @@ class GuitarModelSongs extends JModelList
                 else
                 {
                     $search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where('( a.title LIKE ' . $search . ' )');
                 }
             }
             
 
-		// Filtering release_date
-		// Checking "_dateformat"
-		$filter_release_date_from = $this->state->get("filter.release_date_from_dateformat");
-		$filter_Qrelease_date_from = (!empty($filter_release_date_from)) ? $this->isValidDate($filter_release_date_from) : null;
+		// Filtering songs
+		$filter_songs = $this->state->get("filter.songs");
 
-		if ($filter_Qrelease_date_from != null)
+		if ($filter_songs)
 		{
-			$query->where("a.release_date >= '" . $db->escape($filter_Qrelease_date_from) . "'");
-		}
-
-		$filter_release_date_to = $this->state->get("filter.release_date_to_dateformat");
-		$filter_Qrelease_date_to = (!empty($filter_release_date_to)) ? $this->isValidDate($filter_release_date_to) : null ;
-
-		if ($filter_Qrelease_date_to != null)
-		{
-			$query->where("a.release_date <= '" . $db->escape($filter_Qrelease_date_to) . "'");
-		}
-
-		// Filtering rating
-		$filter_rating = $this->state->get("filter.rating");
-		if ($filter_rating != '') {
-			$query->where("a.`rating` = '".$db->escape($filter_rating)."'");
-		}
-
-		// Filtering guitarist
-		$filter_guitarist = $this->state->get("filter.guitarist");
-
-		if ($filter_guitarist)
-		{
-			$query->where("a.`guitarist` = '".$db->escape($filter_guitarist)."'");
-		}
-
-		// Filtering catid
-		$filter_catid = $this->state->get("filter.catid");
-
-		if ($filter_catid)
-		{
-			$query->where("a.`catid` = '".$db->escape($filter_catid)."'");
+			$query->where("a.`songs` = '".$db->escape($filter_songs)."'");
 		}
 
 		// Filtering genre
@@ -258,12 +219,10 @@ class GuitarModelSongs extends JModelList
 		foreach ($items as $item)
 		{
 
-			$item->rating = JText::_('COM_GUITAR_SONGS_RATING_OPTION_' . strtoupper($item->rating));
-
-			if (isset($item->guitarist))
+			if (isset($item->songs))
 			{
 
-				$values    = explode(',', $item->guitarist);
+				$values    = explode(',', $item->songs);
 				$textValue = array();
 
 				foreach ($values as $value)
@@ -271,8 +230,8 @@ class GuitarModelSongs extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_guitarists_3044531`.`name`')
-						->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044531'))
+						->select('`#__guitar_songs_3044774`.`title`')
+						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3044774'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -280,31 +239,13 @@ class GuitarModelSongs extends JModelList
 
 					if ($results)
 					{
-						$textValue[] = $results->name;
+						$textValue[] = $results->title;
 					}
 				}
 
-				$item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $item->guitarist;
+				$item->songs = !empty($textValue) ? implode(', ', $textValue) : $item->songs;
 			}
 
-
-		if (isset($item->catid) && $item->catid != '')
-		{
-
-			$db    = Factory::getDbo();
-			$query = $db->getQuery(true);
-
-			$query
-				->select($db->quoteName('title'))
-				->from($db->quoteName('#__categories'))
-				->where('FIND_IN_SET(' . $db->quoteName('id') . ', ' . $db->quote($item->catid) . ')');
-
-			$db->setQuery($query);
-
-			$result = $db->loadColumn();
-
-			$item->catid = !empty($result) ? implode(', ', $result) : '';
-		}
 
 			if (isset($item->genre))
 			{
@@ -317,8 +258,8 @@ class GuitarModelSongs extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_genre_3044758`.`name`')
-						->from($db->quoteName('#__guitar_genre', '#__guitar_genre_3044758'))
+						->select('`#__guitar_genre_3044777`.`name`')
+						->from($db->quoteName('#__guitar_genre', '#__guitar_genre_3044777'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);

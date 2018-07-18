@@ -198,7 +198,7 @@ class GuitarModelGenres extends JModelList
 		$query->select('`#__guitar_songs_3044778`.`title` AS songs_fk_value_3044778');
 		$query->join('LEFT', '#__guitar_songs AS #__guitar_songs_3044778 ON #__guitar_songs_3044778.`id` = a.`songs`');
 		// Join over the foreign key 'guitarists'
-		$query->select('`#__guitar_guitarists_3044779`.`name` AS directors_fk_value_3044779');
+		$query->select('`#__guitar_guitarists_3044779`.`name` AS guitarists_fk_value_3044779');
 		$query->join('LEFT', '#__guitar_guitarists AS #__guitar_guitarists_3044779 ON #__guitar_guitarists_3044779.`id` = a.`guitarists`');
                 
 
