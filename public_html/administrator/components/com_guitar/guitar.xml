@@ -44,7 +44,7 @@
     </media>
     <languages folder="site/languages">
         
-			<language tag="en-US">en-US/en-US.com_guitar.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
     </languages>
     <administration>
         <menu>COM_GUITAR</menu>
@@ -83,8 +83,8 @@
         </files>
         <languages folder="administrator/languages">
             
-			<language tag="en-US">en-US/en-US.com_guitar.ini</language>
-			<language tag="en-US">en-US/en-US.com_guitar.sys.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_guitar.sys.ini</language>
         </languages>
     </administration>
     <config>
@@ -101,3 +101,5 @@
 		<module module="mod_guitar" />
 	</modules>
 </extension>
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.component-creator.com/ -->

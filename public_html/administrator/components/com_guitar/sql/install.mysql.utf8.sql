@@ -22,7 +22,7 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE IF NOT EXISTS `#__guitar_guitarists` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-
+`catid` TEXT NOT NULL ,
 `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 
 `ordering` INT(11)  NOT NULL ,
@@ -40,7 +40,7 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE IF NOT EXISTS `#__guitar_transactions` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-
+`catid` TEXT NOT NULL ,
 `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 
 `ordering` INT(11)  NOT NULL ,
@@ -59,7 +59,7 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE IF NOT EXISTS `#__guitar_groups` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-
+`catid` TEXT NOT NULL ,
 `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 
 `ordering` INT(11)  NOT NULL ,
@@ -77,7 +77,7 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE IF NOT EXISTS `#__guitar_place` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-
+`catid` TEXT NOT NULL ,
 `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 
 `ordering` INT(11)  NOT NULL ,
@@ -98,7 +98,7 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE IF NOT EXISTS `#__guitar_genre` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-
+`catid` TEXT NOT NULL ,
 `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 
 `ordering` INT(11)  NOT NULL ,
