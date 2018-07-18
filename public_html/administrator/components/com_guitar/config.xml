@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <fieldset label="COM_GUITAR" name="guitar">
-        <field name="show_guitarist" default="1" type="radio" label="COM_GUITAR_FORM_LBL_SHOW_GUITARIST" description="COM_GUITAR_FORM_DESC_SHOW_GUITARIST" hint="COM_GUITAR_FORM_LBL_SHOW_GUITARIST">
+        <field name="show_guitarist"
+               default="1" type="radio"
+               label="COM_GUITAR_FORM_LBL_SHOW_GUITARIST"
+               description="COM_GUITAR_FORM_DESC_SHOW_GUITARIST"
+               hint="COM_GUITAR_FORM_LBL_SHOW_GUITARIST"
+        >
   <option value="1">Yes</option>
   <option value="0">No</option>
 </field>

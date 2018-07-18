@@ -165,10 +165,12 @@ $sortFields = $this->getSortFields();
 				</td>				<td>
 
 					<?php echo $item->guitarist; ?>
-				</td>				<td>
-
+				</td>
+                        <td>
 					<?php echo $item->catid; ?>
-				</td>				<td>
+				        </td>
+
+                        <td>
 
 					<?php echo $item->genre; ?>
 				</td>

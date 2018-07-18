@@ -16,7 +16,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class GuitarTablesong extends JTable
+class GuitarTableSong extends JTable
 {
 	
 	/**
@@ -26,7 +26,7 @@ class GuitarTablesong extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTablesong', array('typeAlias' => 'com_guitar.song'));
+		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTableSong', array('typeAlias' => 'com_guitar.song'));
 		parent::__construct('#__guitar_songs', 'id', $db);
 	}
 
