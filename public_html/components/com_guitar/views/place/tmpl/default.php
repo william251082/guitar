@@ -20,7 +20,20 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 <div class="item_fields">
 
     <div id="map" class="map"></div>
+
     <div class="map-callout map-callout-bottom" id="greeting-container"></div>
+
+    <br>
+    <div id="searchmap">
+        <?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
+        <button type="button" class="btn btn-primary" onclick="searchHere();">
+            <?php echo JText::_('COM_GUITAR_SEARCH_HERE_BUTTON') ?>
+        </button>
+        <div id="searchresults">
+        </div>
+    </div>
+    <br>
+    <br>
 
 	<table class="table">
 		

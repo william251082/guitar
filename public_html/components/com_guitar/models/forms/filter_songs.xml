@@ -5,8 +5,25 @@
                label="COM_USERS_FILTER_SEARCH_DESC"
                class="js-stools-search-string" />
 
-        <field name="release_date.from" label="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_FROM" type="calendar" onchange="this.form.submit();" filter="safehtml" class="inputbox" showtime="false" translateformat="false" hint="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_FROM"/>
-<field name="release_date.to" label="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_TO" type="calendar" onchange="this.form.submit();" filter="safehtml" class="inputbox" showtime="false" translateformat="false" hint="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_TO"/>
+        <field name="release_date_from"
+               label="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_FROM"
+               type="calendar" onchange="this.form.submit();"
+               filter="safehtml"
+               class="inputbox"
+               showtime="false"
+               translateformat="false"
+               hint="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_FROM"
+        />
+<field name="release_date_to"
+       label="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_TO"
+       type="calendar"
+       onchange="this.form.submit();"
+       filter="safehtml"
+       class="inputbox"
+       showtime="false"
+       translateformat="false"
+       hint="COM_GUITAR_SONGS_RELEASE_DATE_FILTER_TO"
+/>
 <field name="rating" label="COM_GUITAR_FORM_LBL_SONG_RATING" type="list" onchange="this.form.submit();" default="COM_GUITAR_SONGS_RATING_FILTER">
   <option value="">COM_GUITAR_SONGS_RATING_FILTER</option>
   <option value="1">COM_GUITAR_SONGS_RATING_OPTION_1</option>

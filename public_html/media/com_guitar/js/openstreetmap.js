@@ -1,3 +1,5 @@
+var map;
+
 jQuery(document).ready(function() {
 
     // get the data passed from Joomla PHP
@@ -90,3 +92,42 @@ jQuery(document).ready(function() {
         }
     });
 });
+
+function getMapBounds(){
+    var mercatorMapbounds = map.getView().calculateExtent(map.getSize());
+    var latlngMapbounds = ol.proj.transformExtent(mercatorMapbounds,'EPSG:3857','EPSG:4326');
+    return { minlat: latlngMapbounds[1],
+        maxlat: latlngMapbounds[3],
+        minlng: latlngMapbounds[0],
+        maxlng: latlngMapbounds[2] }
+}
+
+function searchHere() {
+    var mapBounds = getMapBounds();
+    var token = jQuery("#token").attr("name");
+    jQuery.ajax({
+        data: { [token]: "1", task: "mapsearch", format: "json", mapBounds: mapBounds },
+        success: function(result, status, xhr) { displaySearchResults(result); },
+        error: function() { console.log('ajax call failed'); },
+    });
+}
+
+function displaySearchResults(result) {
+    if (result.success) {
+        var html = "";
+        for (var i=0; i<result.data.length; i++) {
+            html += "<p>" + result.data[i].greeting +
+                " @ " + result.data[i].latitude +
+                ", " + result.data[i].longitude + "</p>";
+        }
+        jQuery("#searchresults").html(html);
+    } else {
+        var msg = result.message;
+        if ((result.messages) && (result.messages.error)) {
+            for (var j=0; j<result.messages.error.length; j++) {
+                msg += "<br/>" + result.messages.error[j];
+            }
+        }
+        jQuery("#searchresults").html(msg);
+    }
+}

@@ -431,5 +431,29 @@ class GuitarModelPlace extends JModelItem
                     }
 	}
 
+    public function getMapSearchResults($mapbounds)
+    {
+        try
+        {
+            $db    = JFactory::getDbo();
+            $query = $db->getQuery(true);
+            $query->select('h.lat, h.lng')
+                ->from('#__guitar_place as h')
+                ->where('h.lat > ' . $mapbounds['minlat'] .
+                    ' AND h.lat < ' . $mapbounds['maxlat'] .
+                    ' AND h.lng > ' . $mapbounds['minlng'] .
+                    ' AND h.lng < ' . $mapbounds['maxlng']);
+            $db->setQuery($query);
+            $results = $db->loadObjectList();
+        }
+        catch (Exception $e)
+        {
+            $msg = $e->getMessage();
+            JFactory::getApplication()->enqueueMessage($msg, 'error');
+            $results = null;
+        }
+
+        return $results;
+    }
 	
 }

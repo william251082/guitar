@@ -39,4 +39,16 @@ class GuitarController extends JControllerLegacy
 
 		return $this;
 	}
+
+    public function mapsearch()
+    {
+        if (!JSession::checkToken('get'))
+        {
+            echo new JResponseJson(null, JText::_('JINVALID_TOKEN'), true);
+        }
+        else
+        {
+            parent::display();
+        }
+    }
 }

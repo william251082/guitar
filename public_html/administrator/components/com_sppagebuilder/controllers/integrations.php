@@ -56,7 +56,7 @@ class SppagebuilderControllerIntegrations extends JControllerLegacy
 			$url = $integrations->$component->downloadUrl;
 			$integration = $integrations->$component;
 		} else {
-			$report['message'] = JText::_('Unsble to find the download package');
+			$report['message'] = JText::_('Unable to find the download package');
 			$report['success'] = false;
 			die(json_encode($report));
 		}
