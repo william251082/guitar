@@ -1,2 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form><fieldset><field name="credit" filter="safehtml" type="text" label="COM_GUITAR_SUBFORM_LBL_CREDITS_CREDIT" description="COM_GUITAR_SUBFORM_DESC_CREDITS_CREDIT" hint="COM_GUITAR_SUBFORM_LBL_CREDITS_CREDIT"/><field name="date" class="inputbox" timeformat="12" filter="server_utc" showtime="false" singleheader="false" todaybutton="false" weeknumbers="false" filltable="false" type="calendar" label="COM_GUITAR_SUBFORM_LBL_CREDITS_DATE" description="COM_GUITAR_SUBFORM_DESC_CREDITS_DATE" hint="COM_GUITAR_SUBFORM_LBL_CREDITS_DATE"/></fieldset></form>
+<form>
+    <fieldset>
+        <field name="credit"
+               filter="safehtml"
+               type="text"
+               label="COM_GUITAR_SUBFORM_LBL_CREDITS_CREDIT"
+               description="COM_GUITAR_SUBFORM_DESC_CREDITS_CREDIT"
+               hint="COM_GUITAR_SUBFORM_LBL_CREDITS_CREDIT"
+        />
+        <field name="date"
+               class="inputbox"
+               timeformat="12"
+               filter="server_utc"
+               showtime="false"
+               singleheader="false"
+               todaybutton="false"
+               weeknumbers="false"
+               filltable="false"
+               type="calendar"
+               label="COM_GUITAR_SUBFORM_LBL_CREDITS_DATE"
+               description="COM_GUITAR_SUBFORM_DESC_CREDITS_DATE"
+               hint="COM_GUITAR_SUBFORM_LBL_CREDITS_DATE"
+        />
+    </fieldset>
+</form>
