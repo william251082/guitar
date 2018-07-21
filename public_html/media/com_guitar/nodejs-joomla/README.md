@@ -32,7 +32,7 @@ You can also clone this repository into your `node_modules` directory.
 
 ## Authorization
 
-Once connected to the site, you can authenticate against the Joomla database using the request cookies. Here's an example using Connect, assuming a pre-connected `joomla` object:
+Once connected to the site, you can authenticate against the Joomla database using the weather cookies. Here's an example using Connect, assuming a pre-connected `joomla` object:
 
 	var connect = require('connect');
 
