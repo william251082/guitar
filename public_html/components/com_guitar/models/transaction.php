@@ -177,40 +177,6 @@ class GuitarModelTransaction extends JModelItem
 			$this->_item->modified_by_name = Factory::getUser($this->_item->modified_by)->name;
 		}
 
-		if (isset($this->_item->guitarist) && $this->_item->guitarist != '')
-		{
-			if (is_object($this->_item->guitarist))
-			{
-				$this->_item->guitarist = ArrayHelper::fromObject($this->_item->guitarist);
-			}
-
-			$values = (is_array($this->_item->guitarist)) ? $this->_item->guitarist : explode(',',$this->_item->guitarist);
-
-			$textValue = array();
-
-			foreach ($values as $value)
-			{
-				$db    = Factory::getDbo();
-				$query = $db->getQuery(true);
-
-				$query
-					->select('`#__guitar_guitarists_3044847`.`name`')
-					->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044847'))
-					->where($db->quoteName('id') . ' = ' . $db->quote($value));
-
-				$db->setQuery($query);
-				$results = $db->loadObject();
-
-				if ($results)
-				{
-					$textValue[] = $results->name;
-				}
-			}
-
-			$this->_item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $this->_item->guitarist;
-
-		}
-
 		if (isset($this->_item->place) && $this->_item->place != '')
 		{
 			if (is_object($this->_item->place))
@@ -228,8 +194,8 @@ class GuitarModelTransaction extends JModelItem
 				$query = $db->getQuery(true);
 
 				$query
-					->select('`#__guitar_place_3044859`.`name`')
-					->from($db->quoteName('#__guitar_place', '#__guitar_place_3044859'))
+					->select('`#__guitar_places_3044859`.`name`')
+					->from($db->quoteName('#__guitar_places', '#__guitar_places_3044859'))
 					->where($db->quoteName('id') . ' = ' . $db->quote($value));
 
 				$db->setQuery($query);

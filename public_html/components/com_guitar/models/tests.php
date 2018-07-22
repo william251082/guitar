@@ -148,8 +148,8 @@ class GuitarModelTests extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_songs_3044778`.`title`')
-						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3044778'))
+						->select('`#__guitar_songs_3045569`.`title`')
+						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3045569'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -165,10 +165,10 @@ class GuitarModelTests extends JModelList
 			}
 
 
-			if (isset($item->guitarists))
+			if (isset($item->genre))
 			{
 
-				$values    = explode(',', $item->guitarists);
+				$values    = explode(',', $item->genre);
 				$textValue = array();
 
 				foreach ($values as $value)
@@ -176,8 +176,8 @@ class GuitarModelTests extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_guitarists_3044779`.`name`')
-						->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044779'))
+						->select('`#__guitar_genres_3045570`.`name`')
+						->from($db->quoteName('#__guitar_genres', '#__guitar_genres_3045570'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -189,7 +189,35 @@ class GuitarModelTests extends JModelList
 					}
 				}
 
-				$item->guitarists = !empty($textValue) ? implode(', ', $textValue) : $item->guitarists;
+				$item->genre = !empty($textValue) ? implode(', ', $textValue) : $item->genre;
+			}
+
+
+			if (isset($item->transaction))
+			{
+
+				$values    = explode(',', $item->transaction);
+				$textValue = array();
+
+				foreach ($values as $value)
+				{
+					$db    = Factory::getDbo();
+					$query = $db->getQuery(true);
+					$query
+						->select('`#__guitar_transactions_3045571`.`title`')
+						->from($db->quoteName('#__guitar_transactions', '#__guitar_transactions_3045571'))
+						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
+
+					$db->setQuery($query);
+					$results = $db->loadObject();
+
+					if ($results)
+					{
+						$textValue[] = $results->title;
+					}
+				}
+
+				$item->transaction = !empty($textValue) ? implode(', ', $textValue) : $item->transaction;
 			}
 
 		}

@@ -33,11 +33,6 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 		</tr>
 
 		<tr>
-			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_TRANSACTION_GUITARIST'); ?></th>
-			<td><?php echo $this->item->guitarist; ?></td>
-		</tr>
-
-		<tr>
 			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_TRANSACTION_PLACE'); ?></th>
 			<td><?php echo $this->item->place; ?></td>
 		</tr>

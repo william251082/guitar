@@ -223,18 +223,6 @@ class GuitarModelTransaction extends JModelAdmin
 					throw new Exception($table->getError());
 				}
 				
-				if (!empty($table->guitarist))
-				{
-					if (is_array($table->guitarist))
-					{
-						$table->guitarist = implode(',', $table->guitarist);
-					}
-				}
-				else
-				{
-					$table->guitarist = '';
-				}
-
 				if (!empty($table->place))
 				{
 					if (is_array($table->place))

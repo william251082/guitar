@@ -27,7 +27,7 @@ class GuitarTablegenre extends JTable
 	public function __construct(&$db)
 	{
 		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTablegenre', array('typeAlias' => 'com_guitar.genre'));
-		parent::__construct('#__guitar_genre', 'id', $db);
+		parent::__construct('#__guitar_genres', 'id', $db);
 	}
 
 	/**
@@ -78,18 +78,18 @@ class GuitarTablegenre extends JTable
 				$array['songs'] = '';
 			}
 
-		// Support for multiple or not foreign key field: guitarists
-			if(!empty($array['guitarists']))
+		// Support for multiple or not foreign key field: guitarist
+			if(!empty($array['guitarist']))
 			{
-				if(is_array($array['guitarists'])){
-					$array['guitarists'] = implode(',',$array['guitarists']);
+				if(is_array($array['guitarist'])){
+					$array['guitarist'] = implode(',',$array['guitarist']);
 				}
-				else if(strrpos($array['guitarists'], ',') != false){
-					$array['guitarists'] = explode(',',$array['guitarists']);
+				else if(strrpos($array['guitarist'], ',') != false){
+					$array['guitarist'] = explode(',',$array['guitarist']);
 				}
 			}
 			else {
-				$array['guitarists'] = '';
+				$array['guitarist'] = '';
 			}
 
 		if (isset($array['params']) && is_array($array['params']))

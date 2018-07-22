@@ -38,8 +38,8 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 		</tr>
 
 		<tr>
-			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_GENRE_GUITARISTS'); ?></th>
-			<td><?php echo $this->item->guitarists; ?></td>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_GENRE_GUITARIST'); ?></th>
+			<td><?php echo $this->item->guitarist; ?></td>
 		</tr>
 
 	</table>

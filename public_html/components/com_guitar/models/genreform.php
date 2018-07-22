@@ -55,7 +55,7 @@ class GuitarModelGenreForm extends JModelForm
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_genre'))
+                      ->from($db->quoteName('#__guitar_genres'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 

@@ -8,8 +8,8 @@
 			<![CDATA[COM_CONFIG_CONFIG_VIEW_DEFAULT_DESC]]>
 		</message>
 	</layout>
-	<fields name="request">
-		<fieldset name="request">
+	<fields name="weather">
+		<fieldset name="weather">
 			<field 
 				name="controller" 
 				type="hidden"

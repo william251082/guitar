@@ -16,7 +16,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class GuitarTableSong extends JTable
+class GuitarTablesong extends JTable
 {
 	
 	/**
@@ -26,7 +26,7 @@ class GuitarTableSong extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTableSong', array('typeAlias' => 'com_guitar.song'));
+		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTablesong', array('typeAlias' => 'com_guitar.song'));
 		parent::__construct('#__guitar_songs', 'id', $db);
 	}
 
@@ -91,20 +91,6 @@ class GuitarTableSong extends JTable
 			$array['rating'] = '';
 		}
 
-		// Support for multiple or not foreign key field: guitarist
-			if(!empty($array['guitarist']))
-			{
-				if(is_array($array['guitarist'])){
-					$array['guitarist'] = implode(',',$array['guitarist']);
-				}
-				else if(strrpos($array['guitarist'], ',') != false){
-					$array['guitarist'] = explode(',',$array['guitarist']);
-				}
-			}
-			else {
-				$array['guitarist'] = '';
-			}
-
 		// Support for multiple field: catid
 		if (isset($array['catid']))
 		{
@@ -138,6 +124,20 @@ class GuitarTableSong extends JTable
 			}
 			else {
 				$array['genre'] = '';
+			}
+
+		// Support for multiple or not foreign key field: guitarist
+			if(!empty($array['guitarist']))
+			{
+				if(is_array($array['guitarist'])){
+					$array['guitarist'] = implode(',',$array['guitarist']);
+				}
+				else if(strrpos($array['guitarist'], ',') != false){
+					$array['guitarist'] = explode(',',$array['guitarist']);
+				}
+			}
+			else {
+				$array['guitarist'] = '';
 			}
 
 		if (isset($array['params']) && is_array($array['params']))

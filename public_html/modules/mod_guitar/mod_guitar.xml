@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" method="upgrade" client="site">
     <name>MOD_GUITAR_NAME</name>
-    <creationDate>2018-07-17</creationDate>
+    <creationDate>2018-07-18</creationDate>
     <copyright>2018 com_guitar</copyright>
     <license>Proprietary License; For my customers only</license>
     <author>William del Rosario</author>
@@ -55,11 +55,11 @@
                     description="MOD_GUITAR_TABLE_DESC">
                     
 	<option value="#__guitar_songs">#__guitar_songs</option>
-	<option value="#__guitar_guitarists">#__guitar_guitarists</option>
 	<option value="#__guitar_transactions">#__guitar_transactions</option>
 	<option value="#__guitar_groups">#__guitar_groups</option>
-	<option value="#__guitar_place">#__guitar_place</option>
-	<option value="#__guitar_genre">#__guitar_genre</option>
+	<option value="#__guitar_places">#__guitar_places</option>
+	<option value="#__guitar_genres">#__guitar_genres</option>
+	<option value="#__guitar_guitarists">#__guitar_guitarists</option>
                 </field>
                 <field 
                     name="field" type="groupedlist" default=""
@@ -68,65 +68,66 @@
                     
 	<group label="#__guitar_songs">
 		<option value="id">id</option>
-		<option value="created_by">created_by</option>
-		<option value="modified_by">modified_by</option>
 		<option value="title">title</option>
 		<option value="description">description</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
 		<option value="release_date">release_date</option>
 		<option value="review">review</option>
 		<option value="rating">rating</option>
 		<option value="credits">credits</option>
-		<option value="guitarist">guitarist</option>
 		<option value="catid">catid</option>
 		<option value="genre">genre</option>
-	</group>
-	<group label="#__guitar_guitarists">
-		<option value="id">id</option>
-		<option value="created_by">created_by</option>
-		<option value="modified_by">modified_by</option>
-		<option value="name">name</option>
-		<option value="songs">songs</option>
-		<option value="genre">genre</option>
+		<option value="guitarist">guitarist</option>
 	</group>
 	<group label="#__guitar_transactions">
 		<option value="id">id</option>
-		<option value="created_by">created_by</option>
-		<option value="modified_by">modified_by</option>
 		<option value="title">title</option>
 		<option value="description">description</option>
-		<option value="guitarist">guitarist</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
 		<option value="place">place</option>
 		<option value="group">group</option>
 	</group>
 	<group label="#__guitar_groups">
 		<option value="id">id</option>
-		<option value="created_by">created_by</option>
-		<option value="modified_by">modified_by</option>
 		<option value="name">name</option>
 		<option value="description">description</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
 		<option value="transaction">transaction</option>
 		<option value="place">place</option>
 	</group>
-	<group label="#__guitar_place">
+	<group label="#__guitar_places">
 		<option value="id">id</option>
-		<option value="created_by">created_by</option>
-		<option value="modified_by">modified_by</option>
 		<option value="name">name</option>
 		<option value="description">description</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
 		<option value="lat">lat</option>
 		<option value="lng">lng</option>
 		<option value="country_code">country_code</option>
 		<option value="transaction">transaction</option>
 		<option value="group">group</option>
 	</group>
-	<group label="#__guitar_genre">
+	<group label="#__guitar_genres">
 		<option value="id">id</option>
-		<option value="created_by">created_by</option>
-		<option value="modified_by">modified_by</option>
 		<option value="name">name</option>
 		<option value="description">description</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
 		<option value="songs">songs</option>
-		<option value="guitarists">guitarists</option>
+		<option value="guitarist">guitarist</option>
+	</group>
+	<group label="#__guitar_guitarists">
+		<option value="id">id</option>
+		<option value="name">name</option>
+		<option value="description">description</option>
+		<option value="created_by">created_by</option>
+		<option value="modified_by">modified_by</option>
+		<option value="songs">songs</option>
+		<option value="genre">genre</option>
+		<option value="transaction">transaction</option>
 	</group>
                 </field>
                 <field 
@@ -148,11 +149,11 @@
                     description="MOD_GUITAR_TABLE_DESC">
                     
 	<option value="#__guitar_songs">#__guitar_songs</option>
-	<option value="#__guitar_guitarists">#__guitar_guitarists</option>
 	<option value="#__guitar_transactions">#__guitar_transactions</option>
 	<option value="#__guitar_groups">#__guitar_groups</option>
-	<option value="#__guitar_place">#__guitar_place</option>
-	<option value="#__guitar_genre">#__guitar_genre</option>
+	<option value="#__guitar_places">#__guitar_places</option>
+	<option value="#__guitar_genres">#__guitar_genres</option>
+	<option value="#__guitar_guitarists">#__guitar_guitarists</option>
                 </field>
                 <field 
                     name="item_id" type="text" filter="uint" class="input-small"

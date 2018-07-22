@@ -5,8 +5,7 @@
                label="COM_USERS_FILTER_SEARCH_DESC"
                class="js-stools-search-string" />
 
-        <field name="guitarist" type="sql" label="COM_GUITAR_FORM_LBL_TRANSACTION_GUITARIST" query="SELECT '' AS `id`, 'COM_GUITAR_TRANSACTIONS_GUITARIST_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_guitarists`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
-<field name="group" type="sql" label="COM_GUITAR_FORM_LBL_TRANSACTION_GROUP" query="SELECT '' AS `id`, 'COM_GUITAR_TRANSACTIONS_GROUP_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_groups`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+        <field name="group" type="sql" label="COM_GUITAR_FORM_LBL_TRANSACTION_GROUP" query="SELECT '' AS `id`, 'COM_GUITAR_TRANSACTIONS_GROUP_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_groups`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
 
 
     </fields>

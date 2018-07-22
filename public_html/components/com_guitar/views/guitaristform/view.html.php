@@ -19,7 +19,7 @@ jimport('joomla.application.component.view');
  *
  * @since  1.6
  */
-class GuitarViewGuitaristForm extends JViewLegacy
+class GuitarViewGuitaristform extends JViewLegacy
 {
 	protected $state;
 

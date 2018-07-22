@@ -68,7 +68,7 @@ class GuitarModelGenre extends JModelAdmin
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_genre'))
+                      ->from($db->quoteName('#__guitar_genres'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -235,16 +235,16 @@ class GuitarModelGenre extends JModelAdmin
 					$table->songs = '';
 				}
 
-				if (!empty($table->guitarists))
+				if (!empty($table->guitarist))
 				{
-					if (is_array($table->guitarists))
+					if (is_array($table->guitarist))
 					{
-						$table->guitarists = implode(',', $table->guitarists);
+						$table->guitarist = implode(',', $table->guitarist);
 					}
 				}
 				else
 				{
-					$table->guitarists = '';
+					$table->guitarist = '';
 				}
 
 
@@ -293,7 +293,7 @@ class GuitarModelGenre extends JModelAdmin
 			if (@$table->ordering === '')
 			{
 				$db = JFactory::getDbo();
-				$db->setQuery('SELECT MAX(ordering) FROM #__guitar_genre');
+				$db->setQuery('SELECT MAX(ordering) FROM #__guitar_genres');
 				$max             = $db->loadResult();
 				$table->ordering = $max + 1;
 			}

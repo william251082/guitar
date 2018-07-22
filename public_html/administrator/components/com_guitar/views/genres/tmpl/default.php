@@ -80,9 +80,6 @@ $sortFields = $this->getSortFields();
 				<th class='left'>
 				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_GENRES_SONGS', 'a.`songs`', $listDirn, $listOrder); ?>
 				</th>
-				<th class='left'>
-				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_GENRES_GUITARISTS', 'a.`guitarists`', $listDirn, $listOrder); ?>
-				</th>
 
 					
 				</tr>
@@ -156,9 +153,6 @@ $sortFields = $this->getSortFields();
 				</td>				<td>
 
 					<?php echo $item->songs; ?>
-				</td>				<td>
-
-					<?php echo $item->guitarists; ?>
 				</td>
 
 					</tr>

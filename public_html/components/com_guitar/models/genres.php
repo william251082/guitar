@@ -35,14 +35,14 @@ class GuitarModelGenres extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
+				'name', 'a.name',
+				'description', 'a.description',
 				'ordering', 'a.ordering',
 				'state', 'a.state',
 				'created_by', 'a.created_by',
 				'modified_by', 'a.modified_by',
-				'name', 'a.name',
-				'description', 'a.description',
 				'songs', 'a.songs',
-				'guitarists', 'a.guitarists',
+				'guitarist', 'a.guitarist',
 			);
 		}
 
@@ -138,7 +138,7 @@ class GuitarModelGenres extends JModelList
                         )
                 );
 
-            $query->from('`#__guitar_genre` AS a');
+            $query->from('`#__guitar_genres` AS a');
             
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS uEditor');
@@ -152,9 +152,9 @@ class GuitarModelGenres extends JModelList
 		// Join over the foreign key 'songs'
 		$query->select('`#__guitar_songs_3044778`.`title` AS songs_fk_value_3044778');
 		$query->join('LEFT', '#__guitar_songs AS #__guitar_songs_3044778 ON #__guitar_songs_3044778.`id` = a.`songs`');
-		// Join over the foreign key 'guitarists'
-		$query->select('`#__guitar_guitarists_3044779`.`name` AS guitarists_fk_value_3044779');
-		$query->join('LEFT', '#__guitar_guitarists AS #__guitar_guitarists_3044779 ON #__guitar_guitarists_3044779.`id` = a.`guitarists`');
+		// Join over the foreign key 'guitarist'
+		$query->select('`#__guitar_guitarists_3045573`.`name` AS guitarists_fk_value_3045573');
+		$query->join('LEFT', '#__guitar_guitarists AS #__guitar_guitarists_3045573 ON #__guitar_guitarists_3045573.`id` = a.`guitarist`');
 		if(!$this->isAdminOrSuperUser()){
 			$query->where("a.created_by = " . JFactory::getUser()->get("id"));
 		}
@@ -187,14 +187,6 @@ class GuitarModelGenres extends JModelList
 		if ($filter_songs)
 		{
 			$query->where("a.`songs` = '".$db->escape($filter_songs)."'");
-		}
-
-		// Filtering guitarists
-		$filter_guitarists = $this->state->get("filter.guitarists");
-
-		if ($filter_guitarists)
-		{
-			$query->where("a.`guitarists` = '".$db->escape($filter_guitarists)."'");
 		}
 
             // Add the list ordering clause.
@@ -249,10 +241,10 @@ class GuitarModelGenres extends JModelList
 			}
 
 
-			if (isset($item->guitarists))
+			if (isset($item->guitarist))
 			{
 
-				$values    = explode(',', $item->guitarists);
+				$values    = explode(',', $item->guitarist);
 				$textValue = array();
 
 				foreach ($values as $value)
@@ -260,8 +252,8 @@ class GuitarModelGenres extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_guitarists_3044779`.`name`')
-						->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044779'))
+						->select('`#__guitar_guitarists_3045573`.`name`')
+						->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3045573'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -273,7 +265,7 @@ class GuitarModelGenres extends JModelList
 					}
 				}
 
-				$item->guitarists = !empty($textValue) ? implode(', ', $textValue) : $item->guitarists;
+				$item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $item->guitarist;
 			}
 
 		}

@@ -55,7 +55,7 @@ class GuitarModelTestForm extends JModelForm
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_genre'))
+                      ->from($db->quoteName('#__guitar_guitarists'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -142,14 +142,14 @@ class GuitarModelTestForm extends JModelForm
                 
 				if ($id)
 				{
-					$canEdit = $user->authorise('core.edit', 'com_guitar.genre.' . $id) || $user->authorise('core.create', 'com_guitar.genre.' . $id);
+					$canEdit = $user->authorise('core.edit', 'com_guitar.guitarist.' . $id) || $user->authorise('core.create', 'com_guitar.guitarist.' . $id);
 				}
 				else
 				{
 					$canEdit = $user->authorise('core.edit', 'com_guitar') || $user->authorise('core.create', 'com_guitar');
 				}
 
-                if (!$canEdit && $user->authorise('core.edit.own', 'com_guitar.genre.' . $id))
+                if (!$canEdit && $user->authorise('core.edit.own', 'com_guitar.guitarist.' . $id))
                 {
                         $canEdit = $user->id == $table->created_by;
                 }
@@ -371,7 +371,7 @@ class GuitarModelTestForm extends JModelForm
         if ($id)
         {
             // Check the user can edit this item
-            $authorised = $user->authorise('core.edit', 'com_guitar.genre.' . $id) || $authorised = $user->authorise('core.edit.own', 'com_guitar.genre.' . $id);
+            $authorised = $user->authorise('core.edit', 'com_guitar.guitarist.' . $id) || $authorised = $user->authorise('core.edit.own', 'com_guitar.guitarist.' . $id);
         }
         else
         {
@@ -425,7 +425,7 @@ class GuitarModelTestForm extends JModelForm
                     throw new Exception(JText::_('COM_GUITAR_ITEM_DOESNT_EXIST'), 404);
             }
 
-            if ($user->authorise('core.delete', 'com_guitar.genre.' . $id) !== true)
+            if ($user->authorise('core.delete', 'com_guitar.guitarist.' . $id) !== true)
             {
                     throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
             }

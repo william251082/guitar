@@ -68,7 +68,7 @@ class GuitarModelPlace extends JModelAdmin
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_place'))
+                      ->from($db->quoteName('#__guitar_places'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -293,7 +293,7 @@ class GuitarModelPlace extends JModelAdmin
 			if (@$table->ordering === '')
 			{
 				$db = JFactory::getDbo();
-				$db->setQuery('SELECT MAX(ordering) FROM #__guitar_place');
+				$db->setQuery('SELECT MAX(ordering) FROM #__guitar_places');
 				$max             = $db->loadResult();
 				$table->ordering = $max + 1;
 			}

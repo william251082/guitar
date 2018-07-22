@@ -55,7 +55,7 @@ class GuitarModelGroup extends JModelItem
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_place'))
+                      ->from($db->quoteName('#__guitar_places'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -228,8 +228,8 @@ class GuitarModelGroup extends JModelItem
 				$query = $db->getQuery(true);
 
 				$query
-					->select('`#__guitar_place_3044872`.`name`')
-					->from($db->quoteName('#__guitar_place', '#__guitar_place_3044872'))
+					->select('`#__guitar_places_3044872`.`name`')
+					->from($db->quoteName('#__guitar_places', '#__guitar_places_3044872'))
 					->where($db->quoteName('id') . ' = ' . $db->quote($value));
 
 				$db->setQuery($query);

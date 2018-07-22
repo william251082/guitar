@@ -5,8 +5,8 @@
 			<![CDATA[COM_CONTENT_ARTICLE_VIEW_EDIT_DESC]]>
 		</message>
 	</layout>
-	<fieldset name="request">
-		<fields name="request">
+	<fieldset name="weather">
+		<fields name="weather">
 			<field
 				name="id"
 				type="hidden"

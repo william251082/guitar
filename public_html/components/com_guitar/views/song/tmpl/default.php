@@ -53,11 +53,6 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 		</tr>
 
 		<tr>
-			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_GUITARIST'); ?></th>
-			<td><?php echo $this->item->guitarist; ?></td>
-		</tr>
-
-		<tr>
 			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_CATID'); ?></th>
 			<td><?php echo $this->item->catid; ?></td>
 		</tr>
@@ -65,6 +60,11 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_guitar' . 
 		<tr>
 			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_GENRE'); ?></th>
 			<td><?php echo $this->item->genre; ?></td>
+		</tr>
+
+		<tr>
+			<th><?php echo JText::_('COM_GUITAR_FORM_LBL_SONG_GUITARIST'); ?></th>
+			<td><?php echo $this->item->guitarist; ?></td>
 		</tr>
 
 	</table>

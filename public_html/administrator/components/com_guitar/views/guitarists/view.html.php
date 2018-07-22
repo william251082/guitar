@@ -71,7 +71,7 @@ class GuitarViewGuitarists extends JViewLegacy
 		JToolBarHelper::title(JText::_('COM_GUITAR_TITLE_GUITARISTS'), 'guitarists.png');
 
 		// Check if the form exists before showing the add/edit buttons
-		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/guitarists';
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/guitarist';
 
 		if (file_exists($formPath))
 		{
@@ -150,9 +150,10 @@ class GuitarViewGuitarists extends JViewLegacy
 	{
 		return array(
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
+			'a.`name`' => JText::_('COM_GUITAR_GUITARISTS_NAME'),
+			'a.`description`' => JText::_('COM_GUITAR_GUITARISTS_DESCRIPTION'),
 			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.`state`' => JText::_('JSTATUS'),
-			'a.`name`' => JText::_('COM_GUITAR_GUITARISTS_NAME'),
 			'a.`songs`' => JText::_('COM_GUITAR_GUITARISTS_SONGS'),
 			'a.`genre`' => JText::_('COM_GUITAR_GUITARISTS_GENRE'),
 		);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
     <name>com_guitar</name>
-    <creationDate>2018-07-17</creationDate>
+    <creationDate>2018-07-18</creationDate>
     <copyright>2018 com_guitar</copyright>
     <license>Proprietary License; For my customers only</license>
     <author>William del Rosario</author>
@@ -9,8 +9,6 @@
     <authorUrl>http://guitarsessions.joomla.com</authorUrl>
     <version>CVS: 1.0.0</version>
     <description>Guitarists Hangout Website</description>
-    <!--  The version string is recorded in the components table -->
-    <version>0.0.19</version>
     
     <scriptfile>script.php</scriptfile>
     
@@ -44,7 +42,7 @@
         <folder>js</folder>
         <folder>css</folder>
     </media>
-    <languages folder="site/language">
+    <languages folder="site/languages">
         
 			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
     </languages>
@@ -56,8 +54,6 @@
 
 			<menu link="option=com_categories&amp;extension=com_guitar.songs" view="categories" alt="Guitar/Categories">COM_GUITAR_SONGS_CATID</menu>
 
-			<menu link="option=com_guitar&amp;view=guitarists" view="guitarists" alt="Guitar/Guitarists">COM_GUITAR_TITLE_GUITARISTS</menu>
-
 			<menu link="option=com_guitar&amp;view=transactions" view="transactions" alt="Guitar/Transactions">COM_GUITAR_TITLE_TRANSACTIONS</menu>
 
 			<menu link="option=com_guitar&amp;view=groups" view="groups" alt="Guitar/Groups">COM_GUITAR_TITLE_GROUPS</menu>
@@ -65,6 +61,8 @@
 			<menu link="option=com_guitar&amp;view=places" view="places" alt="Guitar/Places">COM_GUITAR_TITLE_PLACES</menu>
 
 			<menu link="option=com_guitar&amp;view=genres" view="genres" alt="Guitar/Genres">COM_GUITAR_TITLE_GENRES</menu>
+
+			<menu link="option=com_guitar&amp;view=guitarists" view="guitarists" alt="Guitar/Guitarists">COM_GUITAR_TITLE_GUITARISTS</menu>
 
 			<menu link="option=com_guitar&amp;view=tests" view="tests" alt="Guitar/Tests">COM_GUITAR_TITLE_TESTS</menu>
 
@@ -83,7 +81,7 @@
             <folder>tables</folder>
             <folder>views</folder>
         </files>
-        <languages folder="administrator/language">
+        <languages folder="administrator/languages">
             
 			<language tag="en-GB">en-GB/en-GB.com_guitar.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_guitar.sys.ini</language>
@@ -103,3 +101,5 @@
 		<module module="mod_guitar" />
 	</modules>
 </extension>
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.component-creator.com/ -->

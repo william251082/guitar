@@ -148,12 +148,12 @@ class GuitarViewTests extends JViewLegacy
 	{
 		return array(
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
+			'a.`name`' => JText::_('COM_GUITAR_GUITARISTS_NAME'),
+			'a.`description`' => JText::_('COM_GUITAR_GUITARISTS_DESCRIPTION'),
 			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.`state`' => JText::_('JSTATUS'),
-			'a.`name`' => JText::_('COM_GUITAR_GENRES_NAME'),
-			'a.`description`' => JText::_('COM_GUITAR_GENRES_DESCRIPTION'),
-			'a.`songs`' => JText::_('COM_GUITAR_GENRES_SONGS'),
-			'a.`guitarists`' => JText::_('COM_GUITAR_GENRES_GUITARISTS'),
+			'a.`songs`' => JText::_('COM_GUITAR_GUITARISTS_SONGS'),
+			'a.`genre`' => JText::_('COM_GUITAR_GUITARISTS_GENRE'),
 		);
 	}
 

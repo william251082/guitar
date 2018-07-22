@@ -55,7 +55,7 @@ class GuitarModelGuitarist extends JModelItem
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_genre'))
+                      ->from($db->quoteName('#__guitar_transactions'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -194,8 +194,8 @@ class GuitarModelGuitarist extends JModelItem
 				$query = $db->getQuery(true);
 
 				$query
-					->select('`#__guitar_songs_3044774`.`title`')
-					->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3044774'))
+					->select('`#__guitar_songs_3045569`.`title`')
+					->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3045569'))
 					->where($db->quoteName('id') . ' = ' . $db->quote($value));
 
 				$db->setQuery($query);
@@ -228,8 +228,8 @@ class GuitarModelGuitarist extends JModelItem
 				$query = $db->getQuery(true);
 
 				$query
-					->select('`#__guitar_genre_3044777`.`name`')
-					->from($db->quoteName('#__guitar_genre', '#__guitar_genre_3044777'))
+					->select('`#__guitar_genres_3045570`.`name`')
+					->from($db->quoteName('#__guitar_genres', '#__guitar_genres_3045570'))
 					->where($db->quoteName('id') . ' = ' . $db->quote($value));
 
 				$db->setQuery($query);
@@ -242,6 +242,40 @@ class GuitarModelGuitarist extends JModelItem
 			}
 
 			$this->_item->genre = !empty($textValue) ? implode(', ', $textValue) : $this->_item->genre;
+
+		}
+
+		if (isset($this->_item->transaction) && $this->_item->transaction != '')
+		{
+			if (is_object($this->_item->transaction))
+			{
+				$this->_item->transaction = ArrayHelper::fromObject($this->_item->transaction);
+			}
+
+			$values = (is_array($this->_item->transaction)) ? $this->_item->transaction : explode(',',$this->_item->transaction);
+
+			$textValue = array();
+
+			foreach ($values as $value)
+			{
+				$db    = Factory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query
+					->select('`#__guitar_transactions_3045571`.`title`')
+					->from($db->quoteName('#__guitar_transactions', '#__guitar_transactions_3045571'))
+					->where($db->quoteName('id') . ' = ' . $db->quote($value));
+
+				$db->setQuery($query);
+				$results = $db->loadObject();
+
+				if ($results)
+				{
+					$textValue[] = $results->title;
+				}
+			}
+
+			$this->_item->transaction = !empty($textValue) ? implode(', ', $textValue) : $this->_item->transaction;
 
 		}
 

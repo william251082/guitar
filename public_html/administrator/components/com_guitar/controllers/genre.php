@@ -8,25 +8,25 @@
  */
 
 // No direct access
-use Joomla\CMS\MVC\Controller\FormController;
-
 defined('_JEXEC') or die;
+
+jimport('joomla.application.component.controllerform');
 
 /**
  * Genre controller class.
  *
  * @since  1.6
  */
-class GuitarControllerGenre extends FormController
+class GuitarControllerGenre extends JControllerForm
 {
-//	/**
-//	 * Constructor
-//	 *
-//	 * @throws Exception
-//	 */
-//	public function __construct()
-//	{
-//		$this->view_list = 'genres';
-//		parent::__construct();
-//	}
+	/**
+	 * Constructor
+	 *
+	 * @throws Exception
+	 */
+	public function __construct()
+	{
+		$this->view_list = 'genres';
+		parent::__construct();
+	}
 }

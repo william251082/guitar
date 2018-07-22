@@ -27,7 +27,7 @@ class GuitarTableplace extends JTable
 	public function __construct(&$db)
 	{
 		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTableplace', array('typeAlias' => 'com_guitar.place'));
-		parent::__construct('#__guitar_place', 'id', $db);
+		parent::__construct('#__guitar_places', 'id', $db);
 	}
 
 	/**

@@ -1,98 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
   <fieldset>
-    <field name="id"
-           type="text"
-           readonly="true"
-           class="readonly"
-           default="0"
-           description="JGLOBAL_FIELD_ID_DESC"
-    />
-    <field name="ordering"
-    />
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="title" filter="safehtml" type="text" required="true" message="Please enter a title" label="COM_GUITAR_FORM_LBL_SONG_TITLE" description="COM_GUITAR_FORM_DESC_SONG_TITLE" hint="COM_GUITAR_FORM_LBL_SONG_TITLE"/>
+    <field name="description" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" required="true" message="Please enter a description" label="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION" description="COM_GUITAR_FORM_DESC_SONG_DESCRIPTION" hint="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION"/>
+    <field name="ordering"/>
     <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
       <option value="1">JPUBLISHED</option>
       <option value="0">JUNPUBLISHED</option>
       <option value="2">JARCHIVED</option>
       <option value="-2">JTRASHED</option>
     </field>
-
-    <field name="checked_out"
-           type="hidden"
-           filter="unset"
-    />
-    <field name="checked_out_time"
-           default="0000-00-00 00:00:00"
-           type="hidden"
-           filter="unset"
-    />
-    <field name="created_by"
-           type="createdby"
-           default="0"
-           label="COM_GUITAR_FORM_LBL_SONG_CREATED_BY"
-           description="COM_GUITAR_FORM_DESC_SONG_CREATED_BY"
-           hidden="true"
-           hint="COM_GUITAR_FORM_LBL_SONG_CREATED_BY"
-    />
-    <field name="modified_by"
-           type="modifiedby"
-           default="0"
-           label="COM_GUITAR_FORM_LBL_SONG_MODIFIED_BY"
-           description="COM_GUITAR_FORM_DESC_SONG_MODIFIED_BY"
-           hidden="true"
-           hint="COM_GUITAR_FORM_LBL_SONG_MODIFIED_BY"
-    />
-    <field name="title"
-           filter="safehtml"
-           type="text"
-           required="true"
-           message="Please enter a title"
-           label="COM_GUITAR_FORM_LBL_SONG_TITLE"
-           description="COM_GUITAR_FORM_DESC_SONG_TITLE"
-           hint="COM_GUITAR_FORM_LBL_SONG_TITLE"
-    />
-    <field name="description"
-           editor="|"
-           buttons="false"
-           filter="JComponentHelper::filterText"
-           type="editor"
-           required="true"
-           message="Please enter a description"
-           label="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION"
-           description="COM_GUITAR_FORM_DESC_SONG_DESCRIPTION"
-           hint="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION"
-    />
-    <field name="release_date"
-           class="inputbox"
-           timeformat="12"
-           filter="server_utc"
-           showtime="false"
-           singleheader="false"
-           todaybutton="false"
-           weeknumbers="false"
-           filltable="false"
-           type="calendar"
-           required="true"
-           message="Please select a release date."
-           label="COM_GUITAR_FORM_LBL_SONG_RELEASE_DATE"
-           description="COM_GUITAR_FORM_DESC_SONG_RELEASE_DATE"
-           hint="COM_GUITAR_FORM_LBL_SONG_RELEASE_DATE"
-    />
-    <field name="review"
-           editor="|"
-           buttons="false"
-           filter="JComponentHelper::filterText"
-           type="editor"
-           label="COM_GUITAR_FORM_LBL_SONG_REVIEW"
-           description="COM_GUITAR_FORM_DESC_SONG_REVIEW"
-           hint="COM_GUITAR_FORM_LBL_SONG_REVIEW"
-    />
-    <field name="rating"
-           type="list"
-           label="COM_GUITAR_FORM_LBL_SONG_RATING"
-           description="COM_GUITAR_FORM_DESC_SONG_RATING"
-           hint="COM_GUITAR_FORM_LBL_SONG_RATING"
-    >
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+    <field name="created_by" type="createdby" default="0" label="COM_GUITAR_FORM_LBL_SONG_CREATED_BY" description="COM_GUITAR_FORM_DESC_SONG_CREATED_BY" hidden="true" hint="COM_GUITAR_FORM_LBL_SONG_CREATED_BY"/>
+    <field name="modified_by" type="modifiedby" default="0" label="COM_GUITAR_FORM_LBL_SONG_MODIFIED_BY" description="COM_GUITAR_FORM_DESC_SONG_MODIFIED_BY" hidden="true" hint="COM_GUITAR_FORM_LBL_SONG_MODIFIED_BY"/>
+    <field name="release_date" class="inputbox" timeformat="12" filter="server_utc" showtime="false" singleheader="false" todaybutton="false" weeknumbers="false" filltable="false" type="calendar" required="true" message="Please select a release date." label="COM_GUITAR_FORM_LBL_SONG_RELEASE_DATE" description="COM_GUITAR_FORM_DESC_SONG_RELEASE_DATE" hint="COM_GUITAR_FORM_LBL_SONG_RELEASE_DATE"/>
+    <field name="review" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" label="COM_GUITAR_FORM_LBL_SONG_REVIEW" description="COM_GUITAR_FORM_DESC_SONG_REVIEW" hint="COM_GUITAR_FORM_LBL_SONG_REVIEW"/>
+    <field name="rating" type="list" label="COM_GUITAR_FORM_LBL_SONG_RATING" description="COM_GUITAR_FORM_DESC_SONG_RATING" hint="COM_GUITAR_FORM_LBL_SONG_RATING">
       <option value="1">COM_GUITAR_SONGS_RATING_OPTION_1</option>
       <option value="2">COM_GUITAR_SONGS_RATING_OPTION_2</option>
       <option value="3">COM_GUITAR_SONGS_RATING_OPTION_3</option>
@@ -100,66 +25,14 @@
       <option value="5">COM_GUITAR_SONGS_RATING_OPTION_5</option>
       <option value="">COM_GUITAR_SONGS_RATING_OPTION_</option>
     </field>
-    <field name="credits"
-           multiple="true"
-           formsource="administrator/components/com_guitar/models/forms/subform_credits.xml"
-           layout="joomla.form.field.subform.repeatable"
-           type="subform"
-           label="COM_GUITAR_FORM_LBL_SONG_CREDITS"
-           description="COM_GUITAR_FORM_DESC_SONG_CREDITS"
-           hint="COM_GUITAR_FORM_LBL_SONG_CREDITS"
-    />
-    <field name="guitarist"
-           type="foreignkey"
-           label="COM_GUITAR_FORM_LBL_SONG_GUITARIST"
-           description="COM_GUITAR_FORM_DESC_SONG_GUITARIST"
-           class="inputbox"
-           input_type="list"
-           table="#__guitar_guitarists"
-           key_field="id"
-           value_field="name"
-           required="true"
-           default=""
-    />
-    <field name="catid"
-           extension="com_guitar.songs"
-           type="category"
-           label="COM_GUITAR_FORM_LBL_SONG_CATID"
-           description="COM_GUITAR_FORM_DESC_SONG_CATID"
-           hint="COM_GUITAR_FORM_LBL_SONG_CATID"
-    />
-    <field name="genre"
-           type="foreignkey"
-           label="COM_GUITAR_FORM_LBL_SONG_GENRE"
-           description="COM_GUITAR_FORM_DESC_SONG_GENRE"
-           class="inputbox"
-           input_type="list"
-           table="#__guitar_genre"
-           key_field="id"
-           value_field="name"
-           default="0"
-    />
-    <field name="version_note"
-           type="text"
-           label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
-           description="JGLOBAL_FIELD_VERSION_NOTE_DESC"
-           class="inputbox"
-           size="45"
-           labelclass="control-label"
-    />
+    <field name="credits" multiple="true" formsource="administrator/components/com_guitar/models/forms/subform_credits.xml" layout="joomla.form.field.subform.repeatable" type="subform" label="COM_GUITAR_FORM_LBL_SONG_CREDITS" description="COM_GUITAR_FORM_DESC_SONG_CREDITS" hint="COM_GUITAR_FORM_LBL_SONG_CREDITS"/>
+    <field name="catid" extension="com_guitar.songs" type="category" label="COM_GUITAR_FORM_LBL_SONG_CATID" description="COM_GUITAR_FORM_DESC_SONG_CATID" hint="COM_GUITAR_FORM_LBL_SONG_CATID"/>
+    <field name="genre" type="foreignkey" label="COM_GUITAR_FORM_LBL_SONG_GENRE" description="COM_GUITAR_FORM_DESC_SONG_GENRE" class="inputbox" input_type="list" table="#__guitar_genres" key_field="id" value_field="name" default="0"/>
+    <field name="guitarist" type="foreignkey" label="COM_GUITAR_FORM_LBL_SONG_GUITARIST" description="COM_GUITAR_FORM_DESC_SONG_GUITARIST" class="inputbox" input_type="list" table="#__guitar_guitarists" key_field="id" value_field="name" required="true" default=""/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
   </fieldset>
   <fieldset name="accesscontrol">
-    <field name="asset_id" type="hidden" filter="unset"
-    />
-    <field name="rules"
-           type="rules"
-           label="JFIELD_RULES_LABEL"
-           translate_label="false"
-           filter="rules"
-           validate="rules"
-           class="inputbox"
-           component="com_guitar"
-           section="song"
-    />
+    <field name="asset_id" type="hidden" filter="unset"/>
+    <field name="rules" type="rules" label="JFIELD_RULES_LABEL" translate_label="false" filter="rules" validate="rules" class="inputbox" component="com_guitar" section="song"/>
   </fieldset>
 </form>

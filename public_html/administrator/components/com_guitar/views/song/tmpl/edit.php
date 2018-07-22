@@ -22,14 +22,7 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 <script type="text/javascript">
 	js = jQuery.noConflict();
 	js(document).ready(function () {
-
-	js('input:hidden.guitarist').each(function(){
-		var name = js(this).attr('name');
-		if(name.indexOf('guitaristhidden')){
-			js('#jform_guitarist option[value="'+js(this).val()+'"]').attr('selected',true);
-		}
-	});
-	js("#jform_guitarist").trigger("liszt:updated");
+		
 	js('input:hidden.catid').each(function(){
 		var name = js(this).attr('name');
 		if(name.indexOf('catidhidden')){
@@ -44,6 +37,13 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 		}
 	});
 	js("#jform_genre").trigger("liszt:updated");
+	js('input:hidden.guitarist').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('guitaristhidden')){
+			js('#jform_guitarist option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_guitarist").trigger("liszt:updated");
 	});
 
 	Joomla.submitbutton = function (task) {
@@ -51,9 +51,9 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 			Joomla.submitform(task, document.getElementById('song-form'));
 		}
 		else {
-
+			
 			if (task != 'song.cancel' && document.formvalidator.isValid(document.id('song-form'))) {
-
+				
 				Joomla.submitform(task, document.getElementById('song-form'));
 			}
 			else {
@@ -74,32 +74,24 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
-                    <input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
-                    <input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
-                    <input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
-                    <input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
-                    <input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
-					<?php echo $this->form->renderField('created_by'); ?>
-					<?php echo $this->form->renderField('modified_by'); ?>
-					<?php echo $this->form->renderField('title'); ?>
-					<?php echo $this->form->renderField('description'); ?>
-					<?php echo $this->form->renderField('release_date'); ?>
-					<?php echo $this->form->renderField('review'); ?>
-					<?php echo $this->form->renderField('rating'); ?>
-					<?php echo $this->form->renderField('credits'); ?>
-					<?php echo $this->form->renderField('guitarist'); ?>
+									<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+				<?php echo $this->form->renderField('title'); ?>
+				<?php echo $this->form->renderField('description'); ?>
+				<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
+				<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
+				<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
+				<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
-			<?php
-				foreach((array)$this->item->guitarist as $value):
-					if(!is_array($value)):
-						echo '<input type="hidden" class="guitarist" name="jform[guitaristhidden]['.$value.']" value="'.$value.'" />';
-					endif;
-				endforeach;
-			?>				<?php echo $this->form->renderField('catid'); ?>
+				<?php echo $this->form->renderField('created_by'); ?>
+				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('release_date'); ?>
+				<?php echo $this->form->renderField('review'); ?>
+				<?php echo $this->form->renderField('rating'); ?>
+				<?php echo $this->form->renderField('credits'); ?>
+				<?php echo $this->form->renderField('catid'); ?>
 
 			<?php
-				foreach((array)$this->item->catid as $value):
+				foreach((array)$this->item->catid as $value): 
 					if(!is_array($value)):
 						echo '<input type="hidden" class="catid" name="jform[catidhidden]['.$value.']" value="'.$value.'" />';
 					endif;
@@ -107,9 +99,17 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 			?>				<?php echo $this->form->renderField('genre'); ?>
 
 			<?php
-				foreach((array)$this->item->genre as $value):
+				foreach((array)$this->item->genre as $value): 
 					if(!is_array($value)):
 						echo '<input type="hidden" class="genre" name="jform[genrehidden]['.$value.']" value="'.$value.'" />';
+					endif;
+				endforeach;
+			?>				<?php echo $this->form->renderField('guitarist'); ?>
+
+			<?php
+				foreach((array)$this->item->guitarist as $value): 
+					if(!is_array($value)):
+						echo '<input type="hidden" class="guitarist" name="jform[guitaristhidden]['.$value.']" value="'.$value.'" />';
 					endif;
 				endforeach;
 			?>

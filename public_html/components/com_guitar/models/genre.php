@@ -211,14 +211,14 @@ class GuitarModelGenre extends JModelItem
 
 		}
 
-		if (isset($this->_item->guitarists) && $this->_item->guitarists != '')
+		if (isset($this->_item->guitarist) && $this->_item->guitarist != '')
 		{
-			if (is_object($this->_item->guitarists))
+			if (is_object($this->_item->guitarist))
 			{
-				$this->_item->guitarists = ArrayHelper::fromObject($this->_item->guitarists);
+				$this->_item->guitarist = ArrayHelper::fromObject($this->_item->guitarist);
 			}
 
-			$values = (is_array($this->_item->guitarists)) ? $this->_item->guitarists : explode(',',$this->_item->guitarists);
+			$values = (is_array($this->_item->guitarist)) ? $this->_item->guitarist : explode(',',$this->_item->guitarist);
 
 			$textValue = array();
 
@@ -228,8 +228,8 @@ class GuitarModelGenre extends JModelItem
 				$query = $db->getQuery(true);
 
 				$query
-					->select('`#__guitar_guitarists_3044779`.`name`')
-					->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044779'))
+					->select('`#__guitar_guitarists_3045573`.`name`')
+					->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3045573'))
 					->where($db->quoteName('id') . ' = ' . $db->quote($value));
 
 				$db->setQuery($query);
@@ -241,7 +241,7 @@ class GuitarModelGenre extends JModelItem
 				}
 			}
 
-			$this->_item->guitarists = !empty($textValue) ? implode(', ', $textValue) : $this->_item->guitarists;
+			$this->_item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $this->_item->guitarist;
 
 		}
 

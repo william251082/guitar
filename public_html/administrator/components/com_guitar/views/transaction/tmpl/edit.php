@@ -23,13 +23,6 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 	js = jQuery.noConflict();
 	js(document).ready(function () {
 		
-	js('input:hidden.guitarist').each(function(){
-		var name = js(this).attr('name');
-		if(name.indexOf('guitaristhidden')){
-			js('#jform_guitarist option[value="'+js(this).val()+'"]').attr('selected',true);
-		}
-	});
-	js("#jform_guitarist").trigger("liszt:updated");
 	js('input:hidden.place').each(function(){
 		var name = js(this).attr('name');
 		if(name.indexOf('placehidden')){
@@ -76,23 +69,15 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 				<fieldset class="adminform">
 
 									<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+				<?php echo $this->form->renderField('title'); ?>
+				<?php echo $this->form->renderField('description'); ?>
 				<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
 				<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
 				<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
 				<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
 				<?php echo $this->form->renderField('created_by'); ?>
-				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('title'); ?>
-				<?php echo $this->form->renderField('description'); ?>
-				<?php echo $this->form->renderField('guitarist'); ?>
-
-			<?php
-				foreach((array)$this->item->guitarist as $value): 
-					if(!is_array($value)):
-						echo '<input type="hidden" class="guitarist" name="jform[guitaristhidden]['.$value.']" value="'.$value.'" />';
-					endif;
-				endforeach;
-			?>				<?php echo $this->form->renderField('place'); ?>
+				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('place'); ?>
 
 			<?php
 				foreach((array)$this->item->place as $value): 

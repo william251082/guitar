@@ -247,6 +247,18 @@ class GuitarModelGuitarist extends JModelAdmin
 					$table->genre = '';
 				}
 
+				if (!empty($table->transaction))
+				{
+					if (is_array($table->transaction))
+					{
+						$table->transaction = implode(',', $table->transaction);
+					}
+				}
+				else
+				{
+					$table->transaction = '';
+				}
+
 
 				// Trigger the before save event.
 				$result = $dispatcher->trigger($this->event_before_save, array($context, &$table, true));

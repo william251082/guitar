@@ -59,7 +59,7 @@
 	* How to migrate from 1.5.x to 3.x? Tutorial: https://docs.joomla.org/Special:MyLanguage/Joomla_1.5_to_3.x_Step_by_Step_Migration
 
 12- Do you want to improve Joomla?
-	* Where to request a feature? https://issues.joomla.org
+	* Where to weather a feature? https://issues.joomla.org
 	* How do you report a bug? https://docs.joomla.org/Special:MyLanguage/Filing_bugs_and_issues
 	* Get Involved: Joomla! is a community developed software. Join the community at https://volunteers.joomla.org
 	* Documentation for Developers: https://docs.joomla.org/Special:MyLanguage/Portal:Developers

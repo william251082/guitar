@@ -15,9 +15,9 @@ GitHub has [outlined instructions](https://help.github.com/articles/fork-a-repo/
 
 - Fork the repo
 - Make the changes
-- Submit a pull request
+- Submit a pull weather
 
-Once the [pull request](https://help.github.com/articles/about-pull-requests/) is reviewed, if the changes are approved they will be merged in to the project.
+Once the [pull weather](https://help.github.com/articles/about-pull-requests/) is reviewed, if the changes are approved they will be merged in to the project.
 
 🐛 Bugs
 ----

@@ -55,7 +55,7 @@ class GuitarModelSong extends JModelItem
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_genre'))
+                      ->from($db->quoteName('#__guitar_guitarists'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -182,40 +182,6 @@ class GuitarModelSong extends JModelItem
 			$this->_item->rating = JText::_('COM_GUITAR_SONGS_RATING_OPTION_' . $this->_item->rating);
 		}
 
-		if (isset($this->_item->guitarist) && $this->_item->guitarist != '')
-		{
-			if (is_object($this->_item->guitarist))
-			{
-				$this->_item->guitarist = ArrayHelper::fromObject($this->_item->guitarist);
-			}
-
-			$values = (is_array($this->_item->guitarist)) ? $this->_item->guitarist : explode(',',$this->_item->guitarist);
-
-			$textValue = array();
-
-			foreach ($values as $value)
-			{
-				$db    = Factory::getDbo();
-				$query = $db->getQuery(true);
-
-				$query
-					->select('`#__guitar_guitarists_3044531`.`name`')
-					->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044531'))
-					->where($db->quoteName('id') . ' = ' . $db->quote($value));
-
-				$db->setQuery($query);
-				$results = $db->loadObject();
-
-				if ($results)
-				{
-					$textValue[] = $results->name;
-				}
-			}
-
-			$this->_item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $this->_item->guitarist;
-
-		}
-
 		if (isset($this->_item->catid) && $this->_item->catid != '')
 		{
 			if (is_object($this->_item->catid))
@@ -260,8 +226,8 @@ class GuitarModelSong extends JModelItem
 				$query = $db->getQuery(true);
 
 				$query
-					->select('`#__guitar_genre_3044758`.`name`')
-					->from($db->quoteName('#__guitar_genre', '#__guitar_genre_3044758'))
+					->select('`#__guitar_genres_3044758`.`name`')
+					->from($db->quoteName('#__guitar_genres', '#__guitar_genres_3044758'))
 					->where($db->quoteName('id') . ' = ' . $db->quote($value));
 
 				$db->setQuery($query);
@@ -274,6 +240,40 @@ class GuitarModelSong extends JModelItem
 			}
 
 			$this->_item->genre = !empty($textValue) ? implode(', ', $textValue) : $this->_item->genre;
+
+		}
+
+		if (isset($this->_item->guitarist) && $this->_item->guitarist != '')
+		{
+			if (is_object($this->_item->guitarist))
+			{
+				$this->_item->guitarist = ArrayHelper::fromObject($this->_item->guitarist);
+			}
+
+			$values = (is_array($this->_item->guitarist)) ? $this->_item->guitarist : explode(',',$this->_item->guitarist);
+
+			$textValue = array();
+
+			foreach ($values as $value)
+			{
+				$db    = Factory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query
+					->select('`#__guitar_guitarists_3045572`.`name`')
+					->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3045572'))
+					->where($db->quoteName('id') . ' = ' . $db->quote($value));
+
+				$db->setQuery($query);
+				$results = $db->loadObject();
+
+				if ($results)
+				{
+					$textValue[] = $results->name;
+				}
+			}
+
+			$this->_item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $this->_item->guitarist;
 
 		}
 

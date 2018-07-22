@@ -2,6 +2,8 @@
 <form>
   <fieldset>
     <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="title" filter="safehtml" type="text" required="true" message="Please enter a title" label="COM_GUITAR_FORM_LBL_SONG_TITLE" description="COM_GUITAR_FORM_DESC_SONG_TITLE" hint="COM_GUITAR_FORM_LBL_SONG_TITLE"/>
+    <field name="description" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" required="true" message="Please enter a description" label="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION" description="COM_GUITAR_FORM_DESC_SONG_DESCRIPTION" hint="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION"/>
     <field name="ordering"/>
     <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
       <option value="1">JPUBLISHED</option>
@@ -11,8 +13,6 @@
     </field>
     <field name="checked_out" type="hidden" filter="unset"/>
     <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
-    <field name="title" filter="safehtml" type="text" required="true" message="Please enter a title" label="COM_GUITAR_FORM_LBL_SONG_TITLE" description="COM_GUITAR_FORM_DESC_SONG_TITLE" hint="COM_GUITAR_FORM_LBL_SONG_TITLE"/>
-    <field name="description" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" required="true" message="Please enter a description" label="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION" description="COM_GUITAR_FORM_DESC_SONG_DESCRIPTION" hint="COM_GUITAR_FORM_LBL_SONG_DESCRIPTION"/>
     <field name="release_date" class="inputbox" timeformat="12" filter="server_utc" showtime="false" singleheader="false" todaybutton="false" weeknumbers="false" filltable="false" type="calendar" required="true" message="Please select a release date." label="COM_GUITAR_FORM_LBL_SONG_RELEASE_DATE" description="COM_GUITAR_FORM_DESC_SONG_RELEASE_DATE" hint="COM_GUITAR_FORM_LBL_SONG_RELEASE_DATE"/>
     <field name="review" editor="|" buttons="false" filter="JComponentHelper::filterText" type="editor" label="COM_GUITAR_FORM_LBL_SONG_REVIEW" description="COM_GUITAR_FORM_DESC_SONG_REVIEW" hint="COM_GUITAR_FORM_LBL_SONG_REVIEW"/>
     <field name="rating" type="list" label="COM_GUITAR_FORM_LBL_SONG_RATING" description="COM_GUITAR_FORM_DESC_SONG_RATING" hint="COM_GUITAR_FORM_LBL_SONG_RATING">
@@ -24,9 +24,9 @@
       <option value="">COM_GUITAR_SONGS_RATING_OPTION_</option>
     </field>
     <field name="credits" multiple="true" formsource="components/com_guitar/models/forms/subform_credits.xml" layout="joomla.form.field.subform.repeatable" type="subform" label="COM_GUITAR_FORM_LBL_SONG_CREDITS" description="COM_GUITAR_FORM_DESC_SONG_CREDITS" hint="COM_GUITAR_FORM_LBL_SONG_CREDITS"/>
-    <field name="guitarist" type="foreignkey" label="COM_GUITAR_FORM_LBL_SONG_GUITARIST" description="COM_GUITAR_FORM_DESC_SONG_GUITARIST" class="inputbox" input_type="list" table="#__guitar_guitarists" key_field="id" value_field="name" required="true" default=""/>
     <field name="catid" extension="com_guitar.songs" type="category" label="COM_GUITAR_FORM_LBL_SONG_CATID" description="COM_GUITAR_FORM_DESC_SONG_CATID" hint="COM_GUITAR_FORM_LBL_SONG_CATID"/>
-    <field name="genre" type="foreignkey" label="COM_GUITAR_FORM_LBL_SONG_GENRE" description="COM_GUITAR_FORM_DESC_SONG_GENRE" class="inputbox" input_type="list" table="#__guitar_genre" key_field="id" value_field="name" default="0"/>
+    <field name="genre" type="foreignkey" label="COM_GUITAR_FORM_LBL_SONG_GENRE" description="COM_GUITAR_FORM_DESC_SONG_GENRE" class="inputbox" input_type="list" table="#__guitar_genres" key_field="id" value_field="name" default="0"/>
+    <field name="guitarist" type="foreignkey" label="COM_GUITAR_FORM_LBL_SONG_GUITARIST" description="COM_GUITAR_FORM_DESC_SONG_GUITARIST" class="inputbox" input_type="list" table="#__guitar_guitarists" key_field="id" value_field="name" required="true" default=""/>
     <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
   </fieldset>
   <fieldset name="accesscontrol">

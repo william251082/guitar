@@ -51,10 +51,13 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_RATING', 'a.rating', $listDirn, $listOrder); ?>
 				</th>
 				<th class=''>
-				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_GUITARIST', 'a.guitarist', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_CATID', 'a.catid', $listDirn, $listOrder); ?>
 				</th>
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_GENRE', 'a.genre', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_SONGS_GUITARIST', 'a.guitarist', $listDirn, $listOrder); ?>
 				</th>
 
 
@@ -117,11 +120,15 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 				</td>
 				<td>
 
-					<?php echo $item->guitarist; ?>
+					<?php echo $item->catid; ?>
 				</td>
 				<td>
 
 					<?php echo $item->genre; ?>
+				</td>
+				<td>
+
+					<?php echo $item->guitarist; ?>
 				</td>
 
 

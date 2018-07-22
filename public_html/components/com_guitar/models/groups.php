@@ -35,12 +35,12 @@ class GuitarModelGroups extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
+				'name', 'a.name',
+				'description', 'a.description',
 				'ordering', 'a.ordering',
 				'state', 'a.state',
 				'created_by', 'a.created_by',
 				'modified_by', 'a.modified_by',
-				'name', 'a.name',
-				'description', 'a.description',
 				'transaction', 'a.transaction',
 				'place', 'a.place',
 			);
@@ -153,8 +153,8 @@ class GuitarModelGroups extends JModelList
 		$query->select('`#__guitar_transactions_3044863`.`title` AS transactions_fk_value_3044863');
 		$query->join('LEFT', '#__guitar_transactions AS #__guitar_transactions_3044863 ON #__guitar_transactions_3044863.`id` = a.`transaction`');
 		// Join over the foreign key 'place'
-		$query->select('`#__guitar_place_3044872`.`name` AS places_fk_value_3044872');
-		$query->join('LEFT', '#__guitar_place AS #__guitar_place_3044872 ON #__guitar_place_3044872.`id` = a.`place`');
+		$query->select('`#__guitar_places_3044872`.`name` AS places_fk_value_3044872');
+		$query->join('LEFT', '#__guitar_places AS #__guitar_places_3044872 ON #__guitar_places_3044872.`id` = a.`place`');
 		if(!$this->isAdminOrSuperUser()){
 			$query->where("a.created_by = " . JFactory::getUser()->get("id"));
 		}
@@ -251,8 +251,8 @@ class GuitarModelGroups extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_place_3044872`.`name`')
-						->from($db->quoteName('#__guitar_place', '#__guitar_place_3044872'))
+						->select('`#__guitar_places_3044872`.`name`')
+						->from($db->quoteName('#__guitar_places', '#__guitar_places_3044872'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);

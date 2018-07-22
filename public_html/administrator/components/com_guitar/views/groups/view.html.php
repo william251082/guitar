@@ -150,10 +150,10 @@ class GuitarViewGroups extends JViewLegacy
 	{
 		return array(
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
-			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
-			'a.`state`' => JText::_('JSTATUS'),
 			'a.`name`' => JText::_('COM_GUITAR_GROUPS_NAME'),
 			'a.`description`' => JText::_('COM_GUITAR_GROUPS_DESCRIPTION'),
+			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.`state`' => JText::_('JSTATUS'),
 			'a.`place`' => JText::_('COM_GUITAR_GROUPS_PLACE'),
 		);
 	}

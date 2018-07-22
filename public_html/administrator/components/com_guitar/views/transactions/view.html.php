@@ -150,11 +150,10 @@ class GuitarViewTransactions extends JViewLegacy
 	{
 		return array(
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
-			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
-			'a.`state`' => JText::_('JSTATUS'),
 			'a.`title`' => JText::_('COM_GUITAR_TRANSACTIONS_TITLE'),
 			'a.`description`' => JText::_('COM_GUITAR_TRANSACTIONS_DESCRIPTION'),
-			'a.`guitarist`' => JText::_('COM_GUITAR_TRANSACTIONS_GUITARIST'),
+			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.`state`' => JText::_('JSTATUS'),
 			'a.`group`' => JText::_('COM_GUITAR_TRANSACTIONS_GROUP'),
 		);
 	}

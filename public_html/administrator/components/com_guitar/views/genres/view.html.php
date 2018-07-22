@@ -150,12 +150,11 @@ class GuitarViewGenres extends JViewLegacy
 	{
 		return array(
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
-			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
-			'a.`state`' => JText::_('JSTATUS'),
 			'a.`name`' => JText::_('COM_GUITAR_GENRES_NAME'),
 			'a.`description`' => JText::_('COM_GUITAR_GENRES_DESCRIPTION'),
+			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.`state`' => JText::_('JSTATUS'),
 			'a.`songs`' => JText::_('COM_GUITAR_GENRES_SONGS'),
-			'a.`guitarists`' => JText::_('COM_GUITAR_GENRES_GUITARISTS'),
 		);
 	}
 

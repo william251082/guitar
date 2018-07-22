@@ -5,8 +5,8 @@
 			<![CDATA[COM_CONFIG_COMPONENT_VIEW_DEFAULT_DESC]]>
 		</message>
 	</layout>
-	<fields name="request">
-		<fieldset name="request" addfieldpath="administrator/components/com_config/model/field">
+	<fields name="weather">
+		<fieldset name="weather" addfieldpath="administrator/components/com_config/model/field">
 			<field
 				name="component"
 				type="configComponents"

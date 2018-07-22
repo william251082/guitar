@@ -5,7 +5,7 @@
                label="COM_USERS_FILTER_SEARCH_DESC"
                class="js-stools-search-string" />
 
-        <field name="place" type="sql" label="COM_GUITAR_FORM_LBL_GROUP_PLACE" query="SELECT '' AS `id`, 'COM_GUITAR_GROUPS_PLACE_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_place`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+        <field name="place" type="sql" label="COM_GUITAR_FORM_LBL_GROUP_PLACE" query="SELECT '' AS `id`, 'COM_GUITAR_GROUPS_PLACE_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_places`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
 
 
     </fields>

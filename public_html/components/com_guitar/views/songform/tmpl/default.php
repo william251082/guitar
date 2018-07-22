@@ -44,6 +44,10 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 			
 	<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
 
+	<?php echo $this->form->renderField('title'); ?>
+
+	<?php echo $this->form->renderField('description'); ?>
+
 	<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
 
 	<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
@@ -54,10 +58,6 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 
 				<?php echo $this->form->getInput('created_by'); ?>
 				<?php echo $this->form->getInput('modified_by'); ?>
-	<?php echo $this->form->renderField('title'); ?>
-
-	<?php echo $this->form->renderField('description'); ?>
-
 	<?php echo $this->form->renderField('release_date'); ?>
 
 	<?php echo $this->form->renderField('review'); ?>
@@ -66,13 +66,6 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 
 	<?php echo $this->form->renderField('credits'); ?>
 
-	<?php echo $this->form->renderField('guitarist'); ?>
-
-	<?php foreach((array)$this->item->guitarist as $value): ?>
-		<?php if(!is_array($value)): ?>
-			<input type="hidden" class="guitarist" name="jform[guitaristhidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
-		<?php endif; ?>
-	<?php endforeach; ?>
 	<?php echo $this->form->renderField('catid'); ?>
 
 	<?php echo $this->form->renderField('genre'); ?>
@@ -80,6 +73,13 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 	<?php foreach((array)$this->item->genre as $value): ?>
 		<?php if(!is_array($value)): ?>
 			<input type="hidden" class="genre" name="jform[genrehidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
+		<?php endif; ?>
+	<?php endforeach; ?>
+	<?php echo $this->form->renderField('guitarist'); ?>
+
+	<?php foreach((array)$this->item->guitarist as $value): ?>
+		<?php if(!is_array($value)): ?>
+			<input type="hidden" class="guitarist" name="jform[guitaristhidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
 		<?php endif; ?>
 	<?php endforeach; ?>				<div class="fltlft" <?php if (!JFactory::getUser()->authorise('core.admin','guitar')): ?> style="display:none;" <?php endif; ?> >
                 <?php echo JHtml::_('sliders.start', 'permissions-sliders-'.$this->item->id, array('useCookie'=>1)); ?>

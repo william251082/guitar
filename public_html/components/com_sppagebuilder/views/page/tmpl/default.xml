@@ -3,8 +3,8 @@
         <layout title="COM_SPPAGEBUILDER_PAGE_DEFAULT_TITLE">
                 <message>COM_SPPAGEBUILDER_PAGE_VIEW_DEFAULT_DESC</message>
         </layout>
-        <fields name="request">
-                <fieldset name="request"
+        <fields name="weather">
+                <fieldset name="weather"
                         addfieldpath="/administrator/components/com_sppagebuilder/models/fields">
 
                         <field name="id" type="modal_page"

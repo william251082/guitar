@@ -35,13 +35,12 @@ class GuitarModelTransactions extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
+				'title', 'a.title',
+				'description', 'a.description',
 				'ordering', 'a.ordering',
 				'state', 'a.state',
 				'created_by', 'a.created_by',
 				'modified_by', 'a.modified_by',
-				'title', 'a.title',
-				'description', 'a.description',
-				'guitarist', 'a.guitarist',
 				'place', 'a.place',
 				'group', 'a.group',
 			);
@@ -150,12 +149,9 @@ class GuitarModelTransactions extends JModelList
 
 		// Join over the created by field 'modified_by'
 		$query->join('LEFT', '#__users AS modified_by ON modified_by.id = a.modified_by');
-		// Join over the foreign key 'guitarist'
-		$query->select('`#__guitar_guitarists_3044847`.`name` AS guitarists_fk_value_3044847');
-		$query->join('LEFT', '#__guitar_guitarists AS #__guitar_guitarists_3044847 ON #__guitar_guitarists_3044847.`id` = a.`guitarist`');
 		// Join over the foreign key 'place'
-		$query->select('`#__guitar_place_3044859`.`name` AS places_fk_value_3044859');
-		$query->join('LEFT', '#__guitar_place AS #__guitar_place_3044859 ON #__guitar_place_3044859.`id` = a.`place`');
+		$query->select('`#__guitar_places_3044859`.`name` AS places_fk_value_3044859');
+		$query->join('LEFT', '#__guitar_places AS #__guitar_places_3044859 ON #__guitar_places_3044859.`id` = a.`place`');
 		// Join over the foreign key 'group'
 		$query->select('`#__guitar_groups_3044860`.`name` AS groups_fk_value_3044860');
 		$query->join('LEFT', '#__guitar_groups AS #__guitar_groups_3044860 ON #__guitar_groups_3044860.`id` = a.`group`');
@@ -184,14 +180,6 @@ class GuitarModelTransactions extends JModelList
                 }
             }
             
-
-		// Filtering guitarist
-		$filter_guitarist = $this->state->get("filter.guitarist");
-
-		if ($filter_guitarist)
-		{
-			$query->where("a.`guitarist` = '".$db->escape($filter_guitarist)."'");
-		}
 
 		// Filtering group
 		$filter_group = $this->state->get("filter.group");
@@ -225,34 +213,6 @@ class GuitarModelTransactions extends JModelList
 		foreach ($items as $item)
 		{
 
-			if (isset($item->guitarist))
-			{
-
-				$values    = explode(',', $item->guitarist);
-				$textValue = array();
-
-				foreach ($values as $value)
-				{
-					$db    = Factory::getDbo();
-					$query = $db->getQuery(true);
-					$query
-						->select('`#__guitar_guitarists_3044847`.`name`')
-						->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044847'))
-						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
-
-					$db->setQuery($query);
-					$results = $db->loadObject();
-
-					if ($results)
-					{
-						$textValue[] = $results->name;
-					}
-				}
-
-				$item->guitarist = !empty($textValue) ? implode(', ', $textValue) : $item->guitarist;
-			}
-
-
 			if (isset($item->place))
 			{
 
@@ -264,8 +224,8 @@ class GuitarModelTransactions extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_place_3044859`.`name`')
-						->from($db->quoteName('#__guitar_place', '#__guitar_place_3044859'))
+						->select('`#__guitar_places_3044859`.`name`')
+						->from($db->quoteName('#__guitar_places', '#__guitar_places_3044859'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);

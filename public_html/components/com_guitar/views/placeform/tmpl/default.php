@@ -44,6 +44,10 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 			
 	<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
 
+	<?php echo $this->form->renderField('name'); ?>
+
+	<?php echo $this->form->renderField('description'); ?>
+
 	<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
 
 	<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
@@ -54,10 +58,6 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 
 				<?php echo $this->form->getInput('created_by'); ?>
 				<?php echo $this->form->getInput('modified_by'); ?>
-	<?php echo $this->form->renderField('name'); ?>
-
-	<?php echo $this->form->renderField('description'); ?>
-
 	<?php echo $this->form->renderField('lat'); ?>
 
 	<?php echo $this->form->renderField('lng'); ?>

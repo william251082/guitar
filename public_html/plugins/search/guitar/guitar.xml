@@ -2,7 +2,7 @@
 <extension version="3.1" type="plugin" group="search">
     <name>plg_search_guitar</name>
     <author>William del Rosario</author>
-    <creationDate>2018-07-17</creationDate>
+    <creationDate>2018-07-18</creationDate>
     <copyright>2018 com_guitar</copyright>
     <license>Proprietary License; For my customers only</license>
     <authorEmail>williamdelrosario@yahoo.com</authorEmail>

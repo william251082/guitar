@@ -41,34 +41,34 @@ class GuitarHelper
 			JToolBarHelper::title('Guitar Sessions: JCATEGORIES (COM_GUITAR_TITLE_SONGS)');
 		}
 
-        JHtmlSidebar::addEntry(
-			JText::_('COM_GUITAR_TITLE_GUITARISTS'),
-			'index.php?option=com_guitar&view=guitarists',
-			$vName == 'guitarists'
-		);
-
-        JHtmlSidebar::addEntry(
+		JHtmlSidebar::addEntry(
 			JText::_('COM_GUITAR_TITLE_TRANSACTIONS'),
 			'index.php?option=com_guitar&view=transactions',
 			$vName == 'transactions'
 		);
 
-        JHtmlSidebar::addEntry(
+		JHtmlSidebar::addEntry(
 			JText::_('COM_GUITAR_TITLE_GROUPS'),
 			'index.php?option=com_guitar&view=groups',
 			$vName == 'groups'
 		);
 
-        JHtmlSidebar::addEntry(
+		JHtmlSidebar::addEntry(
 			JText::_('COM_GUITAR_TITLE_PLACES'),
 			'index.php?option=com_guitar&view=places',
 			$vName == 'places'
 		);
 
-        JHtmlSidebar::addEntry(
+		JHtmlSidebar::addEntry(
 			JText::_('COM_GUITAR_TITLE_GENRES'),
 			'index.php?option=com_guitar&view=genres',
 			$vName == 'genres'
+		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('COM_GUITAR_TITLE_GUITARISTS'),
+			'index.php?option=com_guitar&view=guitarists',
+			$vName == 'guitarists'
 		);
 
 		JHtmlSidebar::addEntry(

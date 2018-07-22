@@ -55,7 +55,7 @@ class GuitarModelPlaceForm extends JModelForm
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_place'))
+                      ->from($db->quoteName('#__guitar_places'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 

@@ -37,6 +37,13 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 		}
 	});
 	js("#jform_genre").trigger("liszt:updated");
+	js('input:hidden.transaction').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('transactionhidden')){
+			js('#jform_transaction option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_transaction").trigger("liszt:updated");
 	});
 
 	Joomla.submitbutton = function (task) {
@@ -69,14 +76,15 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 				<fieldset class="adminform">
 
 									<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+				<?php echo $this->form->renderField('name'); ?>
+				<?php echo $this->form->renderField('description'); ?>
 				<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
 				<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
 				<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
 				<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
 				<?php echo $this->form->renderField('created_by'); ?>
-				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('name'); ?>
-				<?php echo $this->form->renderField('songs'); ?>
+				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('songs'); ?>
 
 			<?php
 				foreach((array)$this->item->songs as $value): 
@@ -90,6 +98,14 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 				foreach((array)$this->item->genre as $value): 
 					if(!is_array($value)):
 						echo '<input type="hidden" class="genre" name="jform[genrehidden]['.$value.']" value="'.$value.'" />';
+					endif;
+				endforeach;
+			?>				<?php echo $this->form->renderField('transaction'); ?>
+
+			<?php
+				foreach((array)$this->item->transaction as $value): 
+					if(!is_array($value)):
+						echo '<input type="hidden" class="transaction" name="jform[transactionhidden]['.$value.']" value="'.$value.'" />';
 					endif;
 				endforeach;
 			?>

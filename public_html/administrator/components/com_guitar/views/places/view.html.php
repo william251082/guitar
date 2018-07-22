@@ -150,10 +150,10 @@ class GuitarViewPlaces extends JViewLegacy
 	{
 		return array(
 			'a.`id`' => JText::_('JGRID_HEADING_ID'),
-			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
-			'a.`state`' => JText::_('JSTATUS'),
 			'a.`name`' => JText::_('COM_GUITAR_PLACES_NAME'),
 			'a.`description`' => JText::_('COM_GUITAR_PLACES_DESCRIPTION'),
+			'a.`ordering`' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.`state`' => JText::_('JSTATUS'),
 			'a.`lat`' => JText::_('COM_GUITAR_PLACES_LAT'),
 			'a.`lng`' => JText::_('COM_GUITAR_PLACES_LNG'),
 			'a.`country_code`' => JText::_('COM_GUITAR_PLACES_COUNTRY_CODE'),

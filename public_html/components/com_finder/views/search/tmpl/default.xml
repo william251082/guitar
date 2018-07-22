@@ -9,8 +9,8 @@
 		</message>
 	</layout>
 
-	<fields name="request" addfieldpath="/administrator/components/com_finder/models/fields">
-		<fieldset name="request">
+	<fields name="weather" addfieldpath="/administrator/components/com_finder/models/fields">
+		<fieldset name="weather">
 			<field
 				name="q"
 				type="text"

@@ -51,7 +51,7 @@ class GuitarModelTests extends JModelList
 
                 $query = $db->getQuery(true);
                 $query->select("id")
-                      ->from($db->quoteName('#__guitar_guitarists'))
+                      ->from($db->quoteName('#__guitar_transactions'))
                       ->where("id = " . $db->escape($id))
                       ->where("created_by = " . $user->id);
 
@@ -96,7 +96,7 @@ class GuitarModelTests extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('a.name', 'asc');
+		parent::populateState('a.description', 'asc');
 	}
 
 	/**
@@ -162,8 +162,8 @@ class GuitarModelTests extends JModelList
 					$db    = JFactory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_songs_3044778`.`title`')
-						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3044778'))
+						->select('`#__guitar_songs_3045569`.`title`')
+						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3045569'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -178,9 +178,9 @@ class GuitarModelTests extends JModelList
 				$oneItem->songs = !empty($textValue) ? implode(', ', $textValue) : $oneItem->songs;
 			}
 
-			if (isset($oneItem->guitarists))
+			if (isset($oneItem->genre))
 			{
-				$values    = explode(',', $oneItem->guitarists);
+				$values    = explode(',', $oneItem->genre);
 				$textValue = array();
 
 				foreach ($values as $value)
@@ -188,8 +188,8 @@ class GuitarModelTests extends JModelList
 					$db    = JFactory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_guitarists_3044779`.`name`')
-						->from($db->quoteName('#__guitar_guitarists', '#__guitar_guitarists_3044779'))
+						->select('`#__guitar_genres_3045570`.`name`')
+						->from($db->quoteName('#__guitar_genres', '#__guitar_genres_3045570'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -201,7 +201,7 @@ class GuitarModelTests extends JModelList
 					}
 				}
 
-				$oneItem->guitarists = !empty($textValue) ? implode(', ', $textValue) : $oneItem->guitarists;
+				$oneItem->genre = !empty($textValue) ? implode(', ', $textValue) : $oneItem->genre;
 			}
 		}
 

@@ -35,13 +35,15 @@ class GuitarModelGuitarists extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
+				'name', 'a.name',
+				'description', 'a.description',
 				'ordering', 'a.ordering',
 				'state', 'a.state',
 				'created_by', 'a.created_by',
 				'modified_by', 'a.modified_by',
-				'name', 'a.name',
 				'songs', 'a.songs',
 				'genre', 'a.genre',
+				'transaction', 'a.transaction',
 			);
 		}
 
@@ -149,11 +151,14 @@ class GuitarModelGuitarists extends JModelList
 		// Join over the created by field 'modified_by'
 		$query->join('LEFT', '#__users AS modified_by ON modified_by.id = a.modified_by');
 		// Join over the foreign key 'songs'
-		$query->select('`#__guitar_songs_3044774`.`title` AS songs_fk_value_3044774');
-		$query->join('LEFT', '#__guitar_songs AS #__guitar_songs_3044774 ON #__guitar_songs_3044774.`id` = a.`songs`');
+		$query->select('`#__guitar_songs_3045569`.`title` AS songs_fk_value_3045569');
+		$query->join('LEFT', '#__guitar_songs AS #__guitar_songs_3045569 ON #__guitar_songs_3045569.`id` = a.`songs`');
 		// Join over the foreign key 'genre'
-		$query->select('`#__guitar_genre_3044777`.`name` AS genres_fk_value_3044777');
-		$query->join('LEFT', '#__guitar_genre AS #__guitar_genre_3044777 ON #__guitar_genre_3044777.`id` = a.`genre`');
+		$query->select('`#__guitar_genres_3045570`.`name` AS genres_fk_value_3045570');
+		$query->join('LEFT', '#__guitar_genres AS #__guitar_genres_3045570 ON #__guitar_genres_3045570.`id` = a.`genre`');
+		// Join over the foreign key 'transaction'
+		$query->select('`#__guitar_transactions_3045571`.`title` AS transactions_fk_value_3045571');
+		$query->join('LEFT', '#__guitar_transactions AS #__guitar_transactions_3045571 ON #__guitar_transactions_3045571.`id` = a.`transaction`');
 		if(!$this->isAdminOrSuperUser()){
 			$query->where("a.created_by = " . JFactory::getUser()->get("id"));
 		}
@@ -175,6 +180,7 @@ class GuitarModelGuitarists extends JModelList
                 else
                 {
                     $search = $db->Quote('%' . $db->escape($search, true) . '%');
+				$query->where('( a.description LIKE ' . $search . ' )');
                 }
             }
             
@@ -230,8 +236,8 @@ class GuitarModelGuitarists extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_songs_3044774`.`title`')
-						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3044774'))
+						->select('`#__guitar_songs_3045569`.`title`')
+						->from($db->quoteName('#__guitar_songs', '#__guitar_songs_3045569'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -258,8 +264,8 @@ class GuitarModelGuitarists extends JModelList
 					$db    = Factory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__guitar_genre_3044777`.`name`')
-						->from($db->quoteName('#__guitar_genre', '#__guitar_genre_3044777'))
+						->select('`#__guitar_genres_3045570`.`name`')
+						->from($db->quoteName('#__guitar_genres', '#__guitar_genres_3045570'))
 						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
 
 					$db->setQuery($query);
@@ -272,6 +278,34 @@ class GuitarModelGuitarists extends JModelList
 				}
 
 				$item->genre = !empty($textValue) ? implode(', ', $textValue) : $item->genre;
+			}
+
+
+			if (isset($item->transaction))
+			{
+
+				$values    = explode(',', $item->transaction);
+				$textValue = array();
+
+				foreach ($values as $value)
+				{
+					$db    = Factory::getDbo();
+					$query = $db->getQuery(true);
+					$query
+						->select('`#__guitar_transactions_3045571`.`title`')
+						->from($db->quoteName('#__guitar_transactions', '#__guitar_transactions_3045571'))
+						->where($db->quoteName('id') . ' = '. $db->quote($db->escape($value)));
+
+					$db->setQuery($query);
+					$results = $db->loadObject();
+
+					if ($results)
+					{
+						$textValue[] = $results->title;
+					}
+				}
+
+				$item->transaction = !empty($textValue) ? implode(', ', $textValue) : $item->transaction;
 			}
 
 		}

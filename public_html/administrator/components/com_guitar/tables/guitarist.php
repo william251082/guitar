@@ -12,11 +12,11 @@ defined('_JEXEC') or die;
 
 use Joomla\Utilities\ArrayHelper;
 /**
- * Guitarist Table class
+ * guitarist Table class
  *
  * @since  1.6
  */
-class GuitarTableGuitarist extends JTable
+class GuitarTableguitarist extends JTable
 {
 	
 	/**
@@ -26,7 +26,7 @@ class GuitarTableGuitarist extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTableGuitarist', array('typeAlias' => 'com_guitar.guitarist'));
+		JObserverMapper::addObserverClassToClass('JTableObserverContenthistory', 'GuitarTableguitarist', array('typeAlias' => 'com_guitar.guitarist'));
 		parent::__construct('#__guitar_guitarists', 'id', $db);
 	}
 
@@ -90,6 +90,20 @@ class GuitarTableGuitarist extends JTable
 			}
 			else {
 				$array['genre'] = '';
+			}
+
+		// Support for multiple or not foreign key field: transaction
+			if(!empty($array['transaction']))
+			{
+				if(is_array($array['transaction'])){
+					$array['transaction'] = implode(',',$array['transaction']);
+				}
+				else if(strrpos($array['transaction'], ',') != false){
+					$array['transaction'] = explode(',',$array['transaction']);
+				}
+			}
+			else {
+				$array['transaction'] = '';
 			}
 
 		if (isset($array['params']) && is_array($array['params']))

@@ -50,9 +50,6 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_GENRES_SONGS', 'a.songs', $listDirn, $listOrder); ?>
 				</th>
-				<th class=''>
-				<?php echo JHtml::_('grid.sort',  'COM_GUITAR_GENRES_GUITARISTS', 'a.guitarists', $listDirn, $listOrder); ?>
-				</th>
 
 
 							<?php if ($canEdit || $canDelete): ?>
@@ -111,10 +108,6 @@ $canDelete  = $user->authorise('core.delete', 'com_guitar');
 				<td>
 
 					<?php echo $item->songs; ?>
-				</td>
-				<td>
-
-					<?php echo $item->guitarists; ?>
 				</td>
 
 

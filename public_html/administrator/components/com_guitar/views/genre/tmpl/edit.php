@@ -30,13 +30,13 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 		}
 	});
 	js("#jform_songs").trigger("liszt:updated");
-	js('input:hidden.guitarists').each(function(){
+	js('input:hidden.guitarist').each(function(){
 		var name = js(this).attr('name');
-		if(name.indexOf('guitaristshidden')){
-			js('#jform_guitarists option[value="'+js(this).val()+'"]').attr('selected',true);
+		if(name.indexOf('guitaristhidden')){
+			js('#jform_guitarist option[value="'+js(this).val()+'"]').attr('selected',true);
 		}
 	});
-	js("#jform_guitarists").trigger("liszt:updated");
+	js("#jform_guitarist").trigger("liszt:updated");
 	});
 
 	Joomla.submitbutton = function (task) {
@@ -69,15 +69,15 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 				<fieldset class="adminform">
 
 									<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
+				<?php echo $this->form->renderField('name'); ?>
+				<?php echo $this->form->renderField('description'); ?>
 				<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
 				<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
 				<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
 				<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
 				<?php echo $this->form->renderField('created_by'); ?>
-				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('name'); ?>
-				<?php echo $this->form->renderField('description'); ?>
-				<?php echo $this->form->renderField('songs'); ?>
+				<?php echo $this->form->renderField('modified_by'); ?>				<?php echo $this->form->renderField('songs'); ?>
 
 			<?php
 				foreach((array)$this->item->songs as $value): 
@@ -85,12 +85,12 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 						echo '<input type="hidden" class="songs" name="jform[songshidden]['.$value.']" value="'.$value.'" />';
 					endif;
 				endforeach;
-			?>				<?php echo $this->form->renderField('guitarists'); ?>
+			?>				<?php echo $this->form->renderField('guitarist'); ?>
 
 			<?php
-				foreach((array)$this->item->guitarists as $value): 
+				foreach((array)$this->item->guitarist as $value): 
 					if(!is_array($value)):
-						echo '<input type="hidden" class="guitarists" name="jform[guitaristshidden]['.$value.']" value="'.$value.'" />';
+						echo '<input type="hidden" class="guitarist" name="jform[guitaristhidden]['.$value.']" value="'.$value.'" />';
 					endif;
 				endforeach;
 			?>

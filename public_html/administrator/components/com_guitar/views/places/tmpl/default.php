@@ -78,7 +78,10 @@ $sortFields = $this->getSortFields();
 				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_PLACES_DESCRIPTION', 'a.`description`', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
-				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_PLACES_POSITION', 'a.`lat`, a.`lng`', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_PLACES_LAT', 'a.`lat`', $listDirn, $listOrder); ?>
+				</th>
+				<th class='left'>
+				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_PLACES_LNG', 'a.`lng`', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
 				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_PLACES_COUNTRY_CODE', 'a.`country_code`', $listDirn, $listOrder); ?>
@@ -89,6 +92,8 @@ $sortFields = $this->getSortFields();
 				<th class='left'>
 				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_PLACES_GROUP', 'a.`group`', $listDirn, $listOrder); ?>
 				</th>
+
+					
 				</tr>
 				</thead>
 				<tfoot>
@@ -154,24 +159,22 @@ $sortFields = $this->getSortFields();
 					<?php echo $this->escape($item->name); ?>
 				<?php endif; ?>
 
-				</td>
-                        <td>
+				</td>				<td>
 
 					<?php echo $item->description; ?>
-				</td>
-                        <td>
+				</td>				<td>
 
-					<?php echo "[" . $item->lat . ", " . $item->lng . "]"; ?>
-				</td>
-                        <td>
+					<?php echo $item->lat; ?>
+				</td>				<td>
+
+					<?php echo $item->lng; ?>
+				</td>				<td>
 
 					<?php echo $item->country_code; ?>
-				</td>
-                        <td>
+				</td>				<td>
 
 					<?php echo $item->transaction; ?>
-				</td>
-                        <td>
+				</td>				<td>
 
 					<?php echo $item->group; ?>
 				</td>

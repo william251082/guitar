@@ -5,8 +5,8 @@
 			<![CDATA[COM_CATEGORIES_CATEGORIES_VIEW_DEFAULT_DESC]]>
 		</message>
 	</layout>
-	<fieldset name="request">
-		<fields name="request">
+	<fieldset name="weather">
+		<fields name="weather">
 			<field
 				name="extension"
 				type="componentscategory"

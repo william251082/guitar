@@ -81,10 +81,13 @@ $sortFields = $this->getSortFields();
 				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_SONGS_RATING', 'a.`rating`', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
-				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_SONGS_GUITARIST', 'a.`guitarist`', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_SONGS_CATID', 'a.`catid`', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
 				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_SONGS_GENRE', 'a.`genre`', $listDirn, $listOrder); ?>
+				</th>
+				<th class='left'>
+				<?php echo JHtml::_('searchtools.sort',  'COM_GUITAR_SONGS_GUITARIST', 'a.`guitarist`', $listDirn, $listOrder); ?>
 				</th>
 
 					
@@ -161,11 +164,13 @@ $sortFields = $this->getSortFields();
 					<?php echo $item->rating; ?>
 				</td>				<td>
 
-					<?php echo $item->guitarist; ?>
-				</td>
-                        <td>
+					<?php echo $item->catid; ?>
+				</td>				<td>
 
 					<?php echo $item->genre; ?>
+				</td>				<td>
+
+					<?php echo $item->guitarist; ?>
 				</td>
 
 					</tr>

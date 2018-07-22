@@ -30,13 +30,20 @@ $document->addStyleSheet(JUri::root() . 'media/com_guitar/css/form.css');
 		}
 	});
 	js("#jform_songs").trigger("liszt:updated");
-	js('input:hidden.guitarists').each(function(){
+	js('input:hidden.genre').each(function(){
 		var name = js(this).attr('name');
-		if(name.indexOf('guitaristshidden')){
-			js('#jform_guitarists option[value="'+js(this).val()+'"]').attr('selected',true);
+		if(name.indexOf('genrehidden')){
+			js('#jform_genre option[value="'+js(this).val()+'"]').attr('selected',true);
 		}
 	});
-	js("#jform_guitarists").trigger("liszt:updated");
+	js("#jform_genre").trigger("liszt:updated");
+	js('input:hidden.transaction').each(function(){
+		var name = js(this).attr('name');
+		if(name.indexOf('transactionhidden')){
+			js('#jform_transaction option[value="'+js(this).val()+'"]').attr('selected',true);
+		}
+	});
+	js("#jform_transaction").trigger("liszt:updated");
 	});
 
 	Joomla.submitbutton = function (task) {

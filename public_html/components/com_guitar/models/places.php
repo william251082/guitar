@@ -35,12 +35,12 @@ class GuitarModelPlaces extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
+				'name', 'a.name',
+				'description', 'a.description',
 				'ordering', 'a.ordering',
 				'state', 'a.state',
 				'created_by', 'a.created_by',
 				'modified_by', 'a.modified_by',
-				'name', 'a.name',
-				'description', 'a.description',
 				'lat', 'a.lat',
 				'lng', 'a.lng',
 				'country_code', 'a.country_code',
@@ -141,7 +141,7 @@ class GuitarModelPlaces extends JModelList
                         )
                 );
 
-            $query->from('`#__guitar_place` AS a');
+            $query->from('`#__guitar_places` AS a');
             
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS uEditor');

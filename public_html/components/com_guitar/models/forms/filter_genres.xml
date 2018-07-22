@@ -6,7 +6,6 @@
                class="js-stools-search-string" />
 
         <field name="songs" type="sql" label="COM_GUITAR_FORM_LBL_GENRE_SONGS" query="SELECT '' AS `id`, 'COM_GUITAR_GENRES_SONGS_FILTER' AS `val` UNION SELECT `id` AS `id`, `title` AS val FROM `#__guitar_songs`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
-<field name="guitarists" type="sql" label="COM_GUITAR_FORM_LBL_GENRE_GUITARISTS" query="SELECT '' AS `id`, 'COM_GUITAR_GENRES_GUITARISTS_FILTER' AS `val` UNION SELECT `id` AS `id`, `name` AS val FROM `#__guitar_guitarists`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
 
 
     </fields>

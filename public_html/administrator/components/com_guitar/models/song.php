@@ -249,18 +249,6 @@ class GuitarModelSong extends JModelAdmin
 					throw new Exception($table->getError());
 				}
 				
-				if (!empty($table->guitarist))
-				{
-					if (is_array($table->guitarist))
-					{
-						$table->guitarist = implode(',', $table->guitarist);
-					}
-				}
-				else
-				{
-					$table->guitarist = '';
-				}
-
 				if (!empty($table->genre))
 				{
 					if (is_array($table->genre))
@@ -271,6 +259,18 @@ class GuitarModelSong extends JModelAdmin
 				else
 				{
 					$table->genre = '';
+				}
+
+				if (!empty($table->guitarist))
+				{
+					if (is_array($table->guitarist))
+					{
+						$table->guitarist = implode(',', $table->guitarist);
+					}
+				}
+				else
+				{
+					$table->guitarist = '';
 				}
 
 

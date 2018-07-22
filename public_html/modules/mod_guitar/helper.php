@@ -88,6 +88,12 @@ class ModGuitarHelper
 		case 'id':
 		$result = $field_value;
 		break;
+		case 'title':
+		$result = $field_value;
+		break;
+		case 'description':
+		$result = $field_value;
+		break;
 		case 'created_by':
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
@@ -95,12 +101,6 @@ class ModGuitarHelper
 		case 'modified_by':
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
-		break;
-		case 'title':
-		$result = $field_value;
-		break;
-		case 'description':
-		$result = $field_value;
 		break;
 		case 'release_date':
 		$result = $field_value;
@@ -114,38 +114,14 @@ class ModGuitarHelper
 		case 'credits':
 		$result = $field_value;
 		break;
-		case 'guitarist':
-		$result = self::loadValueFromExternalTable('#__guitar_guitarists', 'id', 'name', $field_value);
-		break;
 		case 'catid':
 		$result = self::loadValueFromExternalTable('#__categories', 'id', 'title', $field_value);
 		break;
 		case 'genre':
-		$result = self::loadValueFromExternalTable('#__guitar_genre', 'id', 'name', $field_value);
+		$result = self::loadValueFromExternalTable('#__guitar_genres', 'id', 'name', $field_value);
 		break;
-		}
-		break;
-		case '#__guitar_guitarists':
-		switch($field_name){
-		case 'id':
-		$result = $field_value;
-		break;
-		case 'created_by':
-		$user = JFactory::getUser($field_value);
-		$result = $user->name;
-		break;
-		case 'modified_by':
-		$user = JFactory::getUser($field_value);
-		$result = $user->name;
-		break;
-		case 'name':
-		$result = $field_value;
-		break;
-		case 'songs':
-		$result = self::loadValueFromExternalTable('#__guitar_songs', 'id', 'title', $field_value);
-		break;
-		case 'genre':
-		$result = self::loadValueFromExternalTable('#__guitar_genre', 'id', 'name', $field_value);
+		case 'guitarist':
+		$result = self::loadValueFromExternalTable('#__guitar_guitarists', 'id', 'name', $field_value);
 		break;
 		}
 		break;
@@ -154,6 +130,12 @@ class ModGuitarHelper
 		case 'id':
 		$result = $field_value;
 		break;
+		case 'title':
+		$result = $field_value;
+		break;
+		case 'description':
+		$result = $field_value;
+		break;
 		case 'created_by':
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
@@ -162,17 +144,8 @@ class ModGuitarHelper
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
 		break;
-		case 'title':
-		$result = $field_value;
-		break;
-		case 'description':
-		$result = $field_value;
-		break;
-		case 'guitarist':
-		$result = self::loadValueFromExternalTable('#__guitar_guitarists', 'id', 'name', $field_value);
-		break;
 		case 'place':
-		$result = self::loadValueFromExternalTable('#__guitar_place', 'id', 'name', $field_value);
+		$result = self::loadValueFromExternalTable('#__guitar_places', 'id', 'name', $field_value);
 		break;
 		case 'group':
 		$result = self::loadValueFromExternalTable('#__guitar_groups', 'id', 'name', $field_value);
@@ -184,6 +157,12 @@ class ModGuitarHelper
 		case 'id':
 		$result = $field_value;
 		break;
+		case 'name':
+		$result = $field_value;
+		break;
+		case 'description':
+		$result = $field_value;
+		break;
 		case 'created_by':
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
@@ -191,24 +170,24 @@ class ModGuitarHelper
 		case 'modified_by':
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
-		break;
-		case 'name':
-		$result = $field_value;
-		break;
-		case 'description':
-		$result = $field_value;
 		break;
 		case 'transaction':
 		$result = self::loadValueFromExternalTable('#__guitar_transactions', 'id', 'title', $field_value);
 		break;
 		case 'place':
-		$result = self::loadValueFromExternalTable('#__guitar_place', 'id', 'name', $field_value);
+		$result = self::loadValueFromExternalTable('#__guitar_places', 'id', 'name', $field_value);
 		break;
 		}
 		break;
-		case '#__guitar_place':
+		case '#__guitar_places':
 		switch($field_name){
 		case 'id':
+		$result = $field_value;
+		break;
+		case 'name':
+		$result = $field_value;
+		break;
+		case 'description':
 		$result = $field_value;
 		break;
 		case 'created_by':
@@ -218,12 +197,6 @@ class ModGuitarHelper
 		case 'modified_by':
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
-		break;
-		case 'name':
-		$result = $field_value;
-		break;
-		case 'description':
-		$result = $field_value;
 		break;
 		case 'lat':
 		$result = $field_value;
@@ -242,9 +215,15 @@ class ModGuitarHelper
 		break;
 		}
 		break;
-		case '#__guitar_genre':
+		case '#__guitar_genres':
 		switch($field_name){
 		case 'id':
+		$result = $field_value;
+		break;
+		case 'name':
+		$result = $field_value;
+		break;
+		case 'description':
 		$result = $field_value;
 		break;
 		case 'created_by':
@@ -255,17 +234,41 @@ class ModGuitarHelper
 		$user = JFactory::getUser($field_value);
 		$result = $user->name;
 		break;
+		case 'songs':
+		$result = self::loadValueFromExternalTable('#__guitar_songs', 'id', 'title', $field_value);
+		break;
+		case 'guitarist':
+		$result = self::loadValueFromExternalTable('#__guitar_guitarists', 'id', 'name', $field_value);
+		break;
+		}
+		break;
+		case '#__guitar_guitarists':
+		switch($field_name){
+		case 'id':
+		$result = $field_value;
+		break;
 		case 'name':
 		$result = $field_value;
 		break;
 		case 'description':
 		$result = $field_value;
 		break;
+		case 'created_by':
+		$user = JFactory::getUser($field_value);
+		$result = $user->name;
+		break;
+		case 'modified_by':
+		$user = JFactory::getUser($field_value);
+		$result = $user->name;
+		break;
 		case 'songs':
 		$result = self::loadValueFromExternalTable('#__guitar_songs', 'id', 'title', $field_value);
 		break;
-		case 'guitarists':
-		$result = self::loadValueFromExternalTable('#__guitar_guitarists', 'id', 'name', $field_value);
+		case 'genre':
+		$result = self::loadValueFromExternalTable('#__guitar_genres', 'id', 'name', $field_value);
+		break;
+		case 'transaction':
+		$result = self::loadValueFromExternalTable('#__guitar_transactions', 'id', 'title', $field_value);
 		break;
 		}
 		break;

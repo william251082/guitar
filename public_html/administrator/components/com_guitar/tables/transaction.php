@@ -64,20 +64,6 @@ class GuitarTabletransaction extends JTable
 			$array['modified_by'] = JFactory::getUser()->id;
 		}
 
-		// Support for multiple or not foreign key field: guitarist
-			if(!empty($array['guitarist']))
-			{
-				if(is_array($array['guitarist'])){
-					$array['guitarist'] = implode(',',$array['guitarist']);
-				}
-				else if(strrpos($array['guitarist'], ',') != false){
-					$array['guitarist'] = explode(',',$array['guitarist']);
-				}
-			}
-			else {
-				$array['guitarist'] = '';
-			}
-
 		// Support for multiple or not foreign key field: place
 			if(!empty($array['place']))
 			{

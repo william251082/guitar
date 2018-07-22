@@ -44,6 +44,10 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 			
 	<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
 
+	<?php echo $this->form->renderField('name'); ?>
+
+	<?php echo $this->form->renderField('description'); ?>
+
 	<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
 
 	<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
@@ -54,8 +58,6 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 
 				<?php echo $this->form->getInput('created_by'); ?>
 				<?php echo $this->form->getInput('modified_by'); ?>
-	<?php echo $this->form->renderField('name'); ?>
-
 	<?php echo $this->form->renderField('songs'); ?>
 
 	<?php foreach((array)$this->item->songs as $value): ?>
@@ -68,6 +70,13 @@ $canEdit = GuitarHelpersGuitar::canUserEdit($this->item, $user);
 	<?php foreach((array)$this->item->genre as $value): ?>
 		<?php if(!is_array($value)): ?>
 			<input type="hidden" class="genre" name="jform[genrehidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
+		<?php endif; ?>
+	<?php endforeach; ?>
+	<?php echo $this->form->renderField('transaction'); ?>
+
+	<?php foreach((array)$this->item->transaction as $value): ?>
+		<?php if(!is_array($value)): ?>
+			<input type="hidden" class="transaction" name="jform[transactionhidden][<?php echo $value; ?>]" value="<?php echo $value; ?>" />
 		<?php endif; ?>
 	<?php endforeach; ?>				<div class="fltlft" <?php if (!JFactory::getUser()->authorise('core.admin','guitar')): ?> style="display:none;" <?php endif; ?> >
                 <?php echo JHtml::_('sliders.start', 'permissions-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
